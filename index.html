@@ -10,308 +10,7 @@
     content="Matériaux de construction et de bricolage, Ets Braconnier à Bertrix, matériel sanitaire et électrique, membre Bel-Mat." />
   <meta name="robots" content="index,follow" />
 
-  <style>
-    :root {
-      --text: #2b2b2b;
-      --muted: #666;
-      --line: #e6e6e6;
-      --soft: #f6f6f6;
-      --accent: #d70000;
-      --max: 1100px;
-      --radius: 14px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--text);
-      background: #fff;
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .wrap {
-      width: min(var(--max), 100% - 32px);
-      margin: 0 auto;
-    }
-
-    header {
-      background: #fff;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 14px 0;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      min-width: 0;
-    }
-
-    .brand .logo {
-      width: min(520px, 100%);
-    }
-
-    .brand small {
-      display: block;
-      margin-top: 6px;
-      color: var(--muted);
-      line-height: 1.2;
-    }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-shrink: 0;
-    }
-
-    .badge {
-      width: 72px;
-      max-width: 72px;
-    }
-
-    .quicklinks {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .quicklinks a {
-      padding: 8px 10px;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      color: var(--muted);
-      font-family: "Times New Roman", Times, serif;
-      font-style: italic;
-      font-weight: bold;
-      background: #fff;
-      white-space: nowrap;
-    }
-
-    /* HERO image au-dessus (celle de ta capture) */
-    .hero {
-      border-top: 1px solid var(--line);
-      background: var(--soft);
-    }
-
-    .hero img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-    }
-
-
-    main {
-      padding: 18px 0 26px;
-    }
-
-    .layout {
-      display: grid;
-      grid-template-columns: 240px 1fr;
-      gap: 18px;
-      align-items: start;
-    }
-
-    aside {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      overflow: hidden;
-      background: #fff;
-    }
-
-    .menu-title {
-      padding: 12px;
-      background: var(--soft);
-      border-bottom: 1px solid var(--line);
-      font-weight: 600;
-      color: var(--muted);
-    }
-
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 8px;
-    }
-
-    nav a {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 10px;
-      border-radius: 10px;
-      color: var(--muted);
-      font-family: "Times New Roman", Times, serif;
-      font-style: italic;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      background: var(--soft);
-      text-decoration: none;
-    }
-
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #ccc;
-    }
-
-    .content {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      min-width: 0;
-    }
-
-    .headline {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 14px;
-      background: #fff;
-      text-align: center;
-    }
-
-    .headline h1 {
-      margin: 0;
-      font-size: clamp(18px, 2.2vw, 30px);
-      font-family: Verdana, Geneva, sans-serif;
-      font-weight: 700;
-      color: #333;
-    }
-
-    .headline p {
-      margin: 8px 0 0;
-      font-family: "Times New Roman", Times, serif;
-      font-style: italic;
-      font-weight: 700;
-      color: var(--muted);
-      font-size: clamp(16px, 1.8vw, 24px);
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .card {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: #fff;
-      overflow: hidden;
-    }
-
-    .card .label {
-      padding: 10px 12px;
-      border-bottom: 1px solid var(--line);
-      color: var(--muted);
-      font-weight: 600;
-      background: #fff;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .note {
-      border: 1px dashed #f2b3b3;
-      background: #fff7f7;
-      border-radius: var(--radius);
-      padding: 12px;
-      text-align: center;
-      color: #c62828;
-      font-weight: 700;
-      font-style: italic;
-      min-height: 44px;
-    }
-
-    .guide {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: #fff;
-    }
-
-    .guide strong {
-      color: var(--muted);
-    }
-
-    .guide a:hover {
-      text-decoration: none;
-      opacity: .95;
-    }
-
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 16px 0;
-      background: #fff;
-    }
-
-    .footerbar {
-      height: 16px;
-      border-radius: 999px;
-      background:
-        linear-gradient(90deg,
-          #999 0 70%,
-          transparent 70% 72%,
-          var(--accent) 72% 73%,
-          transparent 73% 76%,
-          #999 76% 100%);
-    }
-
-    @media (max-width: 900px) {
-      .topbar {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .header-right {
-        justify-content: space-between;
-        width: 100%;
-      }
-
-      .layout {
-        grid-template-columns: 1fr;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero img {
-        height: 180px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -325,13 +24,24 @@
       </div>
 
       <div class="header-right">
-        <img id="logoBelmat" class="badge" alt="Bel-Mat" />
         <div class="quicklinks" aria-label="Liens rapides">
           <a href="/Avis/Avis1.php">Votre avis</a>
           <a href="/rgpd.pdf">RGPD</a>
         </div>
       </div>
     </div>
+
+    <nav class="main-nav" aria-label="Menu principal">
+      <ul>
+        <li><a href="http://www.braconnier.be/index.php">Accueil</a></li>
+        <li><a href="/Actualites/Actu.php">Actualités</a></li>
+        <li><a href="http://www.braconnier.be/Presentation.php">Présentation</a></li>
+        <li><a href="http://www.braconnier.be/Produits.php">Produits</a></li>
+        <li><a href="http://www.braconnier.be/Promotions.php">Promotions</a></li>
+        <li><a href="http://www.braconnier.be/Contacts.php">Contacts</a></li>
+      </ul>
+    </nav>
+
 
     <!-- IMAGE AU-DESSUS (hero) -->
     <div class="hero">
@@ -340,38 +50,34 @@
   </header>
 
   <main>
-    <div class="wrap layout">
-      <aside>
-        <div class="menu-title">Menu</div>
-        <nav aria-label="Menu principal">
-          <ul>
-            <li><a href="http://www.braconnier.be/index.php"><span class="dot"></span>Accueil</a></li>
-            <li><a href="/Actualites/Actu.php"><span class="dot"></span>Actualités</a></li>
-            <li><a href="http://www.braconnier.be/Presentation.php"><span class="dot"></span>Présentation</a></li>
-            <li><a href="http://www.braconnier.be/Produits.php"><span class="dot"></span>Produits</a></li>
-            <li><a href="http://www.braconnier.be/Promotions.php"><span class="dot"></span>Promotions</a></li>
-            <li><a href="http://www.braconnier.be/Contacts.php"><span class="dot"></span>Contacts</a></li>
-          </ul>
-        </nav>
-      </aside>
-
+    <div class="wrap">
       <section class="content">
-        <div class="headline">
-          <h1>Matériaux de constructions</h1>
-          <p>Materiaux de construction - articles professionnels et de bricolage</p>
-        </div>
 
-        <div class="grid">
+        <section class="masonry">
+
           <article class="card">
-            <div class="label">Plan</div>
-            <img id="imgPlan" alt="Plan" />
+            <div style="padding:14px">
+              <strong>Actualités</strong><br>
+              Petit texte…
+            </div>
           </article>
 
           <article class="card">
-            <div class="label">Visuel</div>
-            <img id="imgVisuel" alt="Visuel" />
+            <div style="padding:14px">
+              <strong>Promotions</strong><br>
+              Petit texte…
+            </div>
           </article>
-        </div>
+
+          <article class="card masonry-tall">
+            <div style="padding:14px">
+              <strong>Produits</strong><br><br>
+              Cette carte prend toute la hauteur → parfaite pour :
+              promo / nouveauté magasin / message fort.
+            </div>
+          </article>
+
+        </section>
 
         <div class="note" role="status" aria-live="polite">
           <!-- Texte (ex: congés / info) -->
@@ -387,9 +93,11 @@
             </div>
           </a>
         </div>
+
       </section>
     </div>
   </main>
+
 
   <footer>
     <div class="wrap">
@@ -398,27 +106,16 @@
   </footer>
 
   <script>
-    /**
-     * IMPORTANT :
-     * Mets ici les bons chemins selon TON serveur.
-     * - Si ton site a /Images à la racine : utilise "/Images/..."
-     * - Si ton fichier HTML est dans un sous-dossier : utilise "../Images/..."
-     */
+
     const ASSETS = {
       logoMain: "images-site/logo.jpg",
-      logoBelmat: "images-site/logo.jpg",   // si tu n'as pas de logo belmat, mets le même
       hero: "images-site/magasin.jpg",
-      plan: "images-site/plan.jpg",
-      visuel: "images-site/magasin.jpg",
       guide: "images-site/logo.jpg"
     };
 
 
     document.getElementById("logoMain").src = ASSETS.logoMain;
-    document.getElementById("logoBelmat").src = ASSETS.logoBelmat;
     document.getElementById("heroImg").src = ASSETS.hero;
-    document.getElementById("imgPlan").src = ASSETS.plan;
-    document.getElementById("imgVisuel").src = ASSETS.visuel;
     document.getElementById("imgGuide").src = ASSETS.guide;
   </script>
 </body>
