@@ -105,17 +105,38 @@
 
 
         <div class="guide">
+
+          <!-- gauche : image guide -->
           <a href="https://www.paperturn-view.com/fr/groupamat/guide-des-materiaux?pid=MTI121312" target="_blank"
             rel="noopener noreferrer">
             <img id="imgGuide" alt="Guide des matériaux" width="120" />
             <div>
-              <strong>Ouvrir le guide des matériaux</strong><br />
+              <strong>Ouvrir le guide des matériaux</strong><br>
               <span style="color:var(--muted)">Paperturn</span>
             </div>
           </a>
+
+          <!-- droite : FORMULAIRE DEVIS -->
+          <form class="devis-form" action="send-devis.php" method="post">
+            <strong>Demande de devis</strong>
+
+            <div class="devis-row">
+              <input type="text" name="nom" placeholder="Nom" required>
+              <input type="tel" name="tel" placeholder="Téléphone" required>
+            </div>
+
+            <input type="email" name="email" placeholder="E-mail" required>
+
+            <textarea name="message" rows="3" placeholder="Votre demande..." required></textarea>
+
+            <button type="submit">Envoyer</button>
+          </form>
+
         </div>
 
-      </section>
+    </div>
+
+    </section>
     </div>
   </main>
 
@@ -131,7 +152,7 @@
     const ASSETS = {
       logoMain: "images-site/logo.jpg",
       hero: "images-site/magasin.jpg",
-      guide: "images-site/logo.jpg"
+      guide: "images-site/groupamat.jpg"
     };
 
     document.getElementById("logoMain").src = ASSETS.logoMain;

@@ -528,3 +528,48 @@ footer {
   height:634px;           /* = 260 + 260 + gap(14) */
   overflow: hidden;        /* empêche l'image de pousser */
 }
+
+.guide {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  align-items: center;
+}
+
+.devis-form{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.devis-row{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.devis-form input,
+.devis-form textarea{
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font: inherit;
+  background: #fff;
+}
+
+.devis-form button{
+  align-self: flex-end;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+.devis-form button:hover{ background: var(--soft); }
+
+@media (max-width: 900px){
+  .guide{ grid-template-columns: 1fr; }
+  .devis-row{ grid-template-columns: 1fr; }
+}
