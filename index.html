@@ -31,22 +31,30 @@
       </div>
     </div>
 
-    <nav class="main-nav" aria-label="Menu principal">
-      <ul>
-        <li><a href="http://www.braconnier.be/index.php">Accueil</a></li>
-        <li><a href="/Actualites/Actu.php">Actualités</a></li>
-        <li><a href="http://www.braconnier.be/Presentation.php">Présentation</a></li>
-        <li><a href="http://www.braconnier.be/Produits.php">Produits</a></li>
-        <li><a href="http://www.braconnier.be/Promotions.php">Promotions</a></li>
-        <li><a href="http://www.braconnier.be/Contacts.php">Contacts</a></li>
-      </ul>
-    </nav>
+    <div class="hero-layout">
+
+      <nav class="main-nav" aria-label="Menu principal">
+        <ul>
+          <li><a href="http://www.braconnier.be/index.php">Accueil</a></li>
+          <li><a href="/Actualites/Actu.php">Actualités</a></li>
+          <li><a href="http://www.braconnier.be/Presentation.php">Présentation</a></li>
+          <li><a href="http://www.braconnier.be/Produits.php">Produits</a></li>
+          <li><a href="http://www.braconnier.be/Promotions.php">Promotions</a></li>
+          <li><a href="http://www.braconnier.be/Contacts.php">Contacts</a></li>
+        </ul>
+      </nav>
+
+      <img id="heroImg" class="hero-img" alt="" />
+
+      <iframe class="map"
+        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5145.2121350771895!2d5.25321!3d49.84985900000001!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47ea808d6bb9e87f%3A0xf00dd4deebbf1048!2sEts%20Braconnier!5e0!3m2!1sfr!2sbe!4v1770570919392!5m2!1sfr!2sbe"
+        loading="lazy" allowfullscreen>
+      </iframe>
 
 
-    <!-- IMAGE AU-DESSUS (hero) -->
-    <div class="hero">
-      <img id="heroImg" alt="" />
     </div>
+
+
   </header>
 
   <main>
@@ -55,38 +63,46 @@
 
         <section class="masonry">
 
-          <article class="card">
-            <div style="padding:14px">
-              <strong>Actualités</strong><br>
-              Petit texte…
-            </div>
+          <!-- ACTUALITÉS -->
+          <article class="card actu-card">
+            <div class="card-title">Actualités</div>
+
+            <a href="actualite.jpg?v=1" target="_blank" class="thumb thumb-3x1">
+              <img src="actualite.jpg?v=1" alt="Actualités">
+            </a>
+
           </article>
 
-          <article class="card">
-            <div style="padding:14px">
-              <strong>Promotions</strong><br>
-              Petit texte…
-            </div>
+          <!-- PROMOTIONS -->
+          <article class="card actu-card">
+            <div class="card-title">Promotions</div>
+
+            <a href="promotion.jpg?v=1" target="_blank" class="thumb thumb-3x1">
+              <img src="promotion.jpg?v=1" alt="Promotions">
+            </a>
+
           </article>
 
-          <article class="card masonry-tall product-card">
 
-            <a href="http://www.braconnier.be/Produits.php" class="product-link">
+
+          <article class="card actu-card">
+
+            <div class="card-title">Plus de Produits ➜</div>
+
+            <a href="https://www.braconnier.be/Produits.php" class="thumb thumb-3x1">
               <img id="productSlider" src="" alt="Produits">
             </a>
 
-            <div style="padding:12px 14px; font-weight:700">
-              Produits du moment
-            </div>
-
           </article>
+
 
 
         </section>
 
         <div class="note" role="status" aria-live="polite">
-          <!-- Texte (ex: congés / info) -->
+          🕒 Ouvert du lundi au vendredi de 07h30 à 12h00 &amp; 13h00 à 17h30 — Samedi de 08h00 à 12h00
         </div>
+
 
         <div class="guide">
           <a href="https://www.paperturn-view.com/fr/groupamat/guide-des-materiaux?pid=MTI121312" target="_blank"
@@ -147,12 +163,19 @@
     const slider = document.getElementById("productSlider");
 
     function showProduct() {
-      slider.src = PRODUCTS[pIndex] + "?v=" + Date.now();
-      pIndex = (pIndex + 1) % PRODUCTS.length;
+
+      slider.classList.add("fade-out"); // disparaît
+
+      setTimeout(() => {
+        slider.src = PRODUCTS[pIndex] + "?v=" + Date.now();
+        pIndex = (pIndex + 1) % PRODUCTS.length;
+
+        slider.classList.remove("fade-out"); // réapparaît
+      }, 300); // moitié du temps du transition
     }
 
     showProduct();
-    setInterval(showProduct, 3500);
+    setInterval(showProduct, 4500);
 
   </script>
 

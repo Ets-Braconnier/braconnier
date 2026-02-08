@@ -4,7 +4,7 @@
   --line: #e6e6e6;
   --soft: #f6f6f6;
   --accent: #d70000;
-  --max: 1100px;
+  --max: 1450px;
   --radius: 14px;
 }
 
@@ -120,20 +120,33 @@ main {
 nav ul {
   list-style: none;
   margin: 0;
-  padding: 8px;
+  padding: 0;
+}
+
+.hero-layout .main-nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 nav a {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px;
+  display: block;
+  padding: 5px 60px;
+  font-size: 17px;
+  line-height: 1.2;
   border-radius: 10px;
-  color: var(--muted);
-  font-family: "Times New Roman", Times, serif;
-  font-style: italic;
-  font-weight: bold;
+
+  color: #444;
+  font-weight: 600;
+  transition: 0.15s ease;
 }
+
+
+nav a:hover {
+  background: var(--soft);
+  color: var(--accent);
+}
+
 
 nav a:hover {
   background: var(--soft);
@@ -255,63 +268,17 @@ footer {
   }
 }
 
-/* ===== MENU HORIZONTAL ===== */
-
-.main-nav {
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  background: #fff;
-}
-
-.main-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  gap: 28px;
-}
-
-.main-nav a {
-  display: block;
-  padding: 14px 0;
-  font-weight: 600;
-  color: var(--muted);
-  text-decoration: none;
-}
-
-.main-nav a:hover {
-  color: var(--accent);
-}
-
-.block {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.block-title {
-  margin: 8px 0 0;
-  font-size: 20px;
-  color: #333;
-}
-
-.grid-3 {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-@media (max-width: 900px) {
-  .grid-3 {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* ===== Layout imbriqué sous hero ===== */
 
 .masonry {
   display: grid;
-  gap: 14px;
+  column-gap: 100px;
+  row-gap: 14px;
+
   grid-template-columns: 1fr 1fr;
+
+  grid-template-rows: minmax(260px, auto) minmax(260px, auto);
+
   grid-template-areas:
     "a c"
     "b c";
@@ -345,25 +312,219 @@ footer {
   }
 }
 
-/* ===== Slider Produits ===== */
-
-.product-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
 .product-link {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--soft);
-  height: 100%;
 }
 
 #productSlider {
   width: 100%;
-  height: 280px;       /* ← hauteur identique pour toutes */
-  object-fit: contain; /* image entière visible */
-  padding: 12px;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  padding: 0;
+
+  opacity: 1;
+  transition: opacity 0.8s ease-in-out;
+}
+
+#productSlider.fade-out {
+  opacity: 0;
+}
+
+/* lien "Plus de produits" */
+
+.product-more {
+  display: block;
+  padding: 12px 14px;
+  font-weight: 700;
+  color: var(--text);
+  text-align: right;
+  text-decoration: none;
+  border-top: 1px solid var(--line);
+  transition: 0.2s ease;
+}
+
+.product-more:hover {
+  background: var(--soft);
+  padding-right: 18px;
+  /* petit slide → */
+}
+
+/* ===== Cartes Actu / Promo avec image ===== */
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.card-link img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  /* ← remplit tout */
+  display: block;
+}
+
+
+
+.card-body {
+  padding: 12px 14px;
+}
+
+/* petit effet pro au survol */
+.card-link:hover img {
+  transform: scale(1.03);
+  transition: transform .25s ease;
+}
+
+/* carte Actualités simplifiée */
+
+.actu-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.card-title {
+  padding: 10px 14px;
+  font-weight: 700;
+}
+
+.actu-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.thumb {
+  width: 100%;
+  overflow: hidden;
+}
+
+.thumb-3x1 {
+  height: 260px;
+}
+
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.product-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== PRODUITS (3e carte de la masonry) : remplir toute la hauteur ===== */
+.masonry> :nth-child(3) {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.masonry> :nth-child(3) .thumb {
+  flex: 1;
+  /* prend tout l'espace sous le titre */
+  height: auto;
+}
+
+.masonry> :nth-child(3) .thumb-3x1 {
+  height: auto;
+  /* annule le height:260px UNIQUEMENT ici */
+}
+
+.masonry> :nth-child(3) img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* ===== HERO centré : menu | image | map ===== */
+
+.hero-layout {
+  display: grid;
+  grid-template-columns: 1fr 900px 1fr;
+
+  width: 100%;
+  padding: 14px 24px;
+
+  gap: 28px;
+  align-items: center;
+
+  justify-items: center;
+}
+
+.hero-layout .main-nav {
+  box-sizing: border-box;
+  width: 360px;
+  height: 260px;
+
+  padding: 10px 12px;
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* image parfaitement centrée */
+.hero-layout .hero-img {
+  width: 100%;
+  border-radius: 14px;
+}
+
+
+.hero-layout .map {
+  width: 360px;
+  min-height: 260px;
+  border: 0;
+  border-radius: 14px;
+  display: block;
+}
+
+
+
+
+@media (max-width: 900px) {
+  .hero-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* rond plein devant chaque lien du menu */
+.main-nav a::before {
+  content: "●";
+  font-size: 20px;
+
+  color: var(--accent);
+  /* rouge Braconnier */
+  margin-right: 10px;
+
+  display: inline-block;
+  transform: translateY(-1px);
+  /* petit alignement vertical */
+}
+
+/* Grande carte (Produits) : hauteur fixe */
+.masonry > :nth-child(3) {
+  height:634px;           /* = 260 + 260 + gap(14) */
+  overflow: hidden;        /* empêche l'image de pousser */
 }
