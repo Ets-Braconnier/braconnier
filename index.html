@@ -69,13 +69,18 @@
             </div>
           </article>
 
-          <article class="card masonry-tall">
-            <div style="padding:14px">
-              <strong>Produits</strong><br><br>
-              Cette carte prend toute la hauteur → parfaite pour :
-              promo / nouveauté magasin / message fort.
+          <article class="card masonry-tall product-card">
+
+            <a href="http://www.braconnier.be/Produits.php" class="product-link">
+              <img id="productSlider" src="" alt="Produits">
+            </a>
+
+            <div style="padding:12px 14px; font-weight:700">
+              Produits du moment
             </div>
+
           </article>
+
 
         </section>
 
@@ -113,11 +118,44 @@
       guide: "images-site/logo.jpg"
     };
 
-
     document.getElementById("logoMain").src = ASSETS.logoMain;
     document.getElementById("heroImg").src = ASSETS.hero;
     document.getElementById("imgGuide").src = ASSETS.guide;
+
+
+    /* ===== Slider Produits automatique ===== */
+
+    const PRODUCTS = [
+      "images-site/produits/am77.jpg",
+      "images-site/produits/brouettes.jpg",
+      "images-site/produits/caniveaux-carrelages.jpg",
+      "images-site/produits/carrelages-exterieur.jpg",
+      "images-site/produits/gardena.jpg",
+      "images-site/produits/gewe.jpg",
+      "images-site/produits/panneaux.jpg",
+      "images-site/produits/peintures.jpg",
+      "images-site/produits/pompes.jpg",
+      "images-site/produits/rocko.jpg",
+      "images-site/produits/seuils.jpg",
+      "images-site/produits/stanley.jpg",
+      "images-site/produits/vis1.jpg",
+      "images-site/produits/vis2.jpg",
+      "images-site/produits/vis3.jpg"
+    ];
+
+    let pIndex = 0;
+    const slider = document.getElementById("productSlider");
+
+    function showProduct() {
+      slider.src = PRODUCTS[pIndex] + "?v=" + Date.now();
+      pIndex = (pIndex + 1) % PRODUCTS.length;
+    }
+
+    showProduct();
+    setInterval(showProduct, 3500);
+
   </script>
+
 </body>
 
 </html>

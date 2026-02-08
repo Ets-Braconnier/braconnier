@@ -344,3 +344,26 @@ footer {
       "c";
   }
 }
+
+/* ===== Slider Produits ===== */
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--soft);
+  height: 100%;
+}
+
+#productSlider {
+  width: 100%;
+  height: 280px;       /* ← hauteur identique pour toutes */
+  object-fit: contain; /* image entière visible */
+  padding: 12px;
+}
