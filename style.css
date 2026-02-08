@@ -458,7 +458,8 @@ footer {
 
 .hero-layout {
   display: grid;
-  grid-template-columns: 1fr 900px 1fr;
+  grid-template-columns: 1fr minmax(0, 900px) 1fr;
+
 
   width: 100%;
   padding: 14px 24px;
