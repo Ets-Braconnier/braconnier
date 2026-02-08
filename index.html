@@ -117,7 +117,7 @@
           </a>
 
           <!-- droite : FORMULAIRE DEVIS -->
-          <form class="devis-form" action="send-devis.php" method="post">
+          <form class="devis-form" onsubmit="return sendDevisMail(event)">
             <strong>Demande de devis</strong>
 
             <div class="devis-row">
@@ -199,6 +199,29 @@
     setInterval(showProduct, 4500);
 
   </script>
+
+  <script>
+    function sendDevisMail(e) {
+      e.preventDefault();
+
+      const f = e.target;
+
+      const subject = encodeURIComponent("Demande de devis – Braconnier");
+
+      const body = encodeURIComponent(
+        "Nom : " + f.nom.value + "\n" +
+        "Téléphone : " + f.tel.value + "\n" +
+        "Email : " + f.email.value + "\n\n" +
+        "Message :\n" + f.message.value
+      );
+
+      window.location.href =
+        "mailto:info@braconnier.be?subject=" + subject + "&body=" + body;
+
+      return false;
+    }
+  </script>
+
 
 </body>
 
