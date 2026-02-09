@@ -472,7 +472,7 @@ footer {
 
 .hero-layout .main-nav {
   box-sizing: border-box;
-  width: 360px;
+  width: clamp(240px, 20vw, 340px);
   height: 260px;
 
   padding: 10px 12px;
@@ -494,7 +494,7 @@ footer {
 
 
 .hero-layout .map {
-  width: 360px;
+  width: clamp(240px, 20vw, 340px);
   min-height: 260px;
   border: 0;
   border-radius: 14px;
@@ -525,9 +525,11 @@ footer {
 }
 
 /* Grande carte (Produits) : hauteur fixe */
-.masonry > :nth-child(3) {
-  height:634px;           /* = 260 + 260 + gap(14) */
-  overflow: hidden;        /* empêche l'image de pousser */
+.masonry> :nth-child(3) {
+  height: 634px;
+  /* = 260 + 260 + gap(14) */
+  overflow: hidden;
+  /* empêche l'image de pousser */
 }
 
 .guide {
@@ -537,20 +539,20 @@ footer {
   align-items: center;
 }
 
-.devis-form{
+.devis-form {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.devis-row{
+.devis-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
 }
 
 .devis-form input,
-.devis-form textarea{
+.devis-form textarea {
   width: 100%;
   padding: 10px 12px;
   border: 1px solid var(--line);
@@ -559,7 +561,7 @@ footer {
   background: #fff;
 }
 
-.devis-form button{
+.devis-form button {
   align-self: flex-end;
   padding: 10px 14px;
   border: 1px solid var(--line);
@@ -568,9 +570,22 @@ footer {
   font-weight: 700;
   cursor: pointer;
 }
-.devis-form button:hover{ background: var(--soft); }
 
-@media (max-width: 900px){
-  .guide{ grid-template-columns: 1fr; }
-  .devis-row{ grid-template-columns: 1fr; }
+.devis-form button:hover {
+  background: var(--soft);
+}
+
+@media (max-width: 900px) {
+  .guide {
+    grid-template-columns: 1fr;
+  }
+
+  .devis-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== Échelle globale plus compacte (effet zoom ~90%) ===== */
+html {
+  font-size: 90%;
 }
