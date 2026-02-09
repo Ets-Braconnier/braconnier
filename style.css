@@ -272,7 +272,7 @@ footer {
 
 .masonry {
   display: grid;
-  column-gap: 100px;
+  column-gap: 80px;
   row-gap: 14px;
 
   grid-template-columns: 1fr 1fr;
@@ -486,11 +486,12 @@ footer {
   justify-content: center;
 }
 
-/* image parfaitement centrée */
 .hero-layout .hero-img {
-  width: 100%;
+  width: min(820px, 100%);
   border-radius: 14px;
+  display: block;
 }
+
 
 
 .hero-layout .map {
@@ -587,5 +588,5 @@ footer {
 
 /* ===== Échelle globale plus compacte (effet zoom ~90%) ===== */
 html {
-  font-size: 90%;
+  font-size: 80%;
 }
