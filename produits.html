@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Produits – Matériaux de construction | Ets Braconnier</title>
+  <meta name="description"
+    content="Découvrez nos gammes : gros œuvre, toitures, aménagements, sols, murs, plafonds, portes, électricité, sanitaire, isolation, peintures et plus." />
+  <meta name="robots" content="index,follow" />
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Complément léger (garde ton look, ajoute juste la grille “Produits”) -->
+  <style>
+    .products {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .search-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      padding: 14px;
+    }
+
+    .searchbar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .searchbar label {
+      color: #000;
+      font-weight: 700;
+      font-family: Verdana, Geneva, sans-serif;
+    }
+
+    .searchbar input {
+      flex: 1;
+      min-width: 220px;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      font: inherit;
+      background: #fff;
+    }
+
+    .searchbar input:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(215, 0, 0, 0.08);
+    }
+
+    .searchbar button {
+      padding: 10px 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .searchbar button:hover {
+      background: var(--soft);
+      transform: translateY(-1px);
+    }
+
+    .section {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .section .label {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-weight: 700;
+      font-family: Verdana, Geneva, sans-serif;
+    }
+
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      padding: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .cat-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .cat-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .cat-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 220px;
+    }
+
+    .cat-card:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      text-decoration: none;
+    }
+
+    .cat-card img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      display: block;
+      transition: transform .25s ease;
+    }
+
+    .cat-card:hover img {
+      transform: scale(1.03);
+    }
+
+    .cat-card .title {
+      padding: 10px 12px;
+      text-align: center;
+      color: var(--muted);
+      font-family: "Times New Roman", Times, serif;
+      font-style: italic;
+      font-weight: bold;
+      font-size: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    /* cartes “logo / icône” */
+    .cat-card--contain img {
+      object-fit: contain;
+      background: #fff;
+      padding: 12px;
+    }
+
+    /* section Nouveau : centrée */
+    .cat-grid--single {
+      grid-template-columns: minmax(0, 360px);
+      justify-content: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-scale">
+
+    <header>
+      <div class="wrap topbar">
+        <div class="brand">
+          <div class="logo">
+            <img id="logoMain" alt="Ets Braconnier" />
+            <small>Matériaux de construction – articles professionnels et de bricolage</small>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <div class="quicklinks" aria-label="Liens rapides">
+            <a href="/Avis/Avis1.php">Votre avis</a>
+            <a href="/rgpd.pdf">RGPD</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-layout">
+
+        <nav class="main-nav" aria-label="Menu principal">
+          <ul>
+            <li><a href="http://www.braconnier.be/index.php">Accueil</a></li>
+            <li><a href="/Actualites/Actu.php">Actualités</a></li>
+            <li><a href="http://www.braconnier.be/Presentation.php">Présentation</a></li>
+            <li><a href="http://www.braconnier.be/Produits.php" aria-current="page">Produits</a></li>
+            <li><a href="http://www.braconnier.be/Promotions.php">Promotions</a></li>
+            <li><a href="http://www.braconnier.be/Contacts.php">Contacts</a></li>
+          </ul>
+        </nav>
+
+        <img id="heroImg" class="hero-img" alt="Magasin – Ets Braconnier" />
+
+        <iframe class="map"
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5145.2121350771895!2d5.25321!3d49.84985900000001!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47ea808d6bb9e87f%3A0xf00dd4deebbf1048!2sEts%20Braconnier!5e0!3m2!1sfr!2sbe!4v1770570919392!5m2!1sfr!2sbe"
+          loading="lazy" allowfullscreen>
+        </iframe>
+
+      </div>
+    </header>
+
+    <main>
+  <div class="wrap">
+    <section class="products">
+
+      <section class="headline">
+        <h1>Matériaux de construction</h1>
+        <p>Choisissez une catégorie</p>
+      </section>
+
+      <!-- Recherche -->
+      <section class="search-card">
+        <form class="searchbar" action="/Recherches/basepdf/Recherche-1.php" method="post">
+          <label for="Motcle">Que cherchez-vous ?</label>
+          <input id="Motcle" name="Motcle" type="text" maxlength="60" placeholder="Un seul mot" />
+          <button type="submit">Rechercher</button>
+        </form>
+      </section>
+
+      <!-- EXTÉRIEUR -->
+      <section class="section">
+        <div class="label">Extérieur</div>
+        <div class="cat-grid">
+
+          <a class="cat-card" href="http://www.braconnier.be/Produits/Exterieur/Produits-ext-gros.php">
+            <img src="Images/Produits/gros-oeuvre.jpg" alt="Gros œuvre">
+            <div class="title">Gros œuvre</div>
+          </a>
+
+          <a class="cat-card" href="/Produits/Exterieur/Toitures/Toitures.php">
+            <img src="Images/Toitures/toit.gif" alt="Toitures">
+            <div class="title">Toitures</div>
+          </a>
+
+          <a class="cat-card" href="Produits/Exterieur/Produits-amenag.php">
+            <img src="Images/Bauma/bauma.jpg" alt="Aménagements">
+            <div class="title">Aménagements</div>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- INTÉRIEUR -->
+      <section class="section">
+        <div class="label">Intérieur</div>
+        <div class="cat-grid">
+
+          <a class="cat-card" href="Produits/Interieur/sols.php">
+            <img src="Images/Pierres/schiste.jpg" alt="Sols">
+            <div class="title">Sols</div>
+          </a>
+
+          <a class="cat-card" href="Produits/Interieur/Murs.php">
+            <img src="Images/Mortex/chaux.jpg" alt="Murs">
+            <div class="title">Murs</div>
+          </a>
+
+          <a class="cat-card" href="Produits/Interieur/Plafonds/plafonds.php">
+            <img src="Images/Maestro/promo_choice_nc.jpg" alt="Plafonds">
+            <div class="title">Plafonds</div>
+          </a>
+
+          <a class="cat-card" href="/Produits/Interieur/Portes/portes.php">
+            <img src="/Images/Portes/ThysMetal.JPG" alt="Portes">
+            <div class="title">Portes</div>
+          </a>
+
+          <a class="cat-card" href="Produits/Interieur/Electricite.php">
+            <img src="Images/Elec/electro6.jpg" alt="Électricité">
+            <div class="title">Électricité</div>
+          </a>
+
+          <a class="cat-card" href="Produits/Interieur/Sanitaire.php">
+            <img src="Images/Global/robinet.JPG" alt="Sanitaire">
+            <div class="title">Sanitaire</div>
+          </a>
+
+          <a class="cat-card" href="Produits/Interieur/Isolation.php">
+            <img src="Images/Knauf/tr312ecose.jpg" alt="Isolation">
+            <div class="title">Isolation</div>
+          </a>
+
+          <a class="cat-card" href="http://www.braconnier.be/Produits/Interieur/Peintures/peintures-2.php">
+            <img src="/Images/Peintures/Diessner.JPG" alt="Peintures">
+            <div class="title">Peintures</div>
+          </a>
+
+        </div>
+      </section>
+
+    </section>
+  </div>
+</main>
+
+
+    <footer>
+      <div class="wrap">
+        <div class="footerbar" aria-hidden="true"></div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    // mêmes conventions que ta home (logo + hero)
+    const ASSETS = {
+      logoMain: "images-site/logo.jpg",
+      hero: "images-site/magasin.jpg"
+    };
+
+    const logo = document.getElementById("logoMain");
+    const hero = document.getElementById("heroImg");
+
+    if (logo) logo.src = ASSETS.logoMain;
+    if (hero) hero.src = ASSETS.hero;
+  </script>
+</body>
+
+</html>
