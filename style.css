@@ -635,11 +635,4 @@ body {
   transform: translateY(-1px);
 }
 
-/* TEST FORCE — à enlever après */
-.guide-images { 
-  outline: 6px solid lime !important;
-  display: flex !important;
-}
-.guide-images img { 
-  height: 200px !important;
-}
+
