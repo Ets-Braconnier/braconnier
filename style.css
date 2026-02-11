@@ -17,6 +17,7 @@ body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   color: var(--text);
   background: #fff;
+  overflow-x: hidden;
 }
 
 img {
@@ -272,7 +273,7 @@ footer {
 
 .masonry {
   display: grid;
-  column-gap: 80px;
+  column-gap: 60px;
   row-gap: 14px;
 
   grid-template-columns: 1fr 1fr;
@@ -428,32 +429,6 @@ footer {
   flex-direction: column;
 }
 
-/* ===== PRODUITS (3e carte de la masonry) : remplir toute la hauteur ===== */
-.masonry> :nth-child(3) {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.masonry> :nth-child(3) .thumb {
-  flex: 1;
-  /* prend tout l'espace sous le titre */
-  height: auto;
-}
-
-.masonry> :nth-child(3) .thumb-3x1 {
-  height: auto;
-  /* annule le height:260px UNIQUEMENT ici */
-}
-
-.masonry> :nth-child(3) img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
-
 /* ===== HERO centré : menu | image | map ===== */
 
 .hero-layout {
@@ -525,11 +500,28 @@ footer {
   /* petit alignement vertical */
 }
 
-/* Grande carte (Produits) : hauteur fixe */
+/* Grande carte (Produits) : hauteur fixe + image cadrée propre */
 .masonry> :nth-child(3) {
-  height: 454px;
+  height: 540px;
   overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
 }
+
+.masonry> :nth-child(3) .thumb {
+  flex: 1;
+  height: auto;
+  /* ignore le height:220px */
+}
+
+.masonry> :nth-child(3) img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 
 .guide {
   display: grid;
@@ -584,14 +576,14 @@ footer {
   }
 }
 
-/* ===== Échelle globale plus compacte (effet zoom ~90%) ===== */
 html {
   font-size: 100%;
 }
 
-/* ===== Zoom global 80% (réduction réelle de TOUT le site) ===== */
-.page-scale{
-  transform: scale(0.8);
-  transform-origin: top center;
-  width: 125%;
+.page-scale {
+  zoom: 0.8;
+}
+
+body {
+  overflow-x: hidden;
 }
