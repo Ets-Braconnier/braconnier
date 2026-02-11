@@ -85,18 +85,19 @@
             </article>
 
 
-
             <article class="card actu-card">
 
-              <div class="card-title">Plus de Produits ➜</div>
+              <a href="https://www.braconnier.be/Produits.php" class="card-link">
 
-              <a href="https://www.braconnier.be/Produits.php" class="thumb thumb-3x1">
-                <img id="productSlider" src="" alt="Produits">
+                <div class="card-title">Plus de Produits ➜</div>
+
+                <span class="thumb thumb-3x1">
+                  <img id="productSlider" src="" alt="Produits">
+                </span>
+
               </a>
 
             </article>
-
-
 
           </section>
 
@@ -107,14 +108,21 @@
 
           <div class="guide">
 
-            <!-- gauche : image guide -->
-            <a href="https://online.fliphtml5.com/vkdmd/cppn/index.html#p=1" target="_blank"
-              rel="noopener noreferrer">
-              <img id="imgGuide" alt="Guide des matériaux" width="120" />
-              <div>
+            <div class="guide-images">
 
-              </div>
-            </a>
+              <!-- Catalogue Groupamat -->
+              <a href="https://online.fliphtml5.com/vkdmd/cppn/index.html#p=1" target="_blank"
+                rel="noopener noreferrer">
+                <img id="imgGuide" alt="Catalogue Groupamat">
+              </a>
+
+              <!-- OutilSud -->
+              <a href="https://www.outilsud.be/" target="_blank" rel="noopener noreferrer">
+                <img id="imgOutilsud" alt="Outils Sud">
+              </a>
+
+            </div>
+
 
             <!-- droite : FORMULAIRE DEVIS -->
             <form class="devis-form" onsubmit="return sendDevisMail(event)">
@@ -152,12 +160,15 @@
     const ASSETS = {
       logoMain: "images-site/logo.jpg",
       hero: "images-site/magasin.jpg",
-      guide: "images-site/groupamat.jpg"
+      guide: "images-site/groupamat.jpg",
+      outilsud: "images-site/outilsud-Fond-Blanc.jpg"
+
     };
 
     document.getElementById("logoMain").src = ASSETS.logoMain;
     document.getElementById("heroImg").src = ASSETS.hero;
     document.getElementById("imgGuide").src = ASSETS.guide;
+    document.getElementById("imgOutilsud").src = ASSETS.outilsud;
 
 
     /* ===== Slider Produits automatique ===== */
@@ -185,14 +196,14 @@
 
     function showProduct() {
 
-      slider.classList.add("fade-out"); // disparaît
+      slider.classList.add("fade-out");
 
       setTimeout(() => {
         slider.src = PRODUCTS[pIndex] + "?v=" + Date.now();
         pIndex = (pIndex + 1) % PRODUCTS.length;
 
-        slider.classList.remove("fade-out"); // réapparaît
-      }, 300); // moitié du temps du transition
+        slider.classList.remove("fade-out");
+      }, 300);
     }
 
     showProduct();
@@ -224,4 +235,5 @@
 
   </div>
 </body>
+
 </html>
