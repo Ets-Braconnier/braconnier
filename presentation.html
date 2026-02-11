@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Présentation – Ets Braconnier</title>
+  <meta name="description"
+    content="Ets Braconnier, entreprise familiale depuis 1974 à Bertrix. Matériaux de construction, gros et détail, conseils professionnels. Repris aujourd’hui par Jonathan Braconnier, également dirigeant d’Outilsud." />
+
+  content=" />
+  <meta name="robots" content="index,follow" />
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- CSS LOCAL : ne touche pas aux autres pages -->
+  <style>
+    .page-presentation .present-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .page-presentation .present-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .page-presentation .present-card .pad {
+      padding: 14px;
+    }
+
+    .page-presentation .present-title {
+      margin: 0 0 10px;
+      font-family: Verdana, Geneva, sans-serif;
+      font-weight: 800;
+      color: #333;
+      font-size: clamp(18px, 2.2vw, 28px);
+    }
+
+    .page-presentation .present-sub {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-family: "Times New Roman", Times, serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: clamp(16px, 1.8vw, 22px);
+    }
+
+    .page-presentation .kpi {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .page-presentation .kpi .box {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      background: #fff;
+      text-align: center;
+    }
+
+    .page-presentation .kpi strong {
+      display: block;
+      font-size: 18px;
+    }
+
+    .page-presentation .kpi span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .page-presentation .list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--text);
+      font-weight: 600;
+      line-height: 1.6;
+    }
+
+    .page-presentation .list li {
+      margin: 6px 0;
+    }
+
+    .page-presentation .gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .page-presentation .gallery .big {
+      grid-column: 1 / -1;
+    }
+
+    .page-presentation .gallery img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      display: block;
+      background: #fff;
+    }
+
+    .page-presentation .notepro {
+      margin: 0;
+      color: var(--text);
+      font-weight: 650;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+      .page-presentation .present-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .page-presentation .kpi {
+        grid-template-columns: 1fr;
+      }
+
+      .page-presentation .gallery img {
+        height: 200px;
+      }
+    }
+  </style>
+</head>
+
+<body class="page-presentation">
+  <div class="page-scale">
+
+    <!-- HEADER (même base que tes pages modernes) -->
+    <header>
+      <div class="wrap topbar">
+        <div class="brand">
+          <div class="logo">
+            <img id="logoMain" alt="Ets Braconnier" />
+            <small>Matériaux de construction – articles professionnels et de bricolage</small>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <div class="quicklinks" aria-label="Liens rapides">
+            <a href="/Avis/Avis1.php">Votre avis</a>
+            <a href="/rgpd.pdf">RGPD</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-layout">
+        <nav class="main-nav" aria-label="Menu principal">
+          <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="calculs.html">Calculs</a></li>
+            <li><a href="presentation.html" aria-current="page">Présentation</a></li>
+            <li><a href="produits.html">Produits</a></li>
+            <li><a href="promotions.html">Promotions</a></li>
+            <li><a href="contacts.html">Contacts</a></li>
+          </ul>
+        </nav>
+
+        <img id="heroImg" class="hero-img" alt="Magasin – Ets Braconnier" />
+
+        <iframe class="map"
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5145.2121350771895!2d5.25321!3d49.84985900000001!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47ea808d6bb9e87f%3A0xf00dd4deebbf1048!2sEts%20Braconnier!5e0!3m2!1sfr!2sbe!4v1770570919392!5m2!1sfr!2sbe"
+          loading="lazy" allowfullscreen>
+        </iframe>
+      </div>
+    </header>
+
+    <main>
+      <div class="wrap">
+
+        <section class="headline">
+          <h1>Présentation</h1>
+          <p>Entreprise familiale – matériaux & bricolage</p>
+        </section>
+
+        <section class="present-grid">
+
+          <!-- Colonne gauche : texte + services -->
+          <article class="present-card">
+            <div class="pad">
+              <h2 class="present-title">Ets Braconnier</h2>
+              <p class="present-sub">Créée en 1974, par M. Yves Braconnier</p>
+
+              <!-- KPI déplacé ici -->
+              <div class="kpi" aria-label="Informations clés">
+                <div class="box">
+                  <strong>1974</strong>
+                  <span>Création</span>
+                </div>
+                <div class="box">
+                  <strong>Bel-mat</strong>
+                  <span>Membre</span>
+                </div>
+                <div class="box">
+                  <strong>Jonathan Braconnier</strong>
+                  <span>Gérant</span>
+                </div>
+              </div>
+
+              <div style="height:12px"></div>
+
+              </p>
+
+              <div style="height:12px"></div>
+
+              <div class="story">
+                <p class="notepro">
+                  Entreprise familiale depuis 1974, les Ets Braconnier ont été fondés par
+                  Monsieur Yves Braconnier. L’entreprise a ensuite été développée par ses
+                  fils, Jean-Luc et Christian Braconnier, qui ont consolidé sa croissance
+                  et renforcé la relation de confiance avec la clientèle locale.
+                </p>
+
+                <p class="notepro">
+                  Aujourd’hui, Jonathan Braconnier perpétue cette tradition familiale.
+                  Il apporte une vision dynamique et actuelle tout en préservant les
+                  valeurs fondamentales qui font la réputation de la maison :
+                  proximité, expertise technique et qualité de service.
+                </p>
+
+                <p class="notepro">
+                  Jonathan dirige également
+                  <strong>
+                    <a href="https://www.outilsud.be/" target="_blank" rel="noopener">
+                      Outilsud
+                    </a>
+                  </strong>,
+                  magasin spécialisé en machines et outillage professionnels à Bertrix,
+                  complétant ainsi l’offre destinée aux artisans, entrepreneurs et
+                  particuliers exigeants.
+                </p>
+              </div>
+
+
+              <div style="height:12px"></div>
+
+              <h3 style="margin:0 0 8px; font-family: Verdana, Geneva, sans-serif;">Nos spécialités</h3>
+              <ul class="list">
+                <li>Gros œuvre, étanchéité, isolation</li>
+                <li>Menuiseries intérieures, parquets, plafonds</li>
+                <li>Peintures, Mortex, patines, tapis de pierres</li>
+                <li>Ventilations mécaniques (VMC)</li>
+                <li>Spécialisé en matériel électrique, carrelages, sanitaires</li>
+                <li>Département bricolage</li>
+                <li>Matériaux pour façades isolantes crépies</li>
+                <li>Fournitures par camion-grue</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Colonne droite : galerie -->
+          <aside class="present-card">
+            <div class="pad">
+              <h3 style="margin:0 0 10px; font-family: Verdana, Geneva, sans-serif;">En images</h3>
+
+              <div class="gallery">
+                <div class="big">
+                  <img src="images-site/page-presentation/vue-aerienne.jpg" alt="Vue aérienne" />
+                </div>
+                <img src="images-site/page-presentation/depot.jpg" alt="Dépôt" />
+                <img src="images-site/page-presentation/allee-centrale.jpg" alt="Allée centrale" />
+                <img src="images-site/page-presentation/entree.jpg" alt="Entrée" />
+              </div>
+
+
+              <div style="height:10px"></div>
+              
+            </div>
+          </aside>
+
+        </section>
+
+      </div>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <div class="footerbar" aria-hidden="true"></div>
+      </div>
+    </footer>
+
+    <script>
+      // mêmes conventions que tes autres pages : logo + hero
+      const ASSETS = { logoMain: "images-site/logo.jpg", hero: "images-site/magasin.jpg" };
+      const logo = document.getElementById("logoMain");
+      const hero = document.getElementById("heroImg");
+      if (logo) logo.src = ASSETS.logoMain;
+      if (hero) hero.src = ASSETS.hero;
+    </script>
+
+  </div>
+</body>
+
+</html>

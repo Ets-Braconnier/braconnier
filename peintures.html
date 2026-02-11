@@ -1,0 +1,16 @@
+<iframe
+  id="raccordsFrame"
+  src="https://ets-braconnier.github.io/peintures/"
+  style="width:100%; border:none; display:block;"
+  scrolling="no">
+</iframe>
+
+<script>
+  window.addEventListener("message", function (e) {
+    if (e.origin !== "https://ets-braconnier.github.io") return;
+
+    if (e.data && e.data.type === "resize" && e.data.height) {
+      document.getElementById("raccordsFrame").style.height = e.data.height + "px";
+    }
+  });
+</script>
