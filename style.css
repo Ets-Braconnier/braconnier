@@ -635,4 +635,10 @@ body {
   transform: translateY(-1px);
 }
 
+.page-produits .cat-card img{
+  object-fit: contain;
+  background: #f7f7f7;
+}
+
+
 
