@@ -4,7 +4,7 @@
   --line: #e6e6e6;
   --soft: #f6f6f6;
   --accent: #d70000;
-  --max: 1450px;
+  --max: 1250px;
   --radius: 14px;
 }
 
@@ -276,9 +276,8 @@ footer {
   row-gap: 14px;
 
   grid-template-columns: 1fr 1fr;
-
-  grid-template-rows: minmax(260px, auto) minmax(260px, auto);
-
+  grid-template-rows: 1fr 1fr;
+  align-items: stretch;
   grid-template-areas:
     "a c"
     "b c";
@@ -406,12 +405,13 @@ footer {
 }
 
 .thumb {
+  display: block;
   width: 100%;
   overflow: hidden;
 }
 
 .thumb-3x1 {
-  height: 260px;
+  height: 220px;
 }
 
 
@@ -527,10 +527,8 @@ footer {
 
 /* Grande carte (Produits) : hauteur fixe */
 .masonry> :nth-child(3) {
-  height: 634px;
-  /* = 260 + 260 + gap(14) */
+  height: 454px;
   overflow: hidden;
-  /* empêche l'image de pousser */
 }
 
 .guide {
@@ -588,5 +586,12 @@ footer {
 
 /* ===== Échelle globale plus compacte (effet zoom ~90%) ===== */
 html {
-  font-size: 80%;
+  font-size: 100%;
+}
+
+/* ===== Zoom global 80% (réduction réelle de TOUT le site) ===== */
+.page-scale{
+  transform: scale(0.8);
+  transform-origin: top center;
+  width: 125%;
 }
