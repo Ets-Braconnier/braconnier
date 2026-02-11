@@ -635,7 +635,7 @@ body {
   transform: translateY(-1px);
 }
 
-.page-produits .cat-card img{
+.page-produits .cat-card img {
   object-fit: contain;
   background: #f7f7f7;
 }
@@ -648,7 +648,8 @@ body {
   font-size: 16px;
   line-height: 1.8;
   margin-bottom: 16px;
-  max-width: 65ch; /* largeur confortable */
+  max-width: 65ch;
+  /* largeur confortable */
   color: #333;
 }
 
@@ -669,6 +670,7 @@ body {
   color: #666;
   margin-bottom: 20px;
 }
+
 .page-presentation .kpi {
   margin: 18px 0 22px;
 }
@@ -682,7 +684,7 @@ body {
 
 .page-presentation .kpi .box:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0,0,0,.08);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .08);
 }
 
 .page-presentation .list {
@@ -695,7 +697,7 @@ body {
   margin-bottom: 6px;
 }
 
-.page-presentation .pad > * {
+.page-presentation .pad>* {
   margin-bottom: 12px;
 }
 
@@ -707,5 +709,545 @@ body {
   margin: 14px 0;
 }
 
+/* FIX SVG CONTACT (évite les icônes géantes) */
+.page-contact .ico {
+  width: 18px !important;
+  height: 18px !important;
+  flex: 0 0 18px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
 
+.page-contact .ico svg {
+  width: 18px !important;
+  height: 18px !important;
+  display: block !important;
+}
+
+/* sécurité si ton CSS global fait svg{width:100%} */
+.page-contact svg {
+  max-width: none !important;
+}
+
+/* ======================================================
+   CONTACT – embellissement contenu (sans toucher au header)
+   Scope: uniquement la page contact
+====================================================== */
+.page-contact .c26{
+  padding: 10px 0 26px;
+}
+
+.page-contact .c26-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:14px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(0,0,0,.05);
+  margin-bottom: 14px;
+}
+
+.page-contact .c26-head h1{
+  margin:0;
+  font-size: clamp(22px, 2.2vw, 34px);
+  letter-spacing: .2px;
+}
+
+.page-contact .c26-head p{
+  margin:6px 0 0;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.page-contact .c26-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap: wrap;
+  justify-content:flex-end;
+}
+
+.page-contact .c26-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background:#fff;
+  font-weight: 800;
+  cursor:pointer;
+  transition: .18s ease;
+  white-space: nowrap;
+}
+
+.page-contact .c26-btn:hover{
+  background: var(--soft);
+  transform: translateY(-1px);
+  text-decoration:none;
+}
+
+.page-contact .c26-btn.primary{
+  border-color: rgba(215,0,0,.28);
+  box-shadow: 0 8px 18px rgba(215,0,0,.10);
+}
+
+.page-contact .c26-btn.primary:hover{
+  box-shadow: 0 10px 22px rgba(215,0,0,.16);
+}
+
+/* Grille principale */
+.page-contact .c26-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  align-items:start;
+}
+
+/* Colonnes */
+.page-contact .c26-col{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  min-width:0;
+}
+
+/* Cartes */
+.page-contact .c26-card{
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  overflow:hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,.05);
+}
+
+.page-contact .c26-card-h{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap: 10px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, #ffffff, #fafafa);
+}
+
+.page-contact .c26-card-h h2{
+  margin:0;
+  font-size: 18px;
+  letter-spacing:.2px;
+}
+
+.page-contact .c26-sub{
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.page-contact .c26-badge{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background:#fff;
+  color: #444;
+  font-weight: 800;
+  font-size: 12px;
+}
+
+/* Coordonnées (key/value) */
+.page-contact .c26-kv{
+  padding: 14px 16px 10px;
+  display:flex;
+  flex-direction:column;
+  gap: 10px;
+}
+
+.page-contact .c26-kv-row{
+  display:grid;
+  grid-template-columns: 120px 1fr;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px dashed #e9e9e9;
+}
+
+.page-contact .c26-kv-row:last-child{
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.page-contact .c26-kv-row .k{
+  color: #555;
+  font-weight: 800;
+}
+
+.page-contact .c26-kv-row .v{
+  color: #333;
+  font-weight: 650;
+}
+
+.page-contact .c26-kv-row a{
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 800;
+}
+.page-contact .c26-kv-row a:hover{ text-decoration: underline; }
+
+/* Petites actions */
+.page-contact .c26-mini-actions{
+  display:flex;
+  gap:10px;
+  padding: 12px 16px 16px;
+  border-top: 1px solid var(--line);
+  background:#fff;
+}
+
+.page-contact .c26-pill{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #fff;
+  font-weight: 800;
+  transition: .18s ease;
+}
+.page-contact .c26-pill:hover{
+  background: var(--soft);
+  text-decoration:none;
+}
+
+/* Horaires */
+.page-contact .c26-hours{
+  list-style:none;
+  margin:0;
+  padding: 10px 16px 14px;
+  display:flex;
+  flex-direction:column;
+  gap: 8px;
+}
+
+.page-contact .c26-hours li{
+  display:grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid #ededed;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.page-contact .c26-hours li span:first-child{
+  font-weight: 900;
+  color:#333;
+}
+
+.page-contact .c26-hours li.sat{
+  border-color: rgba(215,0,0,.20);
+  background: rgba(215,0,0,.03);
+}
+
+.page-contact .c26-note{
+  margin: 0 16px 16px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #f6f7f8;
+  border-left: 4px solid #d2d2d2;
+  color:#444;
+  font-weight: 650;
+}
+
+/* Contacts directs (cartes cliquables) */
+.page-contact .c26-team{
+  padding: 14px 16px 16px;
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.page-contact .c26-person{
+  border: 1px solid #ededed;
+  border-radius: 14px;
+  padding: 12px 14px;
+  background:#fff;
+  transition: .18s ease;
+  display:block;
+}
+
+.page-contact .c26-person:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.07);
+  border-color: rgba(215,0,0,.18);
+  text-decoration:none;
+}
+
+.page-contact .c26-person .name{
+  font-weight: 950;
+  color:#222;
+}
+
+.page-contact .c26-person .meta{
+  margin-top: 3px;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.page-contact .c26-person .role{
+  margin-top: 6px;
+  font-weight: 700;
+  color:#333;
+  line-height: 1.35;
+}
+
+.page-contact .c26-person.no-link{
+  cursor: default;
+}
+.page-contact .c26-person.no-link:hover{
+  transform:none;
+  box-shadow:none;
+  border-color:#ededed;
+}
+
+/* Formulaire */
+.page-contact .c26-form{
+  padding: 14px 16px 16px;
+}
+
+.page-contact .c26-form label{
+  display:flex;
+  flex-direction:column;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.page-contact .c26-form span{
+  font-weight: 850;
+  color:#333;
+  font-size: 14px;
+}
+
+.page-contact .c26-form input,
+.page-contact .c26-form textarea{
+  width:100%;
+  padding: 12px 14px;
+  border: 1px solid #dcdcdc;
+  border-radius: 12px;
+  font: inherit;
+  background:#fff;
+}
+
+.page-contact .c26-form input:focus,
+.page-contact .c26-form textarea:focus{
+  outline:none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(215,0,0,.08);
+}
+
+.page-contact .c26-form .row2{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.page-contact .c26-form-actions{
+  display:flex;
+  justify-content:flex-end;
+  margin-top: 6px;
+}
+
+/* Responsive */
+@media (max-width: 900px){
+  .page-contact .c26-head{
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .page-contact .c26-actions{
+    justify-content:flex-start;
+  }
+  .page-contact .c26-grid{
+    grid-template-columns: 1fr;
+  }
+  .page-contact .c26-kv-row{
+    grid-template-columns: 1fr;
+  }
+  .page-contact .c26-hours li{
+    grid-template-columns: 1fr 1fr;
+  }
+  .page-contact .c26-hours li span:nth-child(3){
+    justify-self:end;
+  }
+  .page-contact .c26-form .row2{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ======================================================
+   PATCH CONTACT : 
+   - "Envoyer un message" en dessous sur toute la largeur
+   - Contacts directs garde sa place (colonne droite) et prend la hauteur des 2 cartes à gauche
+   - enlever le rouge dans les textes (zone contact uniquement)
+====================================================== */
+
+/* 1) Placement : on positionne les 4 cartes dans la grille sans toucher au HTML */
+.page-contact .c26-grid{
+  align-items: stretch; /* au lieu de start */
+}
+
+/* rend les colonnes transparentes pour placer les cartes directement */
+.page-contact .c26-col{
+  display: contents;
+}
+
+/* gauche: 2 cartes */
+.page-contact .c26-grid > .c26-col:nth-child(1) > .c26-card:nth-child(1){
+  grid-column: 1;
+  grid-row: 1;
+}
+.page-contact .c26-grid > .c26-col:nth-child(1) > .c26-card:nth-child(2){
+  grid-column: 1;
+  grid-row: 2;
+}
+
+/* droite: Contacts directs (reste à sa place), hauteur = 2 cartes gauche */
+.page-contact .c26-grid > .c26-col:nth-child(2) > .c26-card:nth-child(1){
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  display: flex;
+  flex-direction: column;
+}
+
+/* dessous: Envoyer un message sur toute la largeur */
+.page-contact .c26-grid > .c26-col:nth-child(2) > .c26-card:nth-child(2){
+  grid-column: 1 / -1;
+  grid-row: 3;
+}
+
+/* 2) Enlever le rouge des textes (uniquement dans la section contact) */
+.page-contact .c26 a{
+  color: inherit;
+}
+
+/* (optionnel mais utile) enlever le style rouge "samedi" */
+.page-contact .c26-hours li.sat{
+  border-color: #ededed;
+  background: #fff;
+}
+
+/* (optionnel) focus des champs sans rouge */
+.page-contact .c26-form input:focus,
+.page-contact .c26-form textarea:focus{
+  border-color: #cfcfcf;
+  box-shadow: 0 0 0 3px rgba(0,0,0,.06);
+}
+
+/* Mobile : on revient en empilement normal */
+@media (max-width: 900px){
+  .page-contact .c26-col{ display:block; }
+  .page-contact .c26-grid{
+    grid-template-columns: 1fr;
+  }
+  .page-contact .c26-grid > .c26-col:nth-child(1) > .c26-card:nth-child(1),
+  .page-contact .c26-grid > .c26-col:nth-child(1) > .c26-card:nth-child(2),
+  .page-contact .c26-grid > .c26-col:nth-child(2) > .c26-card:nth-child(1),
+  .page-contact .c26-grid > .c26-col:nth-child(2) > .c26-card:nth-child(2){
+    grid-column: auto;
+    grid-row: auto;
+  }
+}
+
+/* ======================================================
+   CONTACT – hiérarchie typographique propre
+   (allège le gras et aère)
+====================================================== */
+
+/* ----- Coordonnées ----- */
+.page-contact .c26-kv-row .k{
+  font-weight: 600;
+  color:#444;
+}
+
+.page-contact .c26-kv-row .v{
+  font-weight: 400;   /* ← normal */
+  line-height: 1.5;
+  color:#2f2f2f;
+}
+
+.page-contact .c26-kv-row a{
+  color: inherit;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ----- Horaires ----- */
+.page-contact .c26-hours li span:first-child{
+  font-weight: 600;   /* au lieu de 900 */
+}
+
+.page-contact .c26-hours li span:nth-child(2),
+.page-contact .c26-hours li span:nth-child(3){
+  font-weight: 400;
+  color:#333;
+}
+
+/* ----- Contacts directs ----- */
+.page-contact .c26-person{
+  padding: 16px 18px;
+  border-radius: 16px;
+}
+
+/* Nom = fort */
+.page-contact .c26-person .name{
+  font-weight: 650;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+/* Email + téléphone = secondaire */
+.page-contact .c26-person .meta{
+  font-weight: 400;
+  font-size: 13.5px;
+  color:#666;
+  margin-bottom: 8px;
+}
+
+/* Rôle = intermédiaire */
+.page-contact .c26-person .role{
+  font-weight: 500;
+  font-size: 14px;
+  color:#333;
+  line-height: 1.4;
+}
+
+/* séparation visuelle subtile */
+.page-contact .c26-person .meta::after{
+  content:"";
+  display:block;
+  height:1px;
+  width:40px;
+  background:#e8e8e8;
+  margin:8px 0;
+}
+
+/* ----- Enlever totalement le rouge dans la zone contact ----- */
+.page-contact .c26 a{
+  color: inherit;
+}
+
+.page-contact .c26-btn.primary{
+  border-color: var(--line);
+  box-shadow: 0 6px 18px rgba(0,0,0,.05);
+}
+
+.page-contact .c26-form input:focus,
+.page-contact .c26-form textarea:focus{
+  border-color:#cfcfcf;
+  box-shadow:0 0 0 3px rgba(0,0,0,.06);
+}
 
