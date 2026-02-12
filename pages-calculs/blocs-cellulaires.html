@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blocs cellulaires – Bast Aménagement</title>
+  <meta name="description" content="Calculez facilement le nombre de blocs cellulaires, la colle et les palettes nécessaires selon la surface de votre mur.">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    :root {
+      --anthracite: #111827;
+      --border: #e5e7eb;
+      --text: #111827;
+    }
+
+    body {
+      margin: 0;
+      padding: 1rem;
+      background: #e5e7eb; /* pour test local ; sur Wix tu peux passer en transparent */
+      font-family: system-ui, -apple-system, BlinkMacSystemFont,"SF Pro Text","Segoe UI",sans-serif;
+      color: var(--text);
+    }
+
+    .bc-wrapper {
+      max-width: 880px;
+      margin: 2.3rem auto;
+      padding: 1.7rem 1.8rem 1.9rem;
+      background: rgba(255,255,255,0.94);
+      border-radius: 22px;
+      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow:
+        0 18px 45px rgba(15,23,42,0.10),
+        0 0 0 1px rgba(255,255,255,0.6);
+      backdrop-filter: blur(18px);
+    }
+
+    .bc-title {
+      text-align: center;
+      font-size: 1.35rem;
+      margin-bottom: 0.55rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-weight: 500;
+    }
+
+    .bc-sub {
+      text-align: center;
+      font-size: 0.96rem;
+      color: #6b7280;
+      max-width: 640px;
+      margin: 0 auto 1.6rem;
+      line-height: 1.6;
+    }
+
+    .bc-table-wrapper {
+      margin-bottom: 1.4rem;
+    }
+
+    table.bc-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      background: rgba(255,255,255,0.98);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 28px rgba(15,23,42,0.08);
+    }
+
+    .bc-table th,
+    .bc-table td {
+      padding: 0.65rem 1rem;
+      border-bottom: 1px solid rgba(229,231,235,0.8);
+      text-align: left;
+    }
+
+    .bc-table thead th {
+      font-weight: 600;
+      background: #f9fafb;
+      color: var(--anthracite);
+      text-align: center;
+    }
+
+    .bc-table tbody tr:nth-child(odd) {
+      background: #f9fafb;
+    }
+
+    .bc-table td.bc-res {
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .bc-input,
+    .bc-select {
+      width: 100%;
+      padding: 0.55rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      background: #ffffff;
+      font-size: 0.95rem;
+      text-align: center;
+      outline: none;
+      box-sizing: border-box;
+      transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease,
+        background 0.15s ease,
+        transform 0.08s ease;
+    }
+
+    .bc-input::placeholder {
+      color: #c4cbd5;
+    }
+
+    .bc-input:focus,
+    .bc-select:focus {
+      border-color: #111827;
+      background: #ffffff;
+      box-shadow:
+        inset 0 0 0 1px rgba(17,24,39,0.06),
+        0 0 0 6px rgba(17,24,39,0.07);
+      transform: translateY(-0.5px);
+    }
+
+    .bc-divider {
+      height: 1px;
+      background: linear-gradient(to right,
+        rgba(148,163,184,0),
+        rgba(148,163,184,0.55),
+        rgba(148,163,184,0));
+      margin: 0.3rem 0 1.35rem;
+    }
+
+    @media (max-width: 768px) {
+      .bc-wrapper {
+        margin: 1.7rem 0.9rem 2rem;
+        padding: 1.35rem 1.1rem 1.65rem;
+        border-radius: 20px;
+      }
+
+      .bc-table {
+        display: block;
+        border-collapse: separate;
+        border-spacing: 0;
+      }
+
+      .bc-table thead {
+        display: none;
+      }
+
+      .bc-table tbody {
+        display: block;
+      }
+
+      .bc-table tbody tr {
+        display: block;
+        margin: 0 0.75rem 0.75rem;
+        border-radius: 12px;
+        border: 1px solid rgba(229,231,235,0.9);
+        background: #ffffff;
+        overflow: hidden;
+      }
+
+      .bc-table td {
+        display: block;
+        border-bottom: 1px solid rgba(243,244,246,0.9);
+        padding: 0.55rem 0.85rem;
+        text-align: left;
+      }
+
+      .bc-table td:last-child {
+        border-bottom: none;
+      }
+
+      .bc-table td::before {
+        content: attr(data-label);
+        display: block;
+        font-weight: 600;
+        margin-bottom: 2px;
+        color: #374151;
+      }
+
+      .bc-table td.bc-res {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bc-wrapper">
+    <div class="bc-title">BLOCS CELLULAIRES</div>
+    <div class="bc-sub">
+      Indiquez la surface à maçonner et le type de bloc pour estimer le nombre de blocs, la colle et les pièces par palette nécessaires.
+    </div>
+
+    <!-- Table d'entrée -->
+    <div class="bc-table-wrapper">
+      <table class="bc-table">
+        <thead>
+          <tr>
+            <th>Saisissez la surface (m²)</th>
+            <th>Choisissez un type de bloc</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Saisissez la surface (m²)">
+              <input
+                type="number"
+                id="surface"
+                class="bc-input"
+                placeholder="Ex. 40"
+                oninput="calculateBlocks()"
+                min="0"
+                step="any"
+              >
+            </td>
+            <td data-label="Choisissez un type de bloc">
+              <select id="bloc-type" class="bc-select" onchange="calculateBlocks()">
+                <option value="">-- Sélectionnez un bloc --</option>
+                <option value="6.6" data-palette="192" data-colle="1.3">Blocs 60x25 (25×60×5)</option>
+                <option value="6.6" data-palette="136" data-colle="1.8">Blocs 60x25 (25×60×7)</option>
+                <option value="6.6" data-palette="96"  data-colle="2.6">Blocs 60x25 (25×60×10)</option>
+                <option value="6.6" data-palette="64"  data-colle="2.7">Blocs 60x25 (25×60×15)</option>
+                <option value="6.6" data-palette="48"  data-colle="3.2">Blocs 60x25 (25×60×17.5)</option>
+                <option value="6.6" data-palette="48"  data-colle="3.6">Blocs 60x25 (25×60×20)</option>
+                <option value="6.6" data-palette="40"  data-colle="4.3">Blocs 60x25 (25×60×24)</option>
+                <option value="6.6" data-palette="32"  data-colle="5.4">Blocs 60x25 (25×60×30)</option>
+                <option value="6.6" data-palette="24"  data-colle="6.9">Blocs 60x25 (25×60×36.5)</option>
+
+                <option value="6.5" data-palette="192" data-colle="1.3">Blocs 62.5x25 (25×62.5×5)</option>
+                <option value="6.5" data-palette="136" data-colle="1.8">Blocs 62.5x25 (25×62.5×7)</option>
+                <option value="6.5" data-palette="96"  data-colle="2.6">Blocs 62.5x25 (25×62.5×10)</option>
+                <option value="6.5" data-palette="64"  data-colle="2.7">Blocs 62.5x25 (25×62.5×15)</option>
+                <option value="6.5" data-palette="48"  data-colle="3.2">Blocs 62.5x25 (25×62.5×17.5)</option>
+                <option value="6.5" data-palette="48"  data-colle="3.6">Blocs 62.5x25 (25×62.5×20)</option>
+                <option value="6.5" data-palette="40"  data-colle="4.3">Blocs 62.5x25 (25×62.5×24)</option>
+                <option value="6.5" data-palette="32"  data-colle="5.4">Blocs 62.5x25 (25×62.5×30)</option>
+                <option value="6.5" data-palette="24"  data-colle="6.9">Blocs 62.5x25 (25×62.5×36.5)</option>
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bc-divider"></div>
+
+    <!-- Table des résultats -->
+    <table class="bc-table">
+      <thead>
+        <tr>
+          <th>Nombre total de blocs</th>
+          <th>Colle nécessaire</th>
+          <th>Pièces par palette</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td id="result-blocs"   data-label="Nombre total de blocs"     class="bc-res">–</td>
+          <td id="result-colle"   data-label="Colle nécessaire"          class="bc-res">–</td>
+          <td id="result-palette" data-label="Pièces par palette"        class="bc-res">–</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    function parseFloatFr(value) {
+      if (value === null || value === undefined) return NaN;
+      return parseFloat(String(value).replace(',', '.'));
+    }
+
+    function calculateBlocks() {
+      const surfaceInput = document.getElementById('surface');
+      const blocTypeSelect = document.getElementById('bloc-type');
+
+      const surface = parseFloatFr(surfaceInput.value);
+      const blocsPerM2 = parseFloatFr(blocTypeSelect.value);
+      const option = blocTypeSelect.options[blocTypeSelect.selectedIndex];
+
+      const palette = option ? option.dataset.palette : null;
+      const collePerM2 = option ? parseFloatFr(option.dataset.colle) : NaN;
+
+      if (!surface || !blocsPerM2) {
+        document.getElementById('result-blocs').textContent   = '–';
+        document.getElementById('result-colle').textContent   = '–';
+        document.getElementById('result-palette').textContent = '–';
+        return;
+      }
+
+      const totalBlocs = surface * blocsPerM2;
+      const totalColle = surface * (isNaN(collePerM2) ? 0 : collePerM2);
+
+      document.getElementById('result-blocs').textContent =
+        totalBlocs.toFixed(2).replace('.', ',');
+
+      document.getElementById('result-colle').textContent =
+        totalColle.toFixed(2).replace('.', ',') + ' kg';
+
+      document.getElementById('result-palette').textContent =
+        palette ? palette + ' pces' : '–';
+    }
+  </script>
+</body>
+</html>

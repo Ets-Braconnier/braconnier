@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carrelages & Joints</title>
+  <meta name="description" content="Calculez le nombre de carreaux, les pertes selon la méthode de pose, la colle (simple/double) et la quantité de joints pour votre pièce. Paramétrage précis et résultats instantanés.">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    :root{
+      --anthracite:#111827;
+      --border:#e5e7eb;
+      --text:#0f172a;
+      --muted:#6b7280;
+    }
+
+    html,body{height:100%}
+
+    body{
+      margin:0;
+      padding:1rem;
+      font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+      background:transparent; /* ✅ pour se fondre dans ta page Wix */
+      color:var(--text);
+    }
+
+    .cj-wrapper{
+      max-width:1100px;
+      margin:2.3rem auto;
+      padding:1.6rem 1.4rem 1.8rem;
+      background:rgba(255,255,255,0.94);
+      border-radius:22px;
+      border:1px solid rgba(0,0,0,0.04);
+      box-shadow:
+        0 18px 45px rgba(15,23,42,0.10),
+        0 0 0 1px rgba(255,255,255,0.6);
+      backdrop-filter:blur(18px);
+    }
+
+    .cj-title{
+      text-align:left;
+      font-size:1.2rem;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
+      font-weight:500;
+      color:var(--anthracite);
+      margin:0 0 0.25rem;
+    }
+
+    .cj-subtitle{
+      font-size:0.95rem;
+      color:var(--muted);
+      margin:0 0 1.4rem;
+    }
+
+    .cj-grid{
+      display:grid;
+      gap:16px;
+    }
+    @media (min-width:900px){
+      .cj-grid{
+        grid-template-columns:1.1fr 0.9fr;
+      }
+    }
+
+    .cj-card{
+      background:rgba(255,255,255,0.96);
+      border-radius:18px;
+      border:1px solid rgba(209,213,219,0.9);
+      padding:14px 14px 16px;
+      box-shadow:0 6px 18px rgba(15,23,42,0.08);
+    }
+
+    .cj-card h2{
+      margin:0 0 10px;
+      font-size:1rem;
+      font-weight:600;
+      color:var(--anthracite);
+    }
+
+    fieldset{
+      border:1px dashed var(--border);
+      border-radius:12px;
+      padding:10px 10px 8px;
+      margin:0 0 10px;
+    }
+    fieldset legend{
+      padding:0 6px;
+      font-size:0.85rem;
+      color:var(--muted);
+    }
+
+    /* Ligne label + champ avec largeur fixe à droite */
+    .row{
+      display:grid;
+      grid-template-columns:1fr minmax(0,260px);
+      gap:10px;
+      align-items:center;
+      margin:6px 0;
+    }
+    .row > *{min-width:0;}
+
+    label{
+      font-size:0.9rem;
+      color:#374151;
+    }
+
+    input, select{
+      display:block;
+      width:100%;
+      max-width:100%;
+      height:44px;
+      padding:0 12px;
+      background:radial-gradient(circle at top left,
+        rgba(255,255,255,0.98),
+        rgba(243,244,246,0.96));
+      border:1px solid rgba(148,163,184,0.8);
+      border-radius:999px;
+      font:inherit;
+      font-size:0.95rem;
+      color:var(--text);
+      outline:none;
+      line-height:normal;
+      box-shadow:0 1px 3px rgba(148,163,184,0.35);
+      transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease,
+        background 0.15s ease,
+        transform 0.08s ease;
+    }
+
+    input:focus, select:focus{
+      border-color:#111827;
+      background:#ffffff;
+      box-shadow:
+        inset 0 0 0 1px rgba(17,24,39,0.06),
+        0 0 0 6px rgba(17,24,39,0.07);
+      transform:translateY(-0.5px);
+    }
+
+    .cj-results{
+      display:grid;
+      gap:10px;
+    }
+
+    .kpi{
+      border-radius:14px;
+      border:1px solid rgba(209,213,219,0.9);
+      padding:9px 10px;
+      background:rgba(255,255,255,0.98);
+      box-shadow:0 3px 10px rgba(15,23,42,0.04);
+    }
+    .kpi .k{
+      font-size:0.78rem;
+      color:var(--muted);
+      margin-bottom:2px;
+    }
+    .kpi .v{
+      font-size:1.15rem;
+      font-weight:700;
+      color:var(--anthracite);
+    }
+
+    .cj-badge{
+      display:inline-block;
+      margin-top:10px;
+      border-radius:999px;
+      border:1px solid rgba(209,213,219,0.9);
+      padding:4px 8px;
+      font-size:0.78rem;
+      color:var(--muted);
+      background:rgba(248,250,252,0.9);
+    }
+
+    .cj-error{
+      color:#dc2626;
+      font-size:0.85rem;
+      margin:6px 0 0;
+      min-height:1em;
+    }
+
+    @media (max-width:899px){
+      .row{
+        grid-template-columns:1fr;
+      }
+      .cj-wrapper{
+        margin:1.7rem 0.6rem 2rem;
+        padding:1.3rem 1rem 1.5rem;
+        border-radius:20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="cj-wrapper">
+    <h1 class="cj-title">CARRELAGES & JOINTS</h1>
+    <p class="cj-subtitle">
+      Calculez automatiquement le nombre de carreaux, les pertes selon la méthode de pose, la colle en simple / double encollage et la quantité de joints.
+    </p>
+
+    <div class="cj-grid">
+      <!-- PARAMÈTRES -->
+      <section class="cj-card" aria-labelledby="paramsTitle">
+        <h2 id="paramsTitle">Paramètres</h2>
+
+        <fieldset>
+          <legend>Pièce</legend>
+          <div class="row">
+            <label for="roomW">Largeur (m)</label>
+            <input id="roomW" type="number" min="0" step="0.01" value="4.00" inputmode="decimal" />
+          </div>
+          <div class="row">
+            <label for="roomL">Longueur (m)</label>
+            <input id="roomL" type="number" min="0" step="0.01" value="5.00" inputmode="decimal" />
+          </div>
+          <div class="row">
+            <label for="pose">Méthode de pose</label>
+            <select id="pose">
+              <option value="0.50" selected>Pose droite (réemploi ≈ 50 %)</option>
+              <option value="0.25">Pose diagonale (réemploi ≈ 25 %)</option>
+              <option value="0.20">Pose complexe (réemploi ≈ 20 %)</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Carreaux</legend>
+          <div class="row">
+            <label for="tileW">Largeur (cm)</label>
+            <input id="tileW" type="number" min="0" step="0.5" value="60" inputmode="decimal" />
+          </div>
+          <div class="row">
+            <label for="tileL">Longueur (cm)</label>
+            <input id="tileL" type="number" min="0" step="0.5" value="60" inputmode="decimal" />
+          </div>
+          <div class="row">
+            <label for="jointW">Largeur de joint (mm)</label>
+            <input id="jointW" type="number" min="0" step="0.1" value="3" inputmode="decimal" />
+          </div>
+          <div class="row">
+            <label for="jointT">Profondeur de joint (mm)</label>
+            <input id="jointT" type="number" min="0" step="0.1" value="8" inputmode="decimal" />
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Consommations</legend>
+          <div class="row">
+            <label for="adhSingle">Colle simple (kg/m²)</label>
+            <input id="adhSingle" type="number" min="0" step="0.1" value="1.5" inputmode="decimal" />
+          </div>
+          <div class="row">
+            <label for="adhDouble">Colle double (kg/m²)</label>
+            <input id="adhDouble" type="number" min="0" step="0.1" value="3.7" inputmode="decimal" />
+          </div>
+        </fieldset>
+
+        <p class="cj-error" id="error" aria-live="assertive"></p>
+      </section>
+
+      <!-- RÉSULTATS -->
+      <section class="cj-card" aria-labelledby="resultsTitle">
+        <h2 id="resultsTitle">Résultats</h2>
+        <div class="cj-results" id="results" aria-live="polite"></div>
+        <span class="cj-badge">Joints incluant le périphérique</span>
+      </section>
+    </div>
+  </div>
+
+<script>
+const $  = (id) => document.getElementById(id);
+const ids = ["roomW","roomL","tileW","tileL","jointW","jointT","adhSingle","adhDouble","pose"];
+
+function readNumber(id){
+  const raw = ($(id).value || "").toString().replace(",", ".");
+  return parseFloat(raw);
+}
+function setError(msg){
+  const e = $("error");
+  e.textContent = msg || "";
+}
+function ceil(n){ return Math.ceil(n); }
+function fmt(n,d=2){
+  return Intl.NumberFormat("fr-FR",{maximumFractionDigits:d}).format(n);
+}
+
+function compute(){
+  const roomW     = readNumber("roomW");
+  const roomL     = readNumber("roomL");
+  const tileWcm   = readNumber("tileW");
+  const tileLcm   = readNumber("tileL");
+  const jointWmm  = readNumber("jointW");
+  const jointTmm  = readNumber("jointT");
+  const adhSingle = readNumber("adhSingle");
+  const adhDouble = readNumber("adhDouble");
+  const reuseFactor = readNumber("pose");
+
+  if([
+    roomW, roomL,
+    tileWcm, tileLcm,
+    jointWmm, jointTmm,
+    adhSingle, adhDouble,
+    reuseFactor
+  ].some(v => !Number.isFinite(v) || v <= 0)){
+    setError("Saisissez des valeurs valides pour la pièce, les carreaux, les joints et les consommations.");
+    $("results").innerHTML = "";
+    return;
+  }
+  setError("");
+
+  const tW = tileWcm / 100;    // m
+  const tL = tileLcm / 100;    // m
+  const j  = jointWmm / 1000;  // m
+  const jT = jointTmm / 1000;  // m (profondeur, pas utilisé dans les axes)
+
+  const nX = ceil((roomW + j) / (tW + j));
+  const nY = ceil((roomL + j) / (tL + j));
+  const nbTiles = nX * nY;
+
+  const overX = Math.max(nX * tW + (nX - 1) * j - roomW, 0);
+  const overY = Math.max(nY * tL + (nY - 1) * j - roomL, 0);
+  const cutArea = overX * roomL + overY * roomW - overX * overY;
+  const cutTiles = cutArea / (tW * tL);
+  const extraTiles = ceil(Math.max(cutTiles * (1 - reuseFactor), 0));
+  const nbTilesWithWaste = nbTiles + extraTiles;
+  const autoWastePct = nbTiles ? 100 * extraTiles / nbTiles : 0;
+
+  const area = roomW * roomL;
+  const glueSingle = area * adhSingle;
+  const glueDouble = area * adhDouble;
+
+  // Estimation joints type Mapei
+  const A = tileLcm * 10; // mm
+  const B = tileWcm * 10; // mm
+  const C = jointTmm;     // mm
+  const D = jointWmm;     // mm
+  const mapeiRateKgPerM2 = ((A + B) / (A * B)) * C * D * 1.6;
+  const groutKg = area * mapeiRateKgPerM2;
+
+  const box = $("results");
+  box.innerHTML = "";
+
+  const rows = [
+    ["Carreaux par axe", `${nX} × ${nY}`],
+    ["Carreaux théoriques", nbTiles],
+    ["Pertes auto", `${fmt(autoWastePct,1)} %`],
+    ["Total à prévoir", nbTilesWithWaste],
+    ["Surface pièce", `${fmt(area)} m²`],
+    ["Colle simple", `${fmt(glueSingle,1)} kg`],
+    ["Colle double", `${fmt(glueDouble,1)} kg`],
+    ["Joints", `${fmt(groutKg,1)} kg`]
+  ];
+
+  rows.forEach(([k,v])=>{
+    const el = document.createElement("div");
+    el.className = "kpi";
+    el.innerHTML = `<div class="k">${k}</div><div class="v">${v}</div>`;
+    box.appendChild(el);
+  });
+}
+
+window.addEventListener("DOMContentLoaded", compute);
+ids.forEach(id => $(id).addEventListener("input", compute));
+</script>
+</body>
+</html>

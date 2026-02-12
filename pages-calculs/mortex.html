@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculateur Mortex</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            text-align: center;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #efefef;
+            color: #444444;
+        }
+
+        .highlight {
+            background-color: #cce5ff;
+        }
+
+        .layer-title {
+            background-color: #d4edda;
+            color: #155724;
+            font-weight: bold;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align: center;">Calculateur Mortex</h1>
+
+    <!-- Ajout Surface à traiter et Épaisseur -->
+    <table>
+        <thead>
+            <tr>
+                <th>Surface à traiter</th>
+                <th>Épaisseur</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="number" id="surface" value="" step="0.1" oninput="updateCalculations()"> m²</td>
+                <td><input type="number" id="thickness" value="1" step="0.1" oninput="updateCalculations()"> mm</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+            <tr>
+                <th colspan="2">Couche 1</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Mortex Resipact G 5L ±300g/m² (Uniquement si pose sur carrelage)</td>
+                <td id="layer1_resipact">0,60 lt</td>
+            </tr>
+            <tr>
+                <td>Mortex Résiur 1 & 5lt (±12m²/lt)</td>
+                <td id="layer1_resiur">0,17 lt</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+            <tr>
+                <th colspan="3">Couche 2 & 3</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Mortex color 5kg & 25kg (±2kg/m²/mm)</td>
+                <td id="layer2_color">8 kg</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Mortex Bealcryl 2 - 1lt & 5lt (1lt/4Kg de mortex color)</td>
+                <td id="layer2_bealcryl">2,00 lt</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Mortex pigment (voir formules pigments)</td>
+                <td>
+                    <select id="pigment" onchange="updateCalculations()">
+                        <option value="0">BM01 Natural *** - 0 g</option>
+                        <option value="90">BM02 - White Light - BR Blanc Titane - 90 g</option>
+                        <option value="225">BM03 - White Light - BR Blanc Titane - 225 g</option>
+                        <option value="360">BM04 - White Strong - BR Blanc Titane - 360 g</option>
+                        <option value="168">BM05 - Caffe latte intense - TERRA ombra cipro nat.HG - 168 g</option>
+                        <option value="72">BM06 - Caffe latte strong - TERRA ombra cipro nat.HG - 72 g</option>
+                        <option value="24">BM07 - Caffe latte MID - TERRA ombra cipro nat.HG - 24 g</option>
+                        <option value="12">BM08 - Caffe latte Light - TERRA ombra cipro nat.HG - 12 g</option>
+                        <option value="53.32">BM09 - Imperial intense - BR Jaune - 53,32 g</option>
+                        <option value="26.68">BM10 - Imperial strong - BR Jaune - 26,68 g</option>
+                        <option value="16">BM11 - Imperial MID - BR Jaune - 16 g</option>
+                        <option value="5.32">BM12 - Imperial Light - BR Jaune - 5,32 g</option>
+                        <option value="106.64">BM13 - Brick intense - BR Rouge - 106,64 g</option>
+                        <option value="53.36">BM14 - Brick Strong - BR Rouge - 53,36 g</option>
+                        <option value="32">BM15 - Brick MID - BR Rouge - 32 g</option>
+                        <option value="10.64">BM16 - Brick Light - BR Rouge - 10,64 g</option>
+                        <option value="96">BM17 - Cacao intense - TERRA ombra cipro bruc.c - 96 g</option>
+                        <option value="48">BM18 - Cacao strong - TERRA ombra cipro bruc.c - 48 g</option>
+                        <option value="24">BM19 - Cacao MID - TERRA ombra cipro bruc.c - 24 g</option>
+                        <option value="12">BM20 - Cacao light - TERRA ombra cipro bruc.c - 12 g</option>
+                        <option value="BM21" data-values='{"TERRA ombra bruc. AEK": 44.8, "OCRA Avana": 57.6}'>BM21 -
+                            Sand intense</option>
+                        <option value="BM22" data-values='{"TERRA ombra bruc. AEK": 22.4, "OCRA Avana": 28.8}'>BM22 -
+                            Sand strong</option>
+                        <option value="BM23" data-values='{"TERRA ombra bruc. AEK": 11.2, "OCRA Avana": 14.4}'>BM23 -
+                            Sand MID</option>
+                        <option value="BM24" data-values='{"TERRA ombra bruc. AEK": 5.6, "OCRA Avana": 7.2}'>BM24 - Sand
+                            Light</option>
+                        <option value="96">BM25 - Shitake intense - TERRA ombra bruc.cccn - 96 g</option>
+                        <option value="64">BM26 - Shitake strong - TERRA ombra bruc.cccn - 64 g</option>
+                        <option value="32">BM27 - Shitake MID - TERRA ombra bruc.cccn - 32 g</option>
+                        <option value="16">BM28 - Shitake light - TERRA ombra bruc.cccn - 16 g</option>
+                        <option value="BM29" data-values='{"OCRA Avana": 540, "Ocre jaune": 168}'>BM29 - Camel intense
+                        </option>
+                        <option value="BM30" data-values='{"OCRA Avana": 126, "Ocre jaune": 28}'>BM30 - Camel strong
+                        </option>
+                        <option value="36">BM31 - Camel MID - OCRA Avana - 36 g</option>
+                        <option value="18">BM32 - Camel light - OCRA Avana - 18 g</option>
+                        <option value="128">BM33 - Cuberdon intense - Oxyde rouge vandyck - 128 g</option>
+                        <option value="64">BM34 - Cuberdon strong - Oxyde rouge vandyck - 64 g</option>
+                        <option value="32">BM35 - Cuberdon MID - Oxyde rouge vandyck - 32 g</option>
+                        <option value="16">BM36 - Cuberdon Light - Oxyde rouge vandyck - 16 g</option>
+                        <option value="BM37" data-values='{"Rosso ercoland": 400, "Oxide rouge venitien": 32}'>BM37 -
+                            Vesuvio intense</option>
+                        <option value="BM38" data-values='{"Rosso ercoland": 200, "Oxide rouge venitie": 16}'>BM38 -
+                            Vesuvio strong</option>
+                        <option value="BM39" data-values='{"Rosso ercoland": 100, "Oxide rouge venitie": 8}'>BM39 -
+                            Vesuvio MID</option>
+                        <option value="BM40" data-values='{"Rosso ercoland": 12.4, "Oxide rouge venitie": 3.2}'>BM40 -
+                            Vesuvio light</option>
+                        <option value="144">BM41 - Olive intense - Vert olive - 144 g</option>
+                        <option value="72">BM42 - Olive strong - Vert olive - 72 g</option>
+                        <option value="36">BM43 - Olive MID - Vert olive - 36 g</option>
+                        <option value="18">BM44 - Olive light - Vert olive - 18 g</option>
+                        <option value="BM45" data-values='{"BR vert oxyde de chrome": 108}'>BM45 - Welsh Intense
+                        </option>
+                        <option value="BM46" data-values='{"BR Noir": 44}'>BM46 - Welsh Intense</option>
+                        <option value="140">BM47 - Jeans MID - Bleu Outremer - 140 g</option>
+                        <option value="20">BM48 - Jeans Light - BR Noir - 20 g</option>
+                        <option value="72">BM49 - Agua Intense - Bleu cimento - 72 g</option>
+                        <option value="36">BM50 - Agua Strong - Bleu cimento - 36 g</option>
+                        <option value="18">BM51 - Agua MID - Bleu cimento - 18 g</option>
+                        <option value="3.6">BM52 - Agua Light - Bleu cimento - 3,6 g</option>
+                        <option value="240">BM53 - Oltra Marine Intense - Bleu Outremer - 240 g</option>
+                        <option value="180">BM62 - Oltra Marine Strong - Bleu Outremer - 180 g</option>
+                        <option value="96">BM63 - Oltra Marine MID - Bleu Outremer - 96 g</option>
+                        <option value="48">BM64 - Oltra Marine Light - Bleu Outremer - 48 g</option>
+                        <option value="BM65" data-values='{"Nero vite germania": 93.32}'>BM65 - Pinctada Intense
+                        </option>
+                        <option value="BM66" data-values='{"Nero vite germania": 46.68}'>BM66 - Pinctada Strong</option>
+                        <option value="BM67" data-values='{"Nero vite germania": 28}'>BM67 - Pinctada MID</option>
+                        <option value="BM68" data-values='{"Nero vite germania": 9.32}'>BM68 - Pinctada Light</option>
+                        <option value="BM2020"
+                            data-values='{"BR noir 318": 54, "Bleu Outremer 8100": 200, "Bleu Cemento 3X0M": 120}'>
+                            BM2020 - Jeans Intense</option>
+                        <option value="BM2021"
+                            data-values='{"BR noir 318": 20, "Bleu Outremer 8100": 160, "Bleu Cemento 3X0M": 80}'>BM2021
+                            - Jeans Strong</option>
+                        <option value="BM2022"
+                            data-values='{"BR noir 318": 4, "Bleu Outremer 8100": 140, "Bleu Cemento 3X0M": 44}'>BM2022
+                            - Jeans MID</option>
+                        <option value="BM2023"
+                            data-values='{"BR noir 318": 20, "Bleu Outremer 8100": 80, "Bleu Cemento 3X0M": 20}'>BM2023
+                            - Jeans Light</option>
+                        <option value="BM2024"
+                            data-values='{"Rosso Cadmio Scuro 3800": 8, "Rosa Magenta Superlaca": 16}'>BM2024 - Sakura
+                            Intense</option>
+                        <option value="BM2025"
+                            data-values='{"Rosso Cadmio Scuro 3800": 6, "Rosa Magenta Superlaca": 16}'>BM2025 - Sakura
+                            Strong</option>
+                        <option value="BM2026"
+                            data-values='{"Rosso Cadmio Scuro 3800": 4.8, "Rosa Magenta Superlaca": 20}'>BM2026 - Sakura
+                            MID</option>
+                        <option value="BM2027"
+                            data-values='{"Rosso Cadmio Scuro 3800": 4, "Rosa Magenta Superlaca": 32}'>BM2027 - Sakura
+                            Light</option>
+                        <option value="BM2028" data-values='{"BR Noir 318": 22, "Verde Vagone": 200}'>BM2028 - Sequoia
+                            Intense</option>
+                        <option value="BM2029" data-values='{"BR Noir 318": 10, "Verde Vagone": 200}'>BM2029 - Sequoia
+                            Strong</option>
+                        <option value="BM2030" data-values='{"BR Noir 318": 4, "Verde Vagone": 160}'>BM2030 - Sequoia
+                            MID</option>
+                        <option value="BM2031" data-values='{"BR Noir 318": 2, "Verde Vagone": 80}'>BM2031 - Sequoia
+                            Light</option>
+                        <option value="BM2032" data-values='{"BR Noir 318": 10, "Verde Vagone": 220}'>BM2032 - Sage
+                            Intense</option>
+                        <option value="BM2033" data-values='{"BR Noir 318": 4, "Verde Vagone": 100}'>BM2033 - Sage
+                            Strong</option>
+                        <option value="BM2034" data-values='{"Ardoise 2001": 148, "T. Verde Antica": 72}'>BM2034 - Sage
+                            MID</option>
+                        <option value="BM2035" data-values='{"Ardoise 2001": 72, "T. Verde Antica": 16}'>BM2035 - Sage
+                            Light</option>
+                    </select>
+                </td>
+                <td id="layer2_pigment">0 g</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+            <tr>
+                <th colspan="3">Couche 4</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>SOIT : Mortex Polythane (±12m²/lt)</td>
+                <td id="layer4_poly">0,40 lt</td>
+                <td>Deux composants solvantés</td>
+            </tr>
+            <tr>
+                <td>SOIT : Mortex Bipur M ou S (±12m²/lt)</td>
+                <td id="layer4_bipur">0,40 lt</td>
+                <td>Deux composants acryliques</td>
+            </tr>
+            <tr>
+                <td>SOIT : Mortex Repeloil (±12m²/lt)</td>
+                <td id="layer4_repeloil">0,40 lt</td>
+                <td>Huile</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function updateCalculations() {
+            const surface = parseFloat(document.getElementById('surface').value.replace(',', '.')) || 1;
+            const thickness = parseFloat(document.getElementById('thickness').value.replace(',', '.')) || 1;
+
+            // Sélection du pigment
+            const pigmentSelect = document.getElementById('pigment');
+            const selectedOption = pigmentSelect.options[pigmentSelect.selectedIndex];
+
+            let pigmentTotal = 0;
+            let pigmentResults = "";
+
+            // Vérifier si l'option sélectionnée contient plusieurs valeurs
+            if (selectedOption.hasAttribute('data-values')) {
+                const pigmentData = JSON.parse(selectedOption.getAttribute('data-values'));
+
+                // Boucle pour récupérer et afficher chaque pigment séparément
+                for (const [pigmentName, baseValue] of Object.entries(pigmentData)) {
+                    let pigmentAmount = baseValue * surface * thickness;
+                    pigmentResults += `${pigmentName}: ${pigmentAmount.toFixed(2).replace('.', ',')} g<br>`;
+                }
+            } else {
+                // Cas où un seul pigment est sélectionné
+                let pigmentConsumption = parseFloat(selectedOption.value) || 0;
+                pigmentTotal = (pigmentConsumption * surface * thickness).toFixed(2).replace('.', ',');
+                pigmentResults = `Pigment: ${pigmentTotal} g`;
+            }
+
+            // Calculs existants
+            const resipact = (0.3 * surface).toFixed(2).replace('.', ',');
+            const resiur = (surface / 12).toFixed(2).replace('.', ',');
+            const mortexColor = (4 * surface * thickness).toFixed(2).replace('.', ','); // Surface x épaisseur x 4
+            const bealcryl = (parseFloat(mortexColor.replace(',', '.')) / 4).toFixed(2).replace('.', ',');
+
+            // 🔹 Correction : Calcul pour couche 4 (Remis à 1/12 pour correspondre aux données correctes)
+            const couche4 = (surface / 12).toFixed(2).replace('.', ',');
+
+            // Mise à jour des valeurs dynamiques
+            document.getElementById('layer1_resipact').textContent = `${resipact} lt`;
+            document.getElementById('layer1_resiur').textContent = `${resiur} lt`;
+            document.getElementById('layer2_color').textContent = `${mortexColor} kg`;
+            document.getElementById('layer2_bealcryl').textContent = `${bealcryl} lt`;
+            document.getElementById('layer2_pigment').innerHTML = pigmentResults; // Prise en charge des multiples pigments
+
+            // Mise à jour de la couche 4
+            document.getElementById('layer4_poly').textContent = `${couche4} lt`;
+            document.getElementById('layer4_bipur').textContent = `${couche4} lt`;
+            document.getElementById('layer4_repeloil').textContent = `${couche4} lt`;
+        }
+
+        // Initialisation des calculs
+        updateCalculations();
+
+
+
+
+    </script>
+</body>
+
+</html>

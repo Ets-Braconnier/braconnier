@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hourdis</title>
+  <meta name="description" content="Calculez rapidement longueurs d’hourdis, nombre de pièces, trous restants et volume de béton pour vos dalles. Feuilles multiples et récapitulatif global." />
+  <style>
+    /* Base */
+    *, *::before, *::after { box-sizing: border-box; }
+    :root{
+      --anthracite:#2b2f33;   /* gris anthracite pour les titres */
+      --text:#333;
+      --border:#e5e7eb;
+      --shadow:0 2px 12px rgba(15,23,42,.06);
+      --radius:12px;
+    }
+
+    body{
+      font-family: Arial, sans-serif;
+      background: transparent;   /* ✅ transparence */
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+    }
+
+    .container{
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: transparent;    /* ✅ transparence */
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    h1, h2{
+      text-align: center;
+      color: var(--anthracite);   /* ✅ titres anthracite */
+      margin: 0 0 16px;
+      font-weight: 700;
+    }
+
+    /* Table */
+    table{
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 15px;
+      background: transparent;    /* ✅ pas de fond */
+    }
+    th, td{
+      border: 1px solid var(--border);
+      padding: 8px;
+      text-align: left;
+      font-size: 14px;
+      background: transparent;    /* ✅ en-têtes et cellules transparents */
+    }
+    th{ font-weight: 700; color: var(--anthracite); }
+
+    /* Champs */
+    .input{
+      width: 100%;
+      max-width: 120px;
+      padding: 6px 8px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      text-align: right;
+      background: transparent;    /* ✅ champs transparents */
+      outline: none;
+    }
+    .input:focus{
+      border-color:#cbd5e1;
+      box-shadow: 0 0 0 2px rgba(37,99,235,.08);
+    }
+
+    /* Bouton sobre (anthracite) */
+    .btn{
+      display: inline-block;
+      width: 100%;
+      padding: 10px 20px;
+      background: transparent;         /* ✅ transparence */
+      color: var(--anthracite);
+      border: 1px solid var(--anthracite);
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+    .btn:hover{
+      background: rgba(43,47,51,.06);
+    }
+
+    .total-volume{
+      font-weight: 700;
+      color: var(--anthracite);
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px){
+      body{ font-size: 16px; }
+      .container{ padding: 12px; }
+      .input{ width: 90%; margin: 8px auto; text-align: center; }
+      .btn{ font-size: 14px; padding: 10px 16px; }
+    }
+    @media (max-width: 480px){
+      table{ display: block; margin-bottom: 20px; }
+      table thead{ display: none; }
+      table tr{ display: block; margin-bottom: 10px; }
+      table td{
+        display: block;
+        border: none;
+        border-bottom: 1px solid var(--border);
+        padding: 8px 0;
+      }
+      table td:last-child{ border-bottom: none; }
+      table td:before{
+        content: attr(data-label);
+        font-weight: 700;
+        display: block;
+        color: var(--anthracite);
+        margin-bottom: 4px;
+      }
+      .btn{ font-size: 13px; width: 90%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="app">
+    <h1>Hourdis</h1>
+
+    <div id="feuilles"><!-- Les feuilles seront générées ici --></div>
+
+    <button class="btn" id="ajouterFeuille">Ajouter une nouvelle feuille</button>
+
+    <div id="resume-global" class="container">
+      <h2>Résumé Global</h2>
+      <table id="table-resume">
+        <thead>
+          <tr>
+            <th>Longueur Hourdis (m)</th>
+            <th>Total Pièces</th>
+          </tr>
+        </thead>
+        <tbody><!-- Résumé global --></tbody>
+      </table>
+      <div class="total-volume">
+        Volume total de béton nécessaire : <span id="volume-total">0.000</span> m³
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function creerFeuille(){
+      const feuilleId = `feuille-${Date.now()}`;
+      const feuille = document.createElement('div');
+      feuille.className = 'container';
+      feuille.id = feuilleId;
+
+      feuille.innerHTML = `
+        <h2>
+          Nom du Projet :
+          <input type="text" class="input" id="nom-${feuilleId}" placeholder="Nom du projet" oninput="calculer('${feuilleId}')">
+        </h2>
+
+        <table>
+          <thead>
+            <tr><th>Paramètre</th><th>Valeur</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Paramètre">Longueur de la pièce</td>
+              <td data-label="Valeur">
+                <input type="number" class="input" data-id="${feuilleId}" name="longueur" step="0.01" value="0.00" oninput="calculer('${feuilleId}')">
+                <span class="unit">m</span>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Paramètre">Largeur de la pièce</td>
+              <td data-label="Valeur">
+                <input type="number" class="input" data-id="${feuilleId}" name="largeur" step="0.01" value="0.00" oninput="calculer('${feuilleId}')">
+                <span class="unit">m</span>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Paramètre">Appui</td>
+              <td data-label="Valeur">
+                <input type="number" class="input" data-id="${feuilleId}" name="appui" step="0.01" value="0.15" oninput="calculer('${feuilleId}')">
+                <span class="unit">m</span>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Paramètre">Épaisseur de la dalle</td>
+              <td data-label="Valeur">
+                <input type="number" class="input" data-id="${feuilleId}" name="epaisseur" step="0.01" value="0.15" oninput="calculer('${feuilleId}')">
+                <span class="unit">m</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Choix</th>
+              <th>Sens de Pose</th>
+              <th>Longueur des Hourdis</th>
+              <th>Nombre de Hourdis</th>
+              <th>Trou Restant</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="radio" name="choix-${feuilleId}" value="longueur" checked onchange="calculer('${feuilleId}')"></td>
+              <td>Sens ⊥ Longueur</td>
+              <td id="hourdis-longueur-${feuilleId}">-</td>
+              <td id="nb-hourdis-longueur-${feuilleId}">-</td>
+              <td id="trou-longueur-${feuilleId}">-</td>
+            </tr>
+            <tr>
+              <td><input type="radio" name="choix-${feuilleId}" value="largeur" onchange="calculer('${feuilleId}')"></td>
+              <td>Sens ⊥ Largeur</td>
+              <td id="hourdis-largeur-${feuilleId}">-</td>
+              <td id="nb-hourdis-largeur-${feuilleId}">-</td>
+              <td id="trou-largeur-${feuilleId}">-</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p><strong>Volume de béton nécessaire : </strong><span id="volume-beton-${feuilleId}">-</span> m³</p>
+      `;
+
+      document.getElementById('feuilles').appendChild(feuille);
+    }
+
+    function calculer(feuilleId){
+      const feuille = document.getElementById(feuilleId);
+      const inputs = feuille.querySelectorAll('input[data-id="'+feuilleId+'"]');
+
+      let data = {};
+      inputs.forEach(input => { data[input.name] = parseFloat(input.value) || 0; });
+
+      const hourdisLongueur = data.largeur + 2 * data.appui;
+      const hourdisLargeur  = data.longueur + 2 * data.appui;
+
+      const nbHourdisLargeur  = Math.floor(data.largeur  / 0.60);
+      const trouLargeur       = data.largeur  - (nbHourdisLargeur  * 0.60);
+      const nbHourdisLongueur = Math.floor(data.longueur / 0.60);
+      const trouLongueur      = data.longueur - (nbHourdisLongueur * 0.60);
+
+      const volumeBeton = (data.longueur * data.largeur * data.epaisseur).toFixed(3);
+
+      document.getElementById(`hourdis-longueur-${feuilleId}`).innerText = `${hourdisLongueur.toFixed(2)} m`;
+      document.getElementById(`nb-hourdis-longueur-${feuilleId}`).innerText = `${nbHourdisLongueur} pc(s)`;
+      document.getElementById(`trou-longueur-${feuilleId}`).innerText = `${trouLongueur.toFixed(2)} m`;
+
+      document.getElementById(`hourdis-largeur-${feuilleId}`).innerText = `${hourdisLargeur.toFixed(2)} m`;
+      document.getElementById(`nb-hourdis-largeur-${feuilleId}`).innerText = `${nbHourdisLargeur} pc(s)`;
+      document.getElementById(`trou-largeur-${feuilleId}`).innerText = `${trouLargeur.toFixed(2)} m`;
+
+      document.getElementById(`volume-beton-${feuilleId}`).innerText = volumeBeton;
+
+      mettreAJourResumeGlobal();
+    }
+
+    function mettreAJourResumeGlobal(){
+      const resumes = document.querySelectorAll('.container[id^="feuille-"]');
+      const resumeGlobal = {};
+      let totalVolumeBeton = 0;
+
+      resumes.forEach(feuille => {
+        const choix = feuille.querySelector('input[name^="choix-"]:checked').value;
+        const longueur = feuille.querySelector(`#hourdis-${choix}-${feuille.id}`).innerText;
+        const nbPieces = feuille.querySelector(`#nb-hourdis-${choix}-${feuille.id}`).innerText.split(' ')[0];
+        const volume = parseFloat(feuille.querySelector(`#volume-beton-${feuille.id}`).innerText) || 0;
+
+        if (longueur && nbPieces) {
+          resumeGlobal[longueur] = (resumeGlobal[longueur] || 0) + parseInt(nbPieces, 10);
+        }
+        totalVolumeBeton += volume;
+      });
+
+      const tbody = document.querySelector('#table-resume tbody');
+      tbody.innerHTML = '';
+      Object.entries(resumeGlobal).forEach(([longueur, total]) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${longueur}</td><td>${total} pc(s)</td>`;
+        tbody.appendChild(tr);
+      });
+
+      document.getElementById('volume-total').innerText = totalVolumeBeton.toFixed(3);
+    }
+
+    document.getElementById('ajouterFeuille').addEventListener('click', creerFeuille);
+    creerFeuille();
+  </script>
+</body>
+</html>

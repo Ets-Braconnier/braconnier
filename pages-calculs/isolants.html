@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculateur Isolants – Bast Aménagement</title>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body { margin: 0; padding: 0; }
+
+    :root{
+      --anthracite:#111827;
+      --border:#e5e7eb;
+      --text:#111827;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont,"SF Pro Text","Segoe UI",sans-serif;
+      background:#e5e7eb; /* pour test local ; tu peux mettre transparent sur Wix */
+      color:var(--text);
+    }
+
+    .iso-wrapper{
+      max-width:1000px;
+      margin:2.3rem auto;
+      padding:1.7rem 1.8rem 1.9rem;
+      background:rgba(255,255,255,0.94);
+      border-radius:22px;
+      border:1px solid rgba(0,0,0,0.04);
+      box-shadow:
+        0 18px 45px rgba(15,23,42,0.10),
+        0 0 0 1px rgba(255,255,255,0.6);
+      backdrop-filter:blur(18px);
+    }
+
+    .iso-title{
+      text-align:center;
+      font-size:1.35rem;
+      margin-bottom:0.55rem;
+      text-transform:uppercase;
+      letter-spacing:0.16em;
+      font-weight:500;
+      color:var(--anthracite);
+    }
+
+    .iso-sub{
+      text-align:center;
+      font-size:0.96rem;
+      color:#6b7280;
+      max-width:680px;
+      margin:0 auto 1.6rem;
+      line-height:1.6;
+    }
+
+    .iso-inputs{
+      display:flex;
+      flex-wrap:wrap;
+      gap:1.1rem 1.6rem;
+      margin-bottom:1.6rem;
+    }
+
+    .iso-field{
+      flex:1 1 260px;
+      display:flex;
+      flex-direction:column;
+      gap:0.22rem;
+    }
+
+    .iso-label{
+      font-size:0.88rem;
+      font-weight:500;
+      color:#374151;
+    }
+
+    .iso-label span{
+      font-weight:400;
+      color:#9ca3af;
+      font-size:0.84rem;
+    }
+
+    .iso-input{
+      padding:0.62rem 0.9rem;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.6);
+      font-size:0.95rem;
+      outline:none;
+      background:radial-gradient(circle at top left,
+        rgba(255,255,255,0.96),
+        rgba(243,244,246,0.96));
+      box-shadow:
+        inset 0 0 0 0 rgba(255,255,255,0),
+        0 1px 3px rgba(148,163,184,0.35);
+      transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease,
+        background 0.15s ease,
+        transform 0.08s ease;
+      box-sizing:border-box;
+      width:100%;
+    }
+
+    .iso-input::placeholder{
+      color:#c4cbd5;
+    }
+
+    .iso-input:focus{
+      border-color:#111827;
+      background:#ffffff;
+      box-shadow:
+        inset 0 0 0 1px rgba(17,24,39,0.06),
+        0 0 0 6px rgba(17,24,39,0.07);
+      transform:translateY(-0.5px);
+    }
+
+    .iso-divider{
+      height:1px;
+      background:linear-gradient(to right,
+        rgba(148,163,184,0),
+        rgba(148,163,184,0.55),
+        rgba(148,163,184,0));
+      margin:0.3rem 0 1.35rem;
+    }
+
+    .iso-table-wrapper{
+      width:100%;
+      overflow-x:auto;
+    }
+
+    table.iso-table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:0.2rem;
+      font-size:0.9rem;
+      background:rgba(255,255,255,0.98);
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:0 10px 28px rgba(15,23,42,0.08);
+      table-layout:fixed;
+    }
+
+    colgroup col.col-isolant   { width:14%; }
+    colgroup col.col-marque    { width:22%; }
+    colgroup col.col-lambda    { width:10%; }
+    colgroup col.col-res       { width:14%; }
+    colgroup col.col-ep        { width:18%; }
+    colgroup col.col-rw        { width:12%; }
+    colgroup col.col-pdf       { width:10%; }
+
+    .iso-table th,
+    .iso-table td{
+      padding:0.55rem 0.7rem;
+      border-bottom:1px solid rgba(229,231,235,0.8);
+      text-align:center;
+      vertical-align:middle;
+      word-break:break-word;
+      overflow-wrap:anywhere;
+    }
+
+    .iso-table thead th{
+      background:#f9fafb;
+      color:#444444;
+      font-weight:600;
+      line-height:1.3;
+    }
+
+    .iso-table tbody tr:nth-child(odd){
+      background:#f9fafb;
+    }
+
+    .iso-table tbody tr:last-child td{
+      border-bottom:none;
+    }
+
+    .pdf-icon{
+      width:20px;
+      height:20px;
+      fill:#d32f2f;
+      vertical-align:middle;
+    }
+
+    .iso-table a{
+      text-decoration:none;
+      display:inline-block;
+    }
+
+    @media (max-width:768px){
+      .iso-wrapper{
+        margin:1.7rem 0.9rem 2rem;
+        padding:1.35rem 1.1rem 1.65rem;
+        border-radius:20px;
+      }
+
+      .iso-inputs{
+        flex-direction:column;
+        gap:0.95rem;
+      }
+
+      .iso-table{
+        display:block;
+        border-collapse:separate;
+        border-spacing:0;
+      }
+
+      .iso-table thead{
+        display:none;
+      }
+
+      .iso-table tbody{
+        display:block;
+      }
+
+      .iso-table tbody tr{
+        display:block;
+        margin:0 0.75rem 0.75rem;
+        border-radius:12px;
+        border:1px solid rgba(229,231,235,0.9);
+        background:#ffffff;
+        overflow:hidden;
+      }
+
+      .iso-table td{
+        display:block;
+        border-bottom:1px solid rgba(243,244,246,0.9);
+        padding:0.55rem 0.85rem;
+        text-align:left;
+      }
+
+      .iso-table td:last-child{
+        border-bottom:none;
+      }
+
+      .iso-table td::before{
+        content:attr(data-label);
+        display:block;
+        font-weight:600;
+        margin-bottom:2px;
+        color:#374151;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="iso-wrapper">
+    <div class="iso-title">CALCULATEUR ISOLANTS</div>
+    <div class="iso-sub">
+      Saisissez soit l’épaisseur, soit la résistance thermique souhaitée pour comparer les différents isolants, leur épaisseur équivalente et un Rw estimé pour l’isolant seul.
+    </div>
+
+    <!-- Champs de saisie -->
+    <div class="iso-inputs">
+      <div class="iso-field">
+        <label class="iso-label" for="epaisseur">
+          Épaisseur isolant <span>(mm)</span>
+        </label>
+        <input
+          type="number"
+          id="epaisseur"
+          class="iso-input"
+          placeholder="Entrez l'épaisseur en mm"
+          oninput="calculerResistance(); calculerRwIsolantSeul();"
+          min="0"
+          step="any"
+        >
+      </div>
+      <div class="iso-field">
+        <label class="iso-label" for="resistanceSouhaite">
+          Résistance souhaitée <span>(m²·K/W)</span>
+        </label>
+        <input
+          type="number"
+          id="resistanceSouhaite"
+          class="iso-input"
+          placeholder="Entrez la résistance thermique souhaitée"
+          oninput="calculerEpaisseur(); calculerRwIsolantSeul();"
+          min="0"
+          step="any"
+        >
+      </div>
+    </div>
+
+    <div class="iso-divider"></div>
+
+    <!-- Tableau -->
+    <div class="iso-table-wrapper">
+      <table class="iso-table">
+        <colgroup>
+          <col class="col-isolant">
+          <col class="col-marque">
+          <col class="col-lambda">
+          <col class="col-res">
+          <col class="col-ep">
+          <col class="col-rw">
+          <col class="col-pdf">
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Isolant</th>
+            <th>Marque / Référence</th>
+            <th>λ (W/m·K)</th>
+            <th>Résistance (m²·K/W)</th>
+            <th>Épaisseur pour R souhaitée (mm)</th>
+            <th>Rw estimé (isolant seul, dB)</th>
+            <th>Fiche PDF</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Isolant">Laine de verre</td>
+            <td data-label="Marque / Référence">URSA HOMETEC 35</td>
+            <td data-label="λ (W/m·K)">0.032</td>
+            <td data-label="Résistance (m²·K/W)" id="res-verre">–</td>
+            <td data-label="Épaisseur pour R souhaitée (mm)" id="ep-verre">–</td>
+            <td data-label="Rw estimé (isolant seul, dB)" id="rw-0">–</td>
+            <td data-label="Fiche PDF">
+              <a href="https://6e8c60b3-9f7e-4317-ae4e-5f997d7f8d8c.usrfiles.com/ugd/6e8c60_60778db293fd4d92a21852e27e54bc4b.pdf" target="_blank" rel="noopener" aria-label="Fiche PDF - Laine de verre">
+                <svg class="pdf-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M6 2h9l5 5v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 7V3.5L18.5 9H13z"/>
+                  <path d="M9 13h6v2H9zm0 4h6v2H9z"/>
+                </svg>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Isolant">Laine de roche</td>
+            <td data-label="Marque / Référence">Rockwool RockSono Base</td>
+            <td data-label="λ (W/m·K)">0.035</td>
+            <td data-label="Résistance (m²·K/W)" id="res-roche">–</td>
+            <td data-label="Épaisseur pour R souhaitée (mm)" id="ep-roche">–</td>
+            <td data-label="Rw estimé (isolant seul, dB)" id="rw-1">–</td>
+            <td data-label="Fiche PDF">
+              <a href="https://6e8c60b3-9f7e-4317-ae4e-5f997d7f8d8c.usrfiles.com/ugd/6e8c60_60778db293fd4d92a21852e27e54bc4b.pdf" target="_blank" rel="noopener" aria-label="Fiche PDF - Laine de roche">
+                <svg class="pdf-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M6 2h9l5 5v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 7V3.5L18.5 9H13z"/>
+                  <path d="M9 13h6v2H9zm0 4h6v2H9z"/>
+                </svg>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Isolant">Laine de polyester</td>
+            <td data-label="Marque / Référence">EcoPeg</td>
+            <td data-label="λ (W/m·K)">0.035</td>
+            <td data-label="Résistance (m²·K/W)" id="res-polyester">–</td>
+            <td data-label="Épaisseur pour R souhaitée (mm)" id="ep-polyester">–</td>
+            <td data-label="Rw estimé (isolant seul, dB)" id="rw-2">–</td>
+            <td data-label="Fiche PDF">
+              <a href="https://6e8c60b3-9f7e-4317-ae4e-5f997d7f8d8c.usrfiles.com/ugd/6e8c60_60778db293fd4d92a21852e27e54bc4b.pdf" target="_blank" rel="noopener" aria-label="Fiche PDF - Laine de polyester">
+                <svg class="pdf-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M6 2h9l5 5v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 7V3.5L18.5 9H13z"/>
+                  <path d="M9 13h6v2H9zm0 4h6v2H9z"/>
+                </svg>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Isolant">Laine de bois</td>
+            <td data-label="Marque / Référence">PAVAFLEX Confort</td>
+            <td data-label="λ (W/m·K)">0.040</td>
+            <td data-label="Résistance (m²·K/W)" id="res-bois">–</td>
+            <td data-label="Épaisseur pour R souhaitée (mm)" id="ep-bois">–</td>
+            <td data-label="Rw estimé (isolant seul, dB)" id="rw-3">–</td>
+            <td data-label="Fiche PDF">
+              <a href="https://6e8c60b3-9f7e-4317-ae4e-5f997d7f8d8c.usrfiles.com/ugd/6e8c60_80e3567d08a0473fb12c0cf601d46989.pdf" target="_blank" rel="noopener" aria-label="Fiche PDF - Laine de bois">
+                <svg class="pdf-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M6 2h9l5 5v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 7V3.5L18.5 9H13z"/>
+                  <path d="M9 13h6v2H9zm0 4h6v2H9z"/>
+                </svg>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Isolant">Laine de chanvre</td>
+            <td data-label="Marque / Référence">Biofib’ Chanvre (panneaux)</td>
+            <td data-label="λ (W/m·K)">0.040</td>
+            <td data-label="Résistance (m²·K/W)" id="res-chanvre">–</td>
+            <td data-label="Épaisseur pour R souhaitée (mm)" id="ep-chanvre">–</td>
+            <td data-label="Rw estimé (isolant seul, dB)" id="rw-4">–</td>
+            <td data-label="Fiche PDF">
+              <a href="https://6e8c60b3-9f7e-4317-ae4e-5f997d7f8d8c.usrfiles.com/ugd/6e8c60_60778db293fd4d92a21852e27e54bc4b.pdf" target="_blank" rel="noopener" aria-label="Fiche PDF - Laine de chanvre">
+                <svg class="pdf-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M6 2h9l5 5v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 7V3.5L18.5 9H13z"/>
+                  <path d="M9 13h6v2H9zm0 4h6v2H9z"/>
+                </svg>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Isolant">Styrodur (XPS)</td>
+            <td data-label="Marque / Référence">Styrodur</td>
+            <td data-label="λ (W/m·K)">0.030</td>
+            <td data-label="Résistance (m²·K/W)" id="res-xps">–</td>
+            <td data-label="Épaisseur pour R souhaitée (mm)" id="ep-xps">–</td>
+            <td data-label="Rw estimé (isolant seul, dB)" id="rw-5">–</td>
+            <td data-label="Fiche PDF">
+              <a href="https://6e8c60b3-9f7e-4317-ae4e-5f997d7f8d8c.usrfiles.com/ugd/6e8c60_60778db293fd4d92a21852e27e54bc4b.pdf" target="_blank" rel="noopener" aria-label="Fiche PDF - XPS Styrodur">
+                <svg class="pdf-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M6 2h9l5 5v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 7V3.5L18.5 9H13z"/>
+                  <path d="M9 13h6v2H9zm0 4h6v2H9z"/>
+                </svg>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Isolant">PU + plaque (Gyproc)</td>
+            <td data-label="Marque / Référence">SIS REVE SI</td>
+            <td data-label="λ (W/m·K)">0.022</td>
+            <td data-label="Résistance (m²·K/W)" id="res-poly-gp">–</td>
+            <td data-label="Épaisseur pour R souhaitée (mm)" id="ep-poly-gp">–</td>
+            <td data-label="Rw estimé (isolant seul, dB)" id="rw-6">–</td>
+            <td data-label="Fiche PDF">
+              <a href="https://6e8c60b3-9f7e-4317-ae4e-5f997d7f8d8c.usrfiles.com/ugd/6e8c60_60778db293fd4d92a21852e27e54bc4b.pdf" target="_blank" rel="noopener" aria-label="Fiche PDF - PU + plaque">
+                <svg class="pdf-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M6 2h9l5 5v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 7V3.5L18.5 9H13z"/>
+                  <path d="M9 13h6v2H9zm0 4h6v2H9z"/>
+                </svg>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Isolant">PIR</td>
+            <td data-label="Marque / Référence">SopraTherm ALU FW</td>
+            <td data-label="λ (W/m·K)">0.022</td>
+            <td data-label="Résistance (m²·K/W)" id="res-pir">–</td>
+            <td data-label="Épaisseur pour R souhaitée (mm)" id="ep-pir">–</td>
+            <td data-label="Rw estimé (isolant seul, dB)" id="rw-7">–</td>
+            <td data-label="Fiche PDF">
+              <a href="https://6e8c60b3-9f7e-4317-ae4e-5f997d7f8d8c.usrfiles.com/ugd/6e8c60_60778db293fd4d92a21852e27e54bc4b.pdf" target="_blank" rel="noopener" aria-label="Fiche PDF - PIR SopraTherm">
+                <svg class="pdf-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M6 2h9l5 5v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 7V3.5L18.5 9H13z"/>
+                  <path d="M9 13h6v2H9zm0 4h6v2H9z"/>
+                </svg>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Isolant">ITE blanc (Façade)</td>
+            <td data-label="Marque / Référence">Sakret</td>
+            <td data-label="λ (W/m·K)">0.035</td>
+            <td data-label="Résistance (m²·K/W)" id="res-blanc">–</td>
+            <td data-label="Épaisseur pour R souhaitée (mm)" id="ep-blanc">–</td>
+            <td data-label="Rw estimé (isolant seul, dB)" id="rw-8">–</td>
+            <td data-label="Fiche PDF">
+              <a href="https://6e8c60b3-9f7e-4317-ae4e-5f997d7f8d8c.usrfiles.com/ugd/6e8c60_205a4ace652840d3837142b1c2deaab6.pdf" target="_blank" rel="noopener" aria-label="Fiche PDF - EPS blanc">
+                <svg class="pdf-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M6 2h9l5 5v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 7V3.5L18.5 9H13z"/>
+                  <path d="M9 13h6v2H9zm0 4h6v2H9z"/>
+                </svg>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Isolant">ITE gris (Façade)</td>
+            <td data-label="Marque / Référence">Sakret</td>
+            <td data-label="λ (W/m·K)">0.032</td>
+            <td data-label="Résistance (m²·K/W)" id="res-gris">–</td>
+            <td data-label="Épaisseur pour R souhaitée (mm)" id="ep-gris">–</td>
+            <td data-label="Rw estimé (isolant seul, dB)" id="rw-9">–</td>
+            <td data-label="Fiche PDF">
+              <a href="https://6e8c60b3-9f7e-4317-ae4e-5f997d7f8d8c.usrfiles.com/ugd/6e8c60_60778db293fd4d92a21852e27e54bc4b.pdf" target="_blank" rel="noopener" aria-label="Fiche PDF - EPS gris">
+                <svg class="pdf-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M6 2h9l5 5v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 7V3.5L18.5 9H13z"/>
+                  <path d="M9 13h6v2H9zm0 4h6v2H9z"/>
+                </svg>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Isolant">Jackoboard</td>
+            <td data-label="Marque / Référence">Jackoboard</td>
+            <td data-label="λ (W/m·K)">0.035</td>
+            <td data-label="Résistance (m²·K/W)" id="res-jack">–</td>
+            <td data-label="Épaisseur pour R souhaitée (mm)" id="ep-jack">–</td>
+            <td data-label="Rw estimé (isolant seul, dB)" id="rw-10">–</td>
+            <td data-label="Fiche PDF">
+              <a href="https://6e8c60b3-9f7e-4317-ae4e-5f997d7f8d8c.usrfiles.com/ugd/6e8c60_80e3567d08a0473fb12c0cf601d46989.pdf" target="_blank" rel="noopener" aria-label="Fiche PDF - Jackoboard">
+                <svg class="pdf-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M6 2h9l5 5v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 7V3.5L18.5 9H13z"/>
+                  <path d="M9 13h6v2H9zm0 4h6v2H9z"/>
+                </svg>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Isolant">Aquapanel Outdoor</td>
+            <td data-label="Marque / Référence">KNAUF Aquapanel Outdoor</td>
+            <td data-label="λ (W/m·K)">0.300</td>
+            <td data-label="Résistance (m²·K/W)" id="res-aqua">–</td>
+            <td data-label="Épaisseur pour R souhaitée (mm)" id="ep-aqua">–</td>
+            <td data-label="Rw estimé (isolant seul, dB)" id="rw-11">–</td>
+            <td data-label="Fiche PDF">
+              <a href="https://6e8c60b3-9f7e-4317-ae4e-5f997d7f8d8c.usrfiles.com/ugd/6e8c60_7506d41b13154227ae25853ac4a9a163.pdf" target="_blank" rel="noopener" aria-label="Fiche PDF - Aquapanel Outdoor">
+                <svg class="pdf-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M6 2h9l5 5v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 7V3.5L18.5 9H13z"/>
+                  <path d="M9 13h6v2H9zm0 4h6v2H9z"/>
+                </svg>
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Isolant">Eurothane BI-4</td>
+            <td data-label="Marque / Référence">Recticel Eurothane BI-4</td>
+            <td data-label="λ (W/m·K)">0.026</td>
+            <td data-label="Résistance (m²·K/W)" id="res-eurothane">–</td>
+            <td data-label="Épaisseur pour R souhaitée (mm)" id="ep-eurothane">–</td>
+            <td data-label="Rw estimé (isolant seul, dB)" id="rw-12">–</td>
+            <td data-label="Fiche PDF">
+              <a href="https://6e8c60b3-9f7e-4317-ae4e-5f997d7f8d8c.usrfiles.com/ugd/6e8c60_7cb4664a5e194673b30ebe09a835294e.pdf" target="_blank" rel="noopener" aria-label="Fiche PDF - Eurothane BI-4">
+                <svg class="pdf-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M6 2h9l5 5v15a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 7V3.5L18.5 9H13z"/>
+                  <path d="M9 13h6v2H9zm0 4h6v2H9z"/>
+                </svg>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    function calculerResistance() {
+      const eInput = document.getElementById('epaisseur');
+      const epmm = parseFloat((eInput.value || "").replace(',', '.'));
+      const epaisseur = isNaN(epmm) ? 0 : epmm / 1000;
+
+      const lambdas = [
+        { id: "res-verre", lambda: 0.032 }, { id: "res-roche", lambda: 0.035 },
+        { id: "res-polyester", lambda: 0.035 }, { id: "res-bois", lambda: 0.040 },
+        { id: "res-chanvre", lambda: 0.040 },   { id: "res-xps", lambda: 0.030 },
+        { id: "res-poly-gp", lambda: 0.022 },   { id: "res-pir", lambda: 0.022 },
+        { id: "res-blanc", lambda: 0.035 },     { id: "res-gris", lambda: 0.032 },
+        { id: "res-jack", lambda: 0.035 },      { id: "res-aqua", lambda: 0.300 },
+        { id: "res-eurothane", lambda: 0.026 }
+      ];
+
+      lambdas.forEach(item => {
+        const el = document.getElementById(item.id);
+        if (!el) return;
+        if (!epaisseur || epaisseur <= 0) {
+          el.textContent = "–";
+        } else {
+          const resistance = (epaisseur / item.lambda).toFixed(3);
+          el.textContent = resistance;
+        }
+      });
+    }
+
+    function calculerEpaisseur() {
+      const rInput = document.getElementById('resistanceSouhaite');
+      const rVal = parseFloat((rInput.value || "").replace(',', '.'));
+      const resistanceSouhaite = isNaN(rVal) ? 0 : rVal;
+
+      const lambdas = [
+        { id: "ep-verre", lambda: 0.032 }, { id: "ep-roche", lambda: 0.035 },
+        { id: "ep-polyester", lambda: 0.035 }, { id: "ep-bois", lambda: 0.040 },
+        { id: "ep-chanvre", lambda: 0.040 },   { id: "ep-xps", lambda: 0.030 },
+        { id: "ep-poly-gp", lambda: 0.022 },   { id: "ep-pir", lambda: 0.022 },
+        { id: "ep-blanc", lambda: 0.035 },     { id: "ep-gris", lambda: 0.032 },
+        { id: "ep-jack", lambda: 0.035 },      { id: "ep-aqua", lambda: 0.300 },
+        { id: "ep-eurothane", lambda: 0.026 }
+      ];
+
+      lambdas.forEach(item => {
+        const el = document.getElementById(item.id);
+        if (!el) return;
+        if (!resistanceSouhaite || resistanceSouhaite <= 0) {
+          el.textContent = "–";
+        } else {
+          const epaisseur = (resistanceSouhaite * item.lambda * 1000).toFixed(1);
+          el.textContent = epaisseur;
+        }
+      });
+    }
+
+    function calculerRwIsolantSeul() {
+      const eInput = document.getElementById('epaisseur');
+      const epmm = parseFloat((eInput.value || "").replace(',', '.'));
+      const epaisseur = isNaN(epmm) ? 0 : epmm / 1000;
+
+      const densites = [20, 70, 35, 140, 50, 35, 30, 30, 20, 25, 35, 1000, 30];
+
+      densites.forEach((densite, index) => {
+        const el = document.getElementById("rw-" + index);
+        if (!el) return;
+        if (!epaisseur || epaisseur <= 0) {
+          el.textContent = "–";
+        } else {
+          const rw = Math.max(1, 10 * Math.log10(densite * epaisseur)).toFixed(2);
+          el.textContent = rw;
+        }
+      });
+    }
+  </script>
+</body>
+</html>

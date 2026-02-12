@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tapis de pierre – Bast Aménagement</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 1rem;
+      background: #e5e7eb;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text","Segoe UI", sans-serif;
+    }
+
+    .tp-wrapper {
+      max-width: 880px;
+      margin: 2.3rem auto;
+      padding: 1.7rem 1.8rem 1.9rem;
+      background: rgba(255, 255, 255, 0.94);
+      border-radius: 22px;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow:
+        0 18px 45px rgba(15, 23, 42, 0.10),
+        0 0 0 1px rgba(255, 255, 255, 0.6);
+      color: #111827;
+      backdrop-filter: blur(18px);
+    }
+
+    .tp-title {
+      text-align: center;
+      font-size: 1.35rem;
+      margin-bottom: 0.55rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-weight: 500;
+    }
+
+    .tp-sub {
+      text-align: center;
+      font-size: 0.96rem;
+      color: #6b7280;
+      max-width: 640px;
+      margin: 0 auto 1.6rem;
+      line-height: 1.6;
+    }
+
+    .tp-form {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.05rem 1.6rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .tp-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.22rem;
+    }
+
+    .tp-label {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: #374151;
+    }
+
+    .tp-label span {
+      font-weight: 400;
+      color: #9ca3af;
+      font-size: 0.84rem;
+    }
+
+    .tp-input,
+    .tp-select {
+      padding: 0.62rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 0.95rem;
+      outline: none;
+      background: radial-gradient(circle at top left,
+          rgba(255, 255, 255, 0.96),
+          rgba(243, 244, 246, 0.96));
+      box-shadow:
+        inset 0 0 0 0 rgba(255, 255, 255, 0),
+        0 1px 3px rgba(148, 163, 184, 0.35);
+      transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease,
+        background 0.15s ease,
+        transform 0.08s ease;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .tp-input::placeholder {
+      color: #c4cbd5;
+    }
+
+    .tp-input:focus,
+    .tp-select:focus {
+      border-color: #111827;
+      background: #ffffff;
+      box-shadow:
+        inset 0 0 0 1px rgba(17, 24, 39, 0.06),
+        0 0 0 6px rgba(17, 24, 39, 0.07);
+      transform: translateY(-0.5px);
+    }
+
+    .tp-divider-soft {
+      height: 1px;
+      background: linear-gradient(to right,
+          rgba(148, 163, 184, 0),
+          rgba(148, 163, 184, 0.55),
+          rgba(148, 163, 184, 0));
+      margin: 0.3rem 0 1.35rem;
+    }
+
+    .tp-results-block {
+      margin-bottom: 1.6rem;
+    }
+
+    .tp-results-title {
+      margin: 0 0 0.6rem 0;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #111827;
+      text-align: left;
+    }
+
+    .tp-result-line {
+      margin: 0.12rem 0;
+      font-size: 0.92rem;
+      color: #374151;
+    }
+
+    .tp-result-line span.label {
+      font-weight: 500;
+    }
+
+    .tp-vertical-title {
+      margin: 1rem 0 0.4rem 0;
+      font-size: 0.96rem;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .tp-note-empty {
+      font-size: 0.86rem;
+      color: #9ca3af;
+      margin-top: 0.35rem;
+    }
+
+    .tp-files {
+      margin-top: 1.4rem;
+    }
+
+    .tp-files-title {
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      color: #111827;
+    }
+
+    .tp-link-btn {
+      display: block;
+      width: 100%;
+      margin: 0.35rem 0;
+      padding: 0.7rem 0.9rem;
+      border-radius: 999px;
+      text-align: center;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: 1px solid rgba(209, 213, 219, 0.9);
+      background: rgba(249, 250, 251, 0.98);
+      color: #111827;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.05);
+      transition:
+        background 0.15s ease,
+        box-shadow 0.15s ease,
+        transform 0.08s ease;
+    }
+
+    .tp-link-btn:hover {
+      background: #ffffff;
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.09);
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 768px) {
+      .tp-wrapper {
+        margin: 1.7rem 0.9rem 2rem;
+        padding: 1.35rem 1.1rem 1.65rem;
+        border-radius: 20px;
+      }
+
+      .tp-form {
+        grid-template-columns: 1fr;
+        gap: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="tp-wrapper">
+    <div class="tp-title">TAPIS DE PIERRE</div>
+    <div class="tp-sub">
+      Indiquez la surface et les paramètres de pose pour estimer les consommations de résine, granulats et produits associés, pour une application horizontale et verticale.
+    </div>
+
+    <!-- Formulaire -->
+    <div class="tp-form">
+      <div class="tp-field">
+        <label class="tp-label" for="surface">
+          Surface souhaitée <span>(m²)</span>
+        </label>
+        <input type="number" id="surface" class="tp-input"
+               placeholder="Entrez la surface en m²" min="0" step="any" />
+      </div>
+
+      <div class="tp-field">
+        <label class="tp-label" for="application">
+          Type d'application
+        </label>
+        <select id="application" class="tp-select">
+          <option value="interieur">Intérieur</option>
+          <option value="exterieur">Extérieur</option>
+        </select>
+      </div>
+
+      <div class="tp-field">
+        <label class="tp-label" for="taille">
+          Taille des granulats
+        </label>
+        <select id="taille" class="tp-select">
+          <option value="2-4">2–4 mm</option>
+          <option value="3-5">3–5 mm</option>
+          <option value="4-8">4–8 mm</option>
+        </select>
+      </div>
+
+      <div class="tp-field">
+        <label class="tp-label" for="epaisseurInput">
+          Épaisseur <span>(mm)</span>
+        </label>
+        <input type="number" id="epaisseurInput" class="tp-input" min="0" step="any" />
+      </div>
+    </div>
+
+    <div class="tp-divider-soft"></div>
+
+    <!-- Résultats toujours visibles -->
+    <div class="tp-results-block">
+      <h2 class="tp-results-title">Application horizontale</h2>
+      <p class="tp-result-line"><span class="label">Épaisseur prise en compte :</span> <span id="epaisseur">–</span></p>
+      <p class="tp-result-line"><span class="label">Primaire :</span> <span id="primaire">–</span></p>
+      <p class="tp-result-line"><span class="label">Sable de Quartz :</span> <span id="sableQuartz">–</span></p>
+      <p class="tp-result-line"><span class="label">Résine :</span> <span id="resine">–</span></p>
+      <p class="tp-result-line"><span class="label">Granulats :</span> <span id="granulats">–</span></p>
+      <p class="tp-result-line"><span class="label">Bouche-pore :</span> <span id="bouchePore">–</span></p>
+
+      <h3 class="tp-vertical-title">Application verticale (escaliers, contremarches, murs)</h3>
+      <p class="tp-result-line"><span class="label">Épaisseur prise en compte :</span> <span id="epaisseur_vertical">–</span></p>
+      <p class="tp-result-line"><span class="label">Primaire vertical :</span> <span id="primaire_vertical">–</span></p>
+      <p class="tp-result-line"><span class="label">Sable de Quartz vertical :</span> <span id="sableQuartz_vertical">–</span></p>
+      <p class="tp-result-line"><span class="label">PUVB.02 / QC PU-VERTICAL BINDER 02 :</span> <span id="puvb02_vertical">–</span></p>
+      <p class="tp-result-line"><span class="label">Granulats verticaux :</span> <span id="granulats_vertical">–</span></p>
+      <p class="tp-result-line"><span class="label">Bouche-pore vertical :</span> <span id="bouchePore_vertical">–</span></p>
+
+      <p class="tp-note-empty" id="tp-note">
+        Complétez la surface et l'épaisseur pour afficher les consommations estimées.
+      </p>
+    </div>
+
+    <div class="tp-divider-soft"></div>
+
+    <!-- Liens fichiers -->
+    <div class="tp-files">
+      <div class="tp-files-title">Fichiers techniques</div>
+      <a href="https://www.bast-amenagement.com/mise-en-ouevre" target="_blank" class="tp-link-btn">
+        Guide de mise en œuvre
+      </a>
+      <a href="https://www.bast-amenagement.com/sidec" target="_blank" class="tp-link-btn">
+        Fiches techniques SIDEC
+      </a>
+      <a href="https://www.bast-amenagement.com/k%C3%A9miroc" target="_blank" class="tp-link-btn">
+        Fiches techniques KEMIROC
+      </a>
+    </div>
+  </div>
+
+  <script>
+    // mêmes données que ton code d'origine
+    const epaisseurs = { "2-4": 8, "3-5": 10, "4-8": 15 };
+    const bouchePoreRatios = { "2-4": 0.700, "3-5": 0.850, "4-8": 1.000 };
+    const consumptions = {
+      sidec: {
+        interieur: { resine: 0.89, granulats: 16, primaire: 0.3 },
+        exterieur: { resine: 0.89, granulats: 16, primaire: 0.3 },
+      },
+    };
+
+    function resetResults() {
+      const dash = "–";
+      document.getElementById("epaisseur").textContent = dash;
+      document.getElementById("primaire").textContent = dash;
+      document.getElementById("sableQuartz").textContent = dash;
+      document.getElementById("resine").textContent = dash;
+      document.getElementById("granulats").textContent = dash;
+      document.getElementById("bouchePore").textContent = dash;
+
+      document.getElementById("epaisseur_vertical").textContent = dash;
+      document.getElementById("primaire_vertical").textContent = dash;
+      document.getElementById("sableQuartz_vertical").textContent = dash;
+      document.getElementById("puvb02_vertical").textContent = dash;
+      document.getElementById("granulats_vertical").textContent = dash;
+      document.getElementById("bouchePore_vertical").textContent = dash;
+
+      document.getElementById("tp-note").style.opacity = "1";
+    }
+
+    function calculateMaterials() {
+      const surface = parseFloat(document.getElementById("surface").value.replace(",", "."));
+      const application = document.getElementById("application").value;
+      const taille = document.getElementById("taille").value;
+      const epaisseur = parseFloat(document.getElementById("epaisseurInput").value.replace(",", "."));
+
+      const epaisseurReference = epaisseurs[taille];
+
+      if (isNaN(surface) || surface <= 0 || isNaN(epaisseur) || epaisseur <= 0 || !epaisseurReference) {
+        resetResults();
+        return;
+      }
+
+      const facteurEpaisseur = epaisseur / epaisseurReference;
+      const consommation = consumptions.sidec[application];
+
+      const resine = (surface * consommation.resine * facteurEpaisseur).toFixed(2);
+      const granulats = (surface * consommation.granulats * facteurEpaisseur).toFixed(2);
+      const primaire = (surface * consommation.primaire).toFixed(2);
+      const sableQuartz = (surface * 0.8333).toFixed(2);
+      const puvb02 = ((granulats / 50) * 2.8).toFixed(2);
+
+      let bouchePore = null;
+      if (application === "interieur" && bouchePoreRatios[taille]) {
+        bouchePore = (surface * bouchePoreRatios[taille] * facteurEpaisseur).toFixed(2);
+      }
+
+      // horizontale
+      document.getElementById("epaisseur").textContent = `${epaisseur.toFixed(1)} mm`;
+      document.getElementById("primaire").textContent = `${primaire} kg`;
+      document.getElementById("sableQuartz").textContent = `${sableQuartz} kg`;
+      document.getElementById("resine").textContent =
+        application === "exterieur"
+          ? `${resine} kg (résine anti-UV)`
+          : `${resine} kg`;
+      document.getElementById("granulats").textContent = `${granulats} kg`;
+      document.getElementById("bouchePore").textContent =
+        bouchePore !== null ? `${bouchePore} kg` : "Non requis";
+
+      // verticale
+      document.getElementById("epaisseur_vertical").textContent = `${epaisseur.toFixed(1)} mm`;
+      document.getElementById("primaire_vertical").textContent =
+        `${primaire} kg de PUVB.02 / QC PU-VERTICAL BINDER 02`;
+      document.getElementById("sableQuartz_vertical").textContent = `${sableQuartz} kg`;
+      document.getElementById("puvb02_vertical").textContent = `${puvb02} kg`;
+      document.getElementById("granulats_vertical").textContent = `${granulats} kg`;
+      document.getElementById("bouchePore_vertical").textContent =
+        bouchePore !== null ? `${bouchePore} kg` : "Non requis";
+
+      document.getElementById("tp-note").style.opacity = "0.4";
+    }
+
+    // Écouteurs comme dans ton code d'origine
+    document.getElementById("surface").addEventListener("input", calculateMaterials);
+    document.getElementById("application").addEventListener("change", calculateMaterials);
+    document.getElementById("taille").addEventListener("change", () => {
+      const taille = document.getElementById("taille").value;
+      document.getElementById("epaisseurInput").value = epaisseurs[taille];
+      calculateMaterials();
+    });
+    document.getElementById("epaisseurInput").addEventListener("input", calculateMaterials);
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const tailleInit = document.getElementById("taille").value;
+      document.getElementById("epaisseurInput").value = epaisseurs[tailleInit];
+      resetResults();
+      document.getElementById("surface").focus();
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cubage du béton – Bast Aménagement</title>
+
+  <style>
+    .ba-beton-wrapper {
+      max-width: 880px;
+      margin: 2.3rem auto;
+      padding: 1.7rem 1.8rem 1.9rem;
+      background: rgba(255, 255, 255, 0.94);
+      border-radius: 22px;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow:
+        0 18px 45px rgba(15, 23, 42, 0.10),
+        0 0 0 1px rgba(255, 255, 255, 0.6);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      color: #111827;
+      backdrop-filter: blur(18px);
+    }
+
+    .ba-beton-title {
+      text-align: center;
+      font-size: 1.35rem;
+      margin-bottom: 0.55rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-weight: 500;
+    }
+
+    .ba-beton-sub {
+      text-align: center;
+      font-size: 0.96rem;
+      color: #6b7280;
+      max-width: 640px;
+      margin: 0 auto 1.6rem;
+      line-height: 1.6;
+    }
+
+    .ba-beton-form {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.05rem 1.6rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .ba-beton-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.22rem;
+    }
+
+    .ba-beton-label {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: #374151;
+    }
+
+    .ba-beton-label span {
+      font-weight: 400;
+      color: #9ca3af;
+      font-size: 0.84rem;
+    }
+
+    .ba-beton-input,
+    .ba-beton-select {
+      padding: 0.62rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 0.95rem;
+      outline: none;
+      background: radial-gradient(circle at top left,
+          rgba(255, 255, 255, 0.96),
+          rgba(243, 244, 246, 0.96));
+      box-shadow:
+        inset 0 0 0 0 rgba(255, 255, 255, 0),
+        0 1px 3px rgba(148, 163, 184, 0.35);
+      transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease,
+        background 0.15s ease,
+        transform 0.08s ease;
+    }
+
+    .ba-beton-input::placeholder {
+      color: #c4cbd5;
+    }
+
+    .ba-beton-input:focus,
+    .ba-beton-select:focus {
+      border-color: #111827;
+      background: #ffffff;
+      box-shadow:
+        inset 0 0 0 1px rgba(17, 24, 39, 0.06),
+        0 0 0 6px rgba(17, 24, 39, 0.07);
+      transform: translateY(-0.5px);
+    }
+
+    .ba-beton-actions {
+      grid-column: 1 / -1;
+      display: flex;
+      gap: 0.85rem;
+      align-items: center;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .ba-beton-btn {
+      padding: 0.7rem 1.9rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition:
+        transform 0.09s ease,
+        box-shadow 0.16s ease,
+        background 0.16s ease,
+        opacity 0.16s ease;
+      will-change: transform, box-shadow;
+    }
+
+    .ba-beton-btn-primary {
+      background: radial-gradient(circle at top left, #111827, #020617);
+      color: #f9fafb;
+      box-shadow:
+        0 14px 32px rgba(15, 23, 42, 0.45),
+        0 0 0 1px rgba(255, 255, 255, 0.06);
+    }
+
+    .ba-beton-btn-primary:hover {
+      background: radial-gradient(circle at top left, #020617, #000000);
+      transform: translateY(-1px);
+      box-shadow:
+        0 18px 38px rgba(15, 23, 42, 0.55),
+        0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+
+    .ba-beton-btn-secondary {
+      background: rgba(249, 250, 251, 0.98);
+      color: #374151;
+      border: 1px solid rgba(209, 213, 219, 0.9);
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.05);
+    }
+
+    .ba-beton-btn-secondary:hover {
+      background: #ffffff;
+      transform: translateY(-1px);
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.09);
+    }
+
+    .ba-beton-note {
+      font-size: 0.86rem;
+      color: #9ca3af;
+    }
+
+    .ba-divider-soft {
+      height: 1px;
+      background: linear-gradient(to right,
+          rgba(148, 163, 184, 0),
+          rgba(148, 163, 184, 0.55),
+          rgba(148, 163, 184, 0));
+      margin: 0.3rem 0 1.35rem;
+    }
+
+    .ba-beton-result-volume {
+      margin-bottom: 1rem;
+      font-size: 0.95rem;
+      color: #4b5563;
+    }
+
+    .ba-beton-result-volume strong {
+      font-size: 1.05rem;
+    }
+
+    .ba-beton-table-wrapper {
+      overflow-x: auto;
+    }
+
+    .ba-beton-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      background: rgba(255, 255, 255, 0.98);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+    }
+
+    .ba-beton-table th,
+    .ba-beton-table td {
+      padding: 0.65rem 1rem;
+      border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    .ba-beton-table thead th {
+      font-weight: 600;
+      background: #f9fafb;
+    }
+
+    .ba-beton-table tbody tr:nth-child(odd) {
+      background: #f9fafb;
+    }
+
+    .ba-qty {
+      text-align: right;
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .ba-beton-wrapper {
+        margin: 1.7rem 0.9rem 2rem;
+        padding: 1.35rem 1.1rem 1.65rem;
+        border-radius: 20px;
+      }
+
+      .ba-beton-title {
+        font-size: 1.25rem;
+        letter-spacing: 0.14em;
+      }
+
+      .ba-beton-form {
+        grid-template-columns: 1fr;
+        gap: 0.95rem;
+      }
+
+      .ba-beton-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.6rem;
+      }
+
+      .ba-beton-btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      .ba-beton-note {
+        text-align: center;
+        margin-top: 0.2rem;
+      }
+    }
+
+    body {
+      margin: 0;
+      padding: 1rem;
+      background: #e5e7eb;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ba-beton-wrapper">
+    <div class="ba-beton-title">CUBAGE DU BÉTON</div>
+    <div class="ba-beton-sub">
+      Indiquez les dimensions de la dalle ou le volume souhaité. Le calculateur estime automatiquement les quantités de matériaux en fonction du dosage sélectionné.
+    </div>
+
+    <form class="ba-beton-form" onsubmit="event.preventDefault(); baCalculerBetonPremium();">
+      <div class="ba-beton-field">
+        <label class="ba-beton-label">Longueur <span>(m)</span></label>
+        <input type="number" step="0.01" min="0" id="ba-longueur" class="ba-beton-input" placeholder="Ex. 4,20">
+      </div>
+      <div class="ba-beton-field">
+        <label class="ba-beton-label">Largeur <span>(m)</span></label>
+        <input type="number" step="0.01" min="0" id="ba-largeur" class="ba-beton-input" placeholder="Ex. 3,00">
+      </div>
+      <div class="ba-beton-field">
+        <label class="ba-beton-label">Hauteur <span>(m)</span></label>
+        <input type="number" step="0.01" min="0" id="ba-hauteur" class="ba-beton-input" placeholder="Ex. 0,12">
+      </div>
+      <div class="ba-beton-field">
+        <label class="ba-beton-label">Volume direct <span>(m³ – facultatif)</span></label>
+        <input type="number" step="0.01" min="0" id="ba-volume" class="ba-beton-input" placeholder="Si vous connaissez déjà le volume">
+      </div>
+      <div class="ba-beton-field">
+        <label class="ba-beton-label">Dosage <span>(kg/m³)</span></label>
+        <select id="ba-dosage" class="ba-beton-select">
+          <option value="250">250 kg/m³ – Béton courant</option>
+          <option value="300">300 kg/m³ – Béton renforcé</option>
+          <option value="350">350 kg/m³ – Dalle sollicitée</option>
+          <option value="400">400 kg/m³ – Cas spécifiques</option>
+        </select>
+      </div>
+
+      <div class="ba-beton-actions">
+        <button type="submit" class="ba-beton-btn ba-beton-btn-primary">Calculer les quantités</button>
+        <button type="button" class="ba-beton-btn ba-beton-btn-secondary" onclick="baResetBetonPremium()">Réinitialiser</button>
+        <div class="ba-beton-note">Vous pouvez remplir soit les dimensions, soit directement le volume.</div>
+      </div>
+    </form>
+
+    <div class="ba-divider-soft"></div>
+
+    <!-- Zone de résultats toujours visible -->
+    <div id="ba-resultats-beton">
+      <div class="ba-beton-result-volume">
+        Volume de béton estimé :
+        <strong><span id="ba-volume-result">–</span> m³</strong>
+      </div>
+
+      <div class="ba-beton-table-wrapper">
+        <table class="ba-beton-table">
+          <thead>
+            <tr>
+              <th>Matériau</th>
+              <th class="ba-qty">Quantité estimée</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Grenaille 7/14</td>
+              <td class="ba-qty"><span id="ba-gravillons">–</span></td>
+            </tr>
+            <tr>
+              <td>Sable de Rhin</td>
+              <td class="ba-qty"><span id="ba-sable">–</span></td>
+            </tr>
+            <tr>
+              <td>Ciment (sacs 25 kg)</td>
+              <td class="ba-qty"><span id="ba-ciment-sacs">–</span></td>
+            </tr>
+            <tr>
+              <td>Sacs béton préparés (350 kg/m³)</td>
+              <td class="ba-qty"><span id="ba-beton-prete">–</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function baParseFloat(val) {
+      if (!val && val !== 0) return 0;
+      return parseFloat(String(val).replace(',', '.')) || 0;
+    }
+
+    function baCalculerBetonPremium() {
+      const longueur = baParseFloat(document.getElementById('ba-longueur').value);
+      const largeur = baParseFloat(document.getElementById('ba-largeur').value);
+      const hauteur = baParseFloat(document.getElementById('ba-hauteur').value);
+      const volumeInput = baParseFloat(document.getElementById('ba-volume').value);
+      const dosage = baParseFloat(document.getElementById('ba-dosage').value) || 250;
+
+      let volume = volumeInput;
+      if (!volume && longueur && largeur && hauteur) {
+        volume = longueur * largeur * hauteur;
+      }
+
+      if (!volume || volume <= 0) {
+        alert("Veuillez renseigner les dimensions ou un volume valide.");
+        return;
+      }
+
+      // Formules identiques à ton ancien code
+      const grenaille = 0.86 * volume;            // m³
+      const sable = 0.43 * volume;                // m³
+      const cimentPerM3 = dosage / 25;            // sacs/m³
+      const ciment = Math.ceil(cimentPerM3 * volume); // sacs
+      const prepared = 80 * volume;               // sacs de béton prêt
+
+      // Affichage
+      document.getElementById('ba-volume-result').textContent =
+        volume.toFixed(2).replace('.', ',');
+
+      document.getElementById('ba-gravillons').textContent =
+        grenaille > 0 ? `${grenaille.toFixed(2).replace('.', ',')} m³` : '–';
+
+      document.getElementById('ba-sable').textContent =
+        sable > 0 ? `${sable.toFixed(2).replace('.', ',')} m³` : '–';
+
+      document.getElementById('ba-ciment-sacs').textContent =
+        ciment > 0 ? `${ciment} sacs` : '–';
+
+      document.getElementById('ba-beton-prete').textContent =
+        prepared > 0
+          ? `${prepared.toFixed(1).replace('.', ',')} sacs / 25 kg`
+          : '–';
+    }
+
+    function baResetBetonPremium() {
+      document.getElementById('ba-longueur').value = '';
+      document.getElementById('ba-largeur').value = '';
+      document.getElementById('ba-hauteur').value = '';
+      document.getElementById('ba-volume').value = '';
+      document.getElementById('ba-dosage').value = '250';
+
+      // Remise à zéro des résultats
+      document.getElementById('ba-volume-result').textContent = '–';
+      document.getElementById('ba-gravillons').textContent = '–';
+      document.getElementById('ba-sable').textContent = '–';
+      document.getElementById('ba-ciment-sacs').textContent = '–';
+      document.getElementById('ba-beton-prete').textContent = '–';
+    }
+  </script>
+
+</body>
+</html>

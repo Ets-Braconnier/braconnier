@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stepoc</title>
+  <meta
+    name="description"
+    content="Calculez surface, béton, blocs, palettes et ferraillage pour murs Stepoc selon longueur, hauteur et type de bloc."
+  />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    :root{
+      --anthracite:#111827;
+      --text:#111827;
+      --border:#e5e7eb;
+      --muted:#6b7280;
+    }
+
+    html, body{
+      height:100%;
+      max-width:100%;
+      overflow-x:hidden;
+      -webkit-text-size-adjust:100%;
+    }
+
+    body{
+      margin:0;
+      padding:1rem;
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+      background:transparent; /* ✅ pour se fondre dans ta page Wix */
+      color:var(--text);
+    }
+
+    .st-wrapper{
+      max-width:900px;
+      margin:2.3rem auto;
+      padding:1.6rem 1.4rem 1.8rem;
+      background:rgba(255,255,255,0.94);
+      border-radius:22px;
+      border:1px solid rgba(0,0,0,0.04);
+      box-shadow:
+        0 18px 45px rgba(15,23,42,0.10),
+        0 0 0 1px rgba(255,255,255,0.6);
+      backdrop-filter:blur(18px);
+    }
+
+    .st-title{
+      font-size:1.2rem;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
+      font-weight:500;
+      color:var(--anthracite);
+      margin:0 0 0.25rem;
+      text-align:left;
+    }
+
+    .st-subtitle{
+      font-size:0.95rem;
+      color:var(--muted);
+      margin:0 0 1.4rem;
+    }
+
+    .st-form-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:0.9rem 1rem;
+      margin-bottom:1.2rem;
+    }
+
+    .st-field{
+      display:flex;
+      flex-direction:column;
+      gap:0.22rem;
+      min-width:0;
+    }
+
+    .st-label{
+      font-size:0.9rem;
+      font-weight:500;
+      color:#374151;
+    }
+
+    .st-input,
+    .st-select{
+      width:100%;
+      padding:0.62rem 0.9rem;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.8);
+      font-size:0.95rem;
+      font-family:inherit;
+      color:var(--text);
+      background:radial-gradient(circle at top left,
+        rgba(255,255,255,0.98),
+        rgba(243,244,246,0.96));
+      outline:none;
+      text-align:center;
+      box-shadow:0 1px 3px rgba(148,163,184,0.35);
+      transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease,
+        background 0.15s ease,
+        transform 0.08s ease;
+    }
+
+    .st-select{
+      text-align:left;
+      padding-right:2.2rem;
+      background-image:
+        linear-gradient(45deg, transparent 50%, #9ca3af 50%),
+        linear-gradient(135deg, #9ca3af 50%, transparent 50%);
+      background-position:
+        calc(100% - 14px) calc(50% - 3px),
+        calc(100% - 9px)  calc(50% - 3px);
+      background-size:6px 6px,6px 6px;
+      background-repeat:no-repeat;
+    }
+
+    .st-input:focus,
+    .st-select:focus{
+      border-color:#111827;
+      background:#ffffff;
+      box-shadow:
+        inset 0 0 0 1px rgba(17,24,39,0.06),
+        0 0 0 6px rgba(17,24,39,0.07);
+      transform:translateY(-0.5px);
+    }
+
+    .st-tables{
+      display:grid;
+      gap:14px;
+      margin-top:0.8rem;
+    }
+
+    .st-table-wrap{
+      border-radius:18px;
+      border:1px solid rgba(209,213,219,0.9);
+      background:rgba(255,255,255,0.98);
+      box-shadow:0 6px 18px rgba(15,23,42,0.05);
+      overflow:hidden;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:0.9rem;
+      table-layout:fixed;
+    }
+
+    thead th{
+      background:#f9fafb;
+      color:var(--anthracite);
+      padding:0.55rem 0.4rem;
+      border-bottom:1px solid #e5e7eb;
+      font-weight:600;
+      text-align:center;
+    }
+
+    tbody td{
+      padding:0.55rem 0.4rem;
+      border-bottom:1px solid #e5e7eb;
+      text-align:center;
+      color:var(--text);
+      word-wrap:break-word;
+      overflow-wrap:anywhere;
+    }
+
+    tbody tr:last-child td{
+      border-bottom:none;
+    }
+
+    tbody tr:nth-child(even){
+      background:#f4f5f7;
+    }
+
+    /* Version mobile : cartes par ligne */
+    @media (max-width:768px){
+      .st-wrapper{
+        margin:1.7rem 0.7rem 2rem;
+        padding:1.3rem 1rem 1.5rem;
+        border-radius:20px;
+      }
+
+      .st-form-grid{
+        grid-template-columns:1fr;
+      }
+
+      .st-table-wrap{
+        border-radius:16px;
+      }
+
+      table,
+      thead,
+      tbody,
+      tr,
+      td,
+      th{
+        display:block;
+        width:100%;
+      }
+
+      thead{ display:none; }
+
+      tbody tr{
+        margin-bottom:10px;
+        border-bottom:1px solid #e5e7eb;
+        background:transparent;
+      }
+
+      tbody td{
+        display:flex;
+        flex-direction:column;
+        align-items:flex-start;
+        border-bottom:1px solid #e5e7eb;
+        padding:8px 10px;
+      }
+
+      tbody td:last-child{
+        border-bottom:none;
+      }
+
+      tbody td::before{
+        content:attr(data-label);
+        font-weight:600;
+        color:var(--anthracite);
+        margin-bottom:3px;
+        font-size:0.82rem;
+      }
+    }
+  </style>
+
+  <script>
+    function toNumber(val){
+      if(val===undefined || val===null) return NaN;
+      const n = Number(String(val).replace(",", ".").trim());
+      return isFinite(n) ? n : NaN;
+    }
+
+    function fmt(n, d = 2){
+      return isFinite(n) ? n.toFixed(d).replace(".", ",") : "--";
+    }
+
+    function setText(id, text){
+      const el = document.getElementById(id);
+      if(el) el.textContent = text;
+    }
+
+    function getDiametre(epaisseur, type){
+      const diametres = {
+        vertical:   {15:8, 19:8, 24:10, 30:12, 40:12, 55:14},
+        horizontal: {15:6, 19:6, 24:8,  30:10, 40:10, 55:12},
+        etrier:     {19:8, 24:10, 30:14, 40:14, 55:14}
+      };
+      return (diametres[type] && diametres[type][epaisseur])
+        ? diametres[type][epaisseur]
+        : "--";
+    }
+
+    function resetAll(){
+      [
+        "result","litres-info","m3-info","palette-info",
+        "blocs-necessaires","palettes-necessaires",
+        "fer-vert","diam-vert","fer-horz","diam-horz",
+        "etriers","diam-etriers"
+      ].forEach(id => setText(id, "--"));
+    }
+
+    function calculateStepoc(){
+      const longueur = toNumber(document.getElementById("longueur")?.value);
+      const hauteur  = toNumber(document.getElementById("hauteur")?.value);
+      const blocSel  = document.getElementById("bloc-type");
+
+      if(!isFinite(longueur) || !isFinite(hauteur) || !blocSel || !blocSel.value){
+        resetAll();
+        return;
+      }
+
+      const surface = longueur * hauteur;
+      const opt = blocSel.options[blocSel.selectedIndex];
+
+      const blocsParM2 = toNumber(opt.value);
+      const litres     = toNumber(opt.getAttribute("data-litres"));
+      const m3         = toNumber(opt.getAttribute("data-m3"));
+      const palette    = toNumber(opt.getAttribute("data-palette"));
+      const epaisseur  = toNumber(opt.getAttribute("data-epaisseur"));
+
+      if(!isFinite(blocsParM2) || !isFinite(epaisseur)){
+        resetAll();
+        return;
+      }
+
+      // Surface & béton
+      setText("result", fmt(surface, 2));
+      setText("litres-info", fmt(surface * litres, 2));
+      setText("m3-info", fmt(surface * m3, 2));
+      setText("palette-info", isFinite(palette) ? String(palette) : "--");
+
+      // Blocs & palettes
+      const nbBlocs = Math.ceil(surface * blocsParM2);
+      const nbPalettes = (isFinite(palette) && palette > 0)
+        ? Math.ceil(nbBlocs / palette)
+        : NaN;
+
+      setText("blocs-necessaires", isFinite(nbBlocs) ? String(nbBlocs) : "--");
+      setText("palettes-necessaires", isFinite(nbPalettes) ? String(nbPalettes) : "--");
+
+      // Ferraillage (logique identique à ton code)
+      const ferVert = surface * 6;    // ml
+      const ferHorz = surface * 10;   // ml
+      const entraxe = 0.25;           // m
+      const nbEtriers = Math.ceil(longueur * (hauteur / entraxe));
+
+      setText("fer-vert", fmt(ferVert, 2));
+      setText("diam-vert", "Ø" + getDiametre(epaisseur, "vertical") + " mm");
+      setText("fer-horz", fmt(ferHorz, 2));
+      setText("diam-horz", "Ø" + getDiametre(epaisseur, "horizontal") + " mm");
+      setText("etriers", isFinite(nbEtriers) ? nbEtriers + " pcs" : "--");
+      setText("diam-etriers", "Ø" + getDiametre(epaisseur, "etrier") + " mm");
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const L = document.getElementById("longueur");
+      const H = document.getElementById("hauteur");
+
+      if(L) L.setAttribute("step", "0.01");
+      if(H) H.setAttribute("step", "0.01");
+
+      calculateStepoc();
+
+      L && L.addEventListener("input", calculateStepoc);
+      H && H.addEventListener("input", calculateStepoc);
+      const bloc = document.getElementById("bloc-type");
+      bloc && bloc.addEventListener("change", calculateStepoc);
+    });
+  </script>
+</head>
+<body>
+  <div class="st-wrapper">
+    <h1 class="st-title">STEPOC & FERRAILLAGE</h1>
+    <p class="st-subtitle">
+      Indiquez les dimensions du mur et le type de bloc Stepoc pour obtenir la surface, le volume de béton, le nombre de blocs, les palettes nécessaires et une estimation du ferraillage.
+    </p>
+
+    <div class="st-form-grid">
+      <div class="st-field">
+        <label class="st-label" for="longueur">Longueur du mur (m)</label>
+        <input
+          type="number"
+          id="longueur"
+          class="st-input"
+          placeholder="Ex : 10"
+          inputmode="decimal"
+        />
+      </div>
+
+      <div class="st-field">
+        <label class="st-label" for="hauteur">Hauteur du mur (m)</label>
+        <input
+          type="number"
+          id="hauteur"
+          class="st-input"
+          placeholder="Ex : 2,5"
+          inputmode="decimal"
+        />
+      </div>
+
+      <div class="st-field">
+        <label class="st-label" for="bloc-type">Type de bloc</label>
+        <select id="bloc-type" class="st-select">
+          <option value="">Sélectionnez un bloc</option>
+          <option value="8.33" data-litres="75"  data-m3="0.08" data-palette="96" data-epaisseur="15">Stepoc 15 cm</option>
+          <option value="8.33" data-litres="110" data-m3="0.11" data-palette="72" data-epaisseur="19">Stepoc 19 cm</option>
+          <option value="8.33" data-litres="155" data-m3="0.16" data-palette="60" data-epaisseur="24">Stepoc 24 cm</option>
+          <option value="8.33" data-litres="210" data-m3="0.22" data-palette="48" data-epaisseur="30">Stepoc 30 cm</option>
+          <option value="8.33" data-litres="270" data-m3="0.28" data-palette="36" data-epaisseur="40">Stepoc 40 cm</option>
+          <option value="13.64" data-litres="358" data-m3="0.37" data-palette="36" data-epaisseur="55">Stepoc 55 cm</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="st-tables">
+      <!-- Tableau béton / blocs -->
+      <div class="st-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Surface (m²)</th>
+              <th>Béton (L)</th>
+              <th>Béton (m³)</th>
+              <th>Blocs / palette</th>
+              <th>Blocs nécessaires</th>
+              <th>Palettes nécessaires</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="result"               data-label="Surface (m²)">--</td>
+              <td id="litres-info"          data-label="Béton (L)">--</td>
+              <td id="m3-info"              data-label="Béton (m³)">--</td>
+              <td id="palette-info"         data-label="Blocs / palette">--</td>
+              <td id="blocs-necessaires"    data-label="Blocs nécessaires">--</td>
+              <td id="palettes-necessaires" data-label="Palettes nécessaires">--</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Tableau ferraillage -->
+      <div class="st-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Fer vertical (ml)</th>
+              <th>Ø Vertical</th>
+              <th>Fer horizontal (ml)</th>
+              <th>Ø Horizontal</th>
+              <th>Étriers (pcs)</th>
+              <th>Ø Étriers</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="fer-vert"     data-label="Fer vertical (ml)">--</td>
+              <td id="diam-vert"    data-label="Ø Vertical">--</td>
+              <td id="fer-horz"     data-label="Fer horizontal (ml)">--</td>
+              <td id="diam-horz"    data-label="Ø Horizontal">--</td>
+              <td id="etriers"      data-label="Étriers (pcs)">--</td>
+              <td id="diam-etriers" data-label="Ø Étriers">--</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

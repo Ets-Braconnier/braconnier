@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plots pour Terrasse</title>
+  <meta name="description" content="Calculez rapidement le nombre de plots nécessaires pour une terrasse en dalles ou sur lambourdes selon vos dimensions et votre configuration.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    :root {
+      --anthracite: #2b2f33;
+      --border: #ddd;
+      --text: #333;
+      --radius: 8px;
+      --shadow: 0 2px 12px rgba(15, 23, 42, 0.05);
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: transparent; /* ✅ fond transparent */
+      color: var(--text);
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--anthracite);
+      margin: 25px 0;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 800px;
+      margin: 0 auto 30px;
+      padding: 20px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      color: var(--anthracite);
+      margin-bottom: 5px;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    select, input {
+      width: 25%; /* ✅ réduit à environ 1/4 */
+      padding: 6px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 13px;
+      background: #fff; /* ✅ fond visible */
+      text-align: center; /* ✅ centré */
+      transition: 0.15s ease;
+    }
+
+    select:focus, input:focus {
+      border-color: #cbd5e1;
+      box-shadow: 0 0 0 2px rgba(37,99,235,.08);
+      outline: none;
+    }
+
+    .results {
+      margin-top: 20px;
+      padding: 15px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .results h2 {
+      margin-top: 0;
+      color: var(--anthracite);
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    p {
+      margin: 8px 0;
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      select, input { width: 60%; font-size: 12px; padding: 5px; }
+      .container { padding: 15px; }
+      h1 { font-size: 1.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      select, input { width: 80%; }
+      label { font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Plots pour Terrasse</h1>
+
+  <div class="container">
+    <!-- Choix du type de terrasse -->
+    <div class="form-group">
+      <label for="type-terrasse">Type de terrasse :</label>
+      <select id="type-terrasse" onchange="afficherSection()">
+        <option value="">-- Choisissez un type --</option>
+        <option value="dalles">Dalles</option>
+        <option value="lambourdes">Lambourdes</option>
+      </select>
+    </div>
+
+    <!-- Section Dalles -->
+    <div id="section-dalles" class="hidden">
+      <div class="form-group">
+        <label for="longueur-terrasse-dalles">Longueur de la terrasse (cm) :</label>
+        <input type="number" id="longueur-terrasse-dalles" step="1" oninput="calculerPlotsDalles()">
+      </div>
+
+      <div class="form-group">
+        <label for="largeur-terrasse-dalles">Largeur de la terrasse (cm) :</label>
+        <input type="number" id="largeur-terrasse-dalles" step="1" oninput="calculerPlotsDalles()">
+      </div>
+
+      <div class="form-group">
+        <label for="longueur-dalle">Longueur des dalles (cm) :</label>
+        <input type="number" id="longueur-dalle" step="1" oninput="calculerPlotsDalles()">
+      </div>
+
+      <div class="form-group">
+        <label for="largeur-dalle">Largeur des dalles (cm) :</label>
+        <input type="number" id="largeur-dalle" step="1" oninput="calculerPlotsDalles()">
+      </div>
+
+      <div class="results" id="results-dalles" style="display:none;">
+        <h2>Résultats pour les dalles</h2>
+        <p><strong>Surface totale :</strong> <span id="surface-dalles"></span> m²</p>
+        <p><strong>Plots périphériques :</strong> <span id="plots-peripheriques-dalles"></span></p>
+        <p><strong>Plots intérieurs :</strong> <span id="plots-interieurs-dalles"></span></p>
+        <p><strong>Plots centraux :</strong> <span id="plots-centraux-dalles"></span></p>
+        <p><strong>Total des plots :</strong> <span id="total-plots-dalles"></span></p>
+      </div>
+    </div>
+
+    <!-- Section Lambourdes -->
+    <div id="section-lambourdes" class="hidden">
+      <div class="form-group">
+        <label for="longueur-terrasse-lambourdes">Longueur de la terrasse (cm) :</label>
+        <input type="number" id="longueur-terrasse-lambourdes" step="1" oninput="calculerPlotsLambourdes()">
+      </div>
+
+      <div class="form-group">
+        <label for="largeur-terrasse-lambourdes">Largeur de la terrasse (cm) :</label>
+        <input type="number" id="largeur-terrasse-lambourdes" step="1" oninput="calculerPlotsLambourdes()">
+      </div>
+
+      <div class="form-group">
+        <label for="entraxes-lambourdes">Entraxe entre lambourdes (cm) :</label>
+        <input type="number" id="entraxes-lambourdes" step="1" oninput="calculerPlotsLambourdes()">
+      </div>
+
+      <div class="form-group">
+        <label for="longueur-lambourdes">Longueur des lambourdes (cm) :</label>
+        <input type="number" id="longueur-lambourdes" step="1" oninput="calculerPlotsLambourdes()">
+      </div>
+
+      <div class="form-group">
+        <label for="espacement-entretoises">Espacement entre entretoises (cm) :</label>
+        <input type="number" id="espacement-entretoises" step="1" oninput="calculerPlotsLambourdes()">
+      </div>
+
+      <div class="results" id="results-lambourdes" style="display:none;">
+        <h2>Résultats pour les lambourdes</h2>
+        <p><strong>Surface totale :</strong> <span id="surface-lambourdes"></span> m²</p>
+        <p><strong>Nombre de lambourdes :</strong> <span id="nombre-lambourdes"></span></p>
+        <p><strong>Plots par lambourde :</strong> <span id="plots-par-lambourde"></span></p>
+        <p><strong>Total des plots :</strong> <span id="total-plots-lambourdes"></span></p>
+        <p><strong>Entretoises par lambourde :</strong> <span id="entretoises-par-lambourde"></span></p>
+        <p><strong>Total des entretoises :</strong> <span id="total-entretoises"></span></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function afficherSection() {
+      const type = document.getElementById('type-terrasse').value;
+      document.getElementById('section-dalles').classList.add('hidden');
+      document.getElementById('section-lambourdes').classList.add('hidden');
+      if (type === 'dalles') document.getElementById('section-dalles').classList.remove('hidden');
+      if (type === 'lambourdes') document.getElementById('section-lambourdes').classList.remove('hidden');
+    }
+
+    function calculerPlotsDalles() {
+      const L = parseInt(document.getElementById('longueur-terrasse-dalles').value);
+      const l = parseInt(document.getElementById('largeur-terrasse-dalles').value);
+      const dL = parseInt(document.getElementById('longueur-dalle').value);
+      const dW = parseInt(document.getElementById('largeur-dalle').value);
+      if (!isNaN(L) && !isNaN(l) && !isNaN(dL) && !isNaN(dW)) {
+        const surface = (L * l) / 10000;
+        const nbL = Math.ceil(L / dL);
+        const nbW = Math.ceil(l / dW);
+        const plotsPeriph = 2 * nbL + 2 * nbW - 4;
+        const plotsInt = (nbL - 1) * (nbW - 1);
+        const plotsCent = (dL > 60 || dW > 60) ? nbL * nbW : 0;
+        const total = plotsPeriph + plotsInt + plotsCent;
+        document.getElementById('surface-dalles').textContent = surface.toFixed(2);
+        document.getElementById('plots-peripheriques-dalles').textContent = plotsPeriph;
+        document.getElementById('plots-interieurs-dalles').textContent = plotsInt;
+        document.getElementById('plots-centraux-dalles').textContent = plotsCent;
+        document.getElementById('total-plots-dalles').textContent = total;
+        document.getElementById('results-dalles').style.display = 'block';
+      }
+    }
+
+    function calculerPlotsLambourdes() {
+      const L = parseInt(document.getElementById('longueur-terrasse-lambourdes').value);
+      const l = parseInt(document.getElementById('largeur-terrasse-lambourdes').value);
+      const entraxe = parseInt(document.getElementById('entraxes-lambourdes').value);
+      const longLamb = parseInt(document.getElementById('longueur-lambourdes').value);
+      const espEnt = parseInt(document.getElementById('espacement-entretoises').value);
+      if (!isNaN(L) && !isNaN(l) && !isNaN(entraxe) && !isNaN(longLamb) && !isNaN(espEnt)) {
+        const surface = (L * l) / 10000;
+        const nbLamb = Math.ceil(l / entraxe);
+        const plotsParL = Math.ceil(longLamb / 50) + 1;
+        const totalPlots = (plotsParL * nbLamb) - (nbLamb - 1);
+        const entParL = Math.ceil(longLamb / espEnt);
+        const totalEnt = entParL * nbLamb;
+        document.getElementById('surface-lambourdes').textContent = surface.toFixed(2);
+        document.getElementById('nombre-lambourdes').textContent = nbLamb;
+        document.getElementById('plots-par-lambourde').textContent = plotsParL;
+        document.getElementById('total-plots-lambourdes').textContent = totalPlots;
+        document.getElementById('entretoises-par-lambourde').textContent = entParL;
+        document.getElementById('total-entretoises').textContent = totalEnt;
+        document.getElementById('results-lambourdes').style.display = 'block';
+      }
+    }
+  </script>
+
+</body>
+</html>

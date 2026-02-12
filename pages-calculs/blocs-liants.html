@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blocs & Liants – Bast Aménagement</title>
+  <meta name="description" content="Outil de calcul pour estimer la quantité de blocs, ciment et mortier nécessaires selon la surface et le type de maçonnerie.">
+
+  <style>
+    :root {
+      --anthracite: #111827;
+      --text: #111827;
+      --border: #e5e7eb;
+      --thead-bg: #f9fafb;
+    }
+
+    body {
+      margin: 0;
+      padding: 1rem;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      background: #e5e7eb; /* pour test local ; tu peux mettre transparent sur Wix */
+      color: var(--text);
+    }
+
+    .bl-wrapper {
+      max-width: 880px;
+      margin: 2.3rem auto;
+      padding: 1.7rem 1.8rem 1.9rem;
+      background: rgba(255, 255, 255, 0.94);
+      border-radius: 22px;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow:
+        0 18px 45px rgba(15, 23, 42, 0.10),
+        0 0 0 1px rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(18px);
+    }
+
+    .bl-title {
+      text-align: center;
+      font-size: 1.35rem;
+      margin-bottom: 0.55rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-weight: 500;
+    }
+
+    .bl-sub {
+      text-align: center;
+      font-size: 0.96rem;
+      color: #6b7280;
+      max-width: 640px;
+      margin: 0 auto 1.6rem;
+      line-height: 1.6;
+    }
+
+    .bl-mode-field {
+      margin-bottom: 1.4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .bl-mode-label {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #374151;
+    }
+
+    .bl-select {
+      padding: 0.55rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 0.95rem;
+      outline: none;
+      background: radial-gradient(circle at top left,
+          rgba(255, 255, 255, 0.96),
+          rgba(243, 244, 246, 0.96));
+      box-shadow:
+        inset 0 0 0 0 rgba(255, 255, 255, 0),
+        0 1px 3px rgba(148, 163, 184, 0.35);
+      transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease,
+        background 0.15s ease,
+        transform 0.08s ease;
+    }
+
+    .bl-select:focus {
+      border-color: #111827;
+      background: #ffffff;
+      box-shadow:
+        inset 0 0 0 1px rgba(17, 24, 39, 0.06),
+        0 0 0 6px rgba(17, 24, 39, 0.07);
+      transform: translateY(-0.5px);
+    }
+
+    .bl-form-table-wrapper {
+      margin-bottom: 1.4rem;
+    }
+
+    table.bl-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      background: rgba(255, 255, 255, 0.98);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+    }
+
+    .bl-table th,
+    .bl-table td {
+      padding: 0.65rem 1rem;
+      border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+      text-align: left;
+    }
+
+    .bl-table thead th {
+      font-weight: 600;
+      background: var(--thead-bg);
+      color: var(--anthracite);
+      text-align: center;
+    }
+
+    .bl-table tbody tr:nth-child(odd) {
+      background: #f9fafb;
+    }
+
+    .bl-table td {
+      background: transparent;
+    }
+
+    .bl-table td.bl-res {
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .bl-input,
+    .bl-select-inner {
+      width: 100%;
+      padding: 0.55rem 0.9rem;
+      font-size: 0.95rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      text-align: center;
+      background: #ffffff;
+      outline: none;
+      box-sizing: border-box;
+      transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease,
+        background 0.15s ease,
+        transform 0.08s ease;
+    }
+
+    .bl-input:focus,
+    .bl-select-inner:focus {
+      border-color: #111827;
+      background: #ffffff;
+      box-shadow:
+        inset 0 0 0 1px rgba(17, 24, 39, 0.06),
+        0 0 0 6px rgba(17, 24, 39, 0.07);
+      transform: translateY(-0.5px);
+    }
+
+    .bl-input::placeholder {
+      color: #c4cbd5;
+    }
+
+    .bl-divider {
+      height: 1px;
+      background: linear-gradient(to right,
+          rgba(148, 163, 184, 0),
+          rgba(148, 163, 184, 0.55),
+          rgba(148, 163, 184, 0));
+      margin: 0.3rem 0 1.35rem;
+    }
+
+    @media (max-width: 768px) {
+      .bl-wrapper {
+        margin: 1.7rem 0.9rem 2rem;
+        padding: 1.35rem 1.1rem 1.65rem;
+        border-radius: 20px;
+      }
+
+      .bl-mode-field {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .bl-table {
+        display: block;
+        border-collapse: separate;
+        border-spacing: 0;
+      }
+
+      .bl-table thead {
+        display: none;
+      }
+
+      .bl-table tbody {
+        display: block;
+      }
+
+      .bl-table tbody tr {
+        display: block;
+        margin: 0 0.75rem 0.75rem;
+        border-radius: 12px;
+        border: 1px solid rgba(229, 231, 235, 0.9);
+        background: #ffffff;
+        overflow: hidden;
+      }
+
+      .bl-table td {
+        display: block;
+        border-bottom: 1px solid rgba(243, 244, 246, 0.9);
+        padding: 0.55rem 0.85rem;
+        text-align: left;
+      }
+
+      .bl-table td:last-child {
+        border-bottom: none;
+      }
+
+      .bl-table td::before {
+        content: attr(data-label);
+        display: block;
+        font-weight: 600;
+        margin-bottom: 2px;
+        color: #374151;
+      }
+
+      .bl-table td.bl-res {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bl-wrapper">
+    <div class="bl-title">BLOCS &amp; LIANTS</div>
+    <div class="bl-sub">
+      Sélectionnez le type de blocs, indiquez soit une surface soit un nombre de blocs, et choisissez le mode de mortier pour estimer les volumes de mélange et les liants nécessaires.
+    </div>
+
+    <div class="bl-mode-field">
+      <span class="bl-mode-label">Mode de mortier :</span>
+      <select id="mode" class="bl-select" onchange="updateTable()">
+        <option value="site">Préparation sur chantier (ciment + sable)</option>
+        <option value="ready">Mortier prêt en sacs</option>
+      </select>
+    </div>
+
+    <div class="bl-form-table-wrapper">
+      <table class="bl-table">
+        <thead>
+          <tr>
+            <th>Type de blocs</th>
+            <th>Nombre de blocs</th>
+            <th>Surface (m²)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Type de blocs">
+              <select id="blocType" class="bl-select-inner" oninput="updateTable()">
+                <option value="9">Blocs de 9 (150 pcs/pal)</option>
+                <option value="14">Blocs de 14 (126 pcs/pal)</option>
+                <option value="19">Blocs de 19 (90 pcs/pal)</option>
+                <option value="29">Blocs de 29 – face 39 visible (54 pcs/pal)</option>
+                <option value="29B">Blocs de 29 – face 29 visible (54 pcs/pal)</option>
+              </select>
+            </td>
+            <td data-label="Nombre de blocs">
+              <input type="number" id="blocCount" class="bl-input" value="12.5" step="0.01" oninput="updateFromBlocs()">
+            </td>
+            <td data-label="Surface (m²)">
+              <input type="number" id="surface" class="bl-input" value="" step="0.01" oninput="updateFromSurface()" placeholder="Ex. 10">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="bl-divider"></div>
+
+    <table class="bl-table">
+      <thead>
+        <tr>
+          <th>Mélange mortier ou sable</th>
+          <th>Ciment (kg)</th>
+          <th>Mortier prêt</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Mélange mortier ou sable" id="mortarMix">0.0300 m³</td>
+          <td data-label="Ciment (kg)" id="cementKgConverted">0</td>
+          <td data-label="Mortier prêt" id="preparedMortar">—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    function parseVal(v) {
+      if (v === null || v === undefined) return 0;
+      const n = parseFloat(String(v).replace(',', '.'));
+      return isNaN(n) ? 0 : n;
+    }
+
+    function getBlocsPerM2(blocType) {
+      const blocDensity = {
+        "9": 12.5,
+        "14": 12.5,
+        "19": 12.5,
+        "29": 6.89,
+        "29B": 8.84
+      };
+      return blocDensity[blocType] || 12.5;
+    }
+
+    function updateTable() {
+      const blocType = document.getElementById('blocType').value;
+      const blocCount = parseVal(document.getElementById('blocCount').value);
+      const surface = blocCount / getBlocsPerM2(blocType);
+      document.getElementById('surface').value = surface ? surface.toFixed(2) : '';
+      updateCalculations(blocType, surface);
+    }
+
+    function updateFromBlocs() {
+      const blocCount = parseVal(document.getElementById('blocCount').value);
+      const blocType = document.getElementById('blocType').value;
+      const surface = blocCount / getBlocsPerM2(blocType);
+      document.getElementById('surface').value = surface ? surface.toFixed(2) : '';
+      updateCalculations(blocType, surface);
+    }
+
+    function updateFromSurface() {
+      const surface = parseVal(document.getElementById('surface').value);
+      const blocType = document.getElementById('blocType').value;
+      const blocCount = surface * getBlocsPerM2(blocType);
+      document.getElementById('blocCount').value = blocCount ? blocCount.toFixed(2) : '';
+      updateCalculations(blocType, surface);
+    }
+
+    function updateCalculations(blocType, surface) {
+      const mode = document.getElementById('mode').value;
+
+      const data = {
+        "9":   { mix: 0.025, cementSacs: 0.3 },
+        "14":  { mix: 0.035, cementSacs: 0.4 },
+        "19":  { mix: 0.045, cementSacs: 0.6 },
+        "29":  { mix: 0.06,  cementSacs: 0.8 },
+        "29B": { mix: 0.077, cementSacs: 1.0 }
+      };
+
+      const values = data[blocType];
+      if (!values || surface <= 0) {
+        document.getElementById('mortarMix').textContent = '0.0000 m³';
+        document.getElementById('cementKgConverted').textContent = '0';
+        document.getElementById('preparedMortar').textContent = '—';
+        return;
+      }
+
+      const volumeMortier = values.mix * surface;
+      document.getElementById('mortarMix').textContent = volumeMortier.toFixed(4) + ' m³';
+
+      if (mode === "site") {
+        const cimentKg = values.cementSacs * 25 * surface;
+        document.getElementById('cementKgConverted').textContent = cimentKg.toFixed(2) + ' kg';
+        document.getElementById('preparedMortar').textContent = '—';
+      } else {
+        const densiteMortier = 1600; // kg/m³
+        const poidsTotal = volumeMortier * densiteMortier;
+        const sacs = poidsTotal / 25;
+        document.getElementById('preparedMortar').textContent = sacs.toFixed(2) + ' sacs / 25 kg';
+        document.getElementById('cementKgConverted').textContent = '—';
+      }
+    }
+
+    // Initialisation
+    updateTable();
+  </script>
+</body>
+</html>

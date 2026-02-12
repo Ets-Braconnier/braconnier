@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Égaline – Bast Aménagement</title>
+  <meta name="description" content="Estimez la quantité d’égaline, le poids total et le nombre de sacs nécessaires selon la surface et l’épaisseur.">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    :root {
+      --anthracite: #111827;
+      --border: #e5e7eb;
+      --text: #111827;
+    }
+
+    body {
+      margin: 0;
+      padding: 1rem;
+      background: #e5e7eb; /* pour test local ; sur Wix tu peux mettre transparent */
+      font-family: system-ui, -apple-system, BlinkMacSystemFont,"SF Pro Text","Segoe UI",sans-serif;
+      color: var(--text);
+    }
+
+    .eg-wrapper{
+      max-width: 880px;
+      margin: 2.3rem auto;
+      padding: 1.7rem 1.8rem 1.9rem;
+      background: rgba(255,255,255,0.94);
+      border-radius: 22px;
+      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow:
+        0 18px 45px rgba(15,23,42,0.10),
+        0 0 0 1px rgba(255,255,255,0.6);
+      backdrop-filter: blur(18px);
+    }
+
+    .eg-title{
+      text-align:center;
+      font-size:1.35rem;
+      margin-bottom:0.55rem;
+      text-transform:uppercase;
+      letter-spacing:0.16em;
+      font-weight:500;
+    }
+
+    .eg-sub{
+      text-align:center;
+      font-size:0.96rem;
+      color:#6b7280;
+      max-width:640px;
+      margin:0 auto 1.6rem;
+      line-height:1.6;
+    }
+
+    .eg-inputs{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:1.05rem 1.6rem;
+      margin-bottom:1.6rem;
+    }
+
+    .eg-field{
+      display:flex;
+      flex-direction:column;
+      gap:0.22rem;
+    }
+
+    .eg-label{
+      font-size:0.88rem;
+      font-weight:500;
+      color:#374151;
+    }
+
+    .eg-label span{
+      font-weight:400;
+      color:#9ca3af;
+      font-size:0.84rem;
+    }
+
+    .eg-input{
+      width:100%;
+      padding:0.62rem 0.9rem;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.6);
+      text-align:center;
+      font-size:0.95rem;
+      background:#ffffff;
+      outline:none;
+      box-sizing:border-box;
+      transition:
+        border-color 0.15s ease,
+        box-shadow 0.15s ease,
+        background 0.15s ease,
+        transform 0.08s ease;
+    }
+
+    .eg-input::placeholder{
+      color:#c4cbd5;
+    }
+
+    .eg-input:focus{
+      border-color:#111827;
+      background:#ffffff;
+      box-shadow:
+        inset 0 0 0 1px rgba(17,24,39,0.06),
+        0 0 0 6px rgba(17,24,39,0.07);
+      transform:translateY(-0.5px);
+    }
+
+    .eg-divider{
+      height:1px;
+      background:linear-gradient(to right,
+        rgba(148,163,184,0),
+        rgba(148,163,184,0.55),
+        rgba(148,163,184,0));
+      margin:0.3rem 0 1.35rem;
+    }
+
+    .eg-table-wrapper{
+      max-width:100%;
+      overflow-x:auto;
+    }
+
+    table.eg-table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:0.9rem;
+      background:rgba(255,255,255,0.98);
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:0 10px 28px rgba(15,23,42,0.08);
+    }
+
+    .eg-table th,
+    .eg-table td{
+      padding:0.65rem 1rem;
+      border-bottom:1px solid rgba(229,231,235,0.8);
+      text-align:left;
+    }
+
+    .eg-table thead th{
+      font-weight:600;
+      background:#f9fafb;
+      color:var(--anthracite);
+      text-align:center;
+    }
+
+    .eg-table tbody tr:nth-child(odd){
+      background:#f9fafb;
+    }
+
+    .eg-table td.eg-res{
+      text-align:right;
+      white-space:nowrap;
+    }
+
+    @media (max-width:768px){
+      .eg-wrapper{
+        margin:1.7rem 0.9rem 2rem;
+        padding:1.35rem 1.1rem 1.65rem;
+        border-radius:20px;
+      }
+
+      .eg-inputs{
+        grid-template-columns:1fr;
+        gap:0.95rem;
+      }
+
+      .eg-table{
+        display:block;
+        border-collapse:separate;
+        border-spacing:0;
+      }
+
+      .eg-table thead{
+        display:none;
+      }
+
+      .eg-table tbody{
+        display:block;
+      }
+
+      .eg-table tbody tr{
+        display:block;
+        margin:0 0.75rem 0.75rem;
+        border-radius:12px;
+        border:1px solid rgba(229,231,235,0.9);
+        background:#ffffff;
+        overflow:hidden;
+      }
+
+      .eg-table td{
+        display:block;
+        border-bottom:1px solid rgba(243,244,246,0.9);
+        padding:0.55rem 0.85rem;
+        text-align:left;
+      }
+
+      .eg-table td:last-child{
+        border-bottom:none;
+      }
+
+      .eg-table td::before{
+        content:attr(data-label);
+        display:block;
+        font-weight:600;
+        margin-bottom:2px;
+        color:#374151;
+      }
+
+      .eg-table td.eg-res{
+        text-align:left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="eg-wrapper">
+    <div class="eg-title">ÉGALINE</div>
+    <div class="eg-sub">
+      Indiquez la surface et l’épaisseur souhaitée pour estimer le poids total, le nombre de sacs et le volume d’égaline nécessaire.
+    </div>
+
+    <div class="eg-inputs">
+      <div class="eg-field">
+        <label class="eg-label" for="quantity">
+          Quantité <span>(m²)</span>
+        </label>
+        <input
+          type="number"
+          id="quantity"
+          class="eg-input"
+          placeholder="Ex. 25"
+          min="0"
+          step="any"
+          oninput="updateTable1()"
+        >
+      </div>
+
+      <div class="eg-field">
+        <label class="eg-label" for="thickness">
+          Épaisseur <span>(mm)</span>
+        </label>
+        <input
+          type="number"
+          id="thickness"
+          class="eg-input"
+          value="5"
+          step="0.1"
+          min="0"
+          oninput="updateTable1()"
+        >
+      </div>
+    </div>
+
+    <div class="eg-divider"></div>
+
+    <div class="eg-table-wrapper">
+      <table class="eg-table">
+        <thead>
+          <tr>
+            <th>Quantité</th>
+            <th>Épaisseur</th>
+            <th>Poids total</th>
+            <th>Sacs de 25 kg</th>
+            <th>Sacs de 20 kg</th>
+            <th>Quantité en litres</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td id="quantityDisplay"  data-label="Quantité"           class="eg-res">–</td>
+            <td id="thicknessDisplay" data-label="Épaisseur"         class="eg-res">–</td>
+            <td id="weight"           data-label="Poids total"       class="eg-res">–</td>
+            <td id="sacks25"          data-label="Sacs de 25 kg"     class="eg-res">–</td>
+            <td id="sacks20"          data-label="Sacs de 20 kg"     class="eg-res">–</td>
+            <td id="liters"           data-label="Quantité en litres" class="eg-res">–</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    function parseFr(value, fallback) {
+      if (value === null || value === undefined || value === "") return fallback;
+      const n = parseFloat(String(value).replace(',', '.'));
+      return isNaN(n) ? fallback : n;
+    }
+
+    function updateTable1() {
+      const qInput = document.getElementById('quantity');
+      const tInput = document.getElementById('thickness');
+
+      const quantity  = parseFr(qInput.value, 0);
+      const thickness = parseFr(tInput.value, 0);
+
+      if (quantity <= 0 || thickness <= 0) {
+        document.getElementById('quantityDisplay').textContent = "–";
+        document.getElementById('thicknessDisplay').textContent = "–";
+        document.getElementById('weight').textContent = "–";
+        document.getElementById('sacks25').textContent = "–";
+        document.getElementById('sacks20').textContent = "–";
+        document.getElementById('liters').textContent = "–";
+        return;
+      }
+
+      // Formules identiques à ton code d'origine :
+      // weight  = 12.8 * quantity * thickness / 8
+      // sacks25 = 0.51 * quantity * thickness / 8
+      // sacks20 = 0.64 * quantity * thickness / 8
+      // liters  = 8 * quantity * thickness / 8
+      const weight  = (12.8 * quantity * thickness / 8).toFixed(2).replace('.', ',');
+      const sacks25 = (0.51 * quantity * thickness / 8).toFixed(2).replace('.', ',');
+      const sacks20 = (0.64 * quantity * thickness / 8).toFixed(2).replace('.', ',');
+      const liters  = (8 * quantity * thickness / 8).toFixed(2).replace('.', ',');
+
+      document.getElementById('quantityDisplay').textContent  = `${quantity} m²`;
+      document.getElementById('thicknessDisplay').textContent = `${thickness} mm`;
+      document.getElementById('weight').textContent           = `${weight} kg`;
+      document.getElementById('sacks25').textContent          = `${sacks25} sacs/25kg`;
+      document.getElementById('sacks20').textContent          = `${sacks20} sacs/20kg`;
+      document.getElementById('liters').textContent           = `${liters} litres`;
+    }
+  </script>
+</body>
+</html>
