@@ -1328,11 +1328,35 @@ body {
   }
 }
 
-@media (max-width: 700px){
-  .hero-layout .main-nav ul.menu{
+@media (max-width: 700px) {
+  .hero-layout .main-nav ul.menu {
     display: none !important;
   }
-  .hero-layout .main-nav ul.menu.open{
+
+  .hero-layout .main-nav ul.menu.open {
     display: flex !important;
+  }
+}
+
+/* ===== FIX PC : point + texte toujours sur la même ligne ===== */
+@media (min-width: 701px) {
+
+  /* réduire le padding trop large sur PC */
+  nav a {
+    padding: 10px 18px;
+    /* au lieu de 5px 60px */
+  }
+
+  /* aligne le ● et le texte comme 2 éléments */
+  .main-nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* le ● n’a plus besoin de margin-right */
+  .main-nav a::before {
+    margin-right: 0;
+    transform: none;
   }
 }
