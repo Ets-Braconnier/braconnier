@@ -1,16 +1,33 @@
-<iframe
-  id="raccordsFrame"
-  src="https://ets-braconnier.github.io/raccords-plomberie/"
-  style="width:100%; border:none; display:block;"
-  scrolling="no">
-</iframe>
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Raccords Plomberie</title>
+  <style>
+    html, body { margin:0; padding:0; width:100%; }
+    iframe { width:100%; border:0; display:block; }
+  </style>
+</head>
+<body>
 
-<script>
-  window.addEventListener("message", function (e) {
-    if (e.origin !== "https://ets-braconnier.github.io") return;
+  <iframe
+    id="raccordsFrame"
+    src="https://ets-braconnier.github.io/raccords-plomberie/"
+    scrolling="no"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    allow="fullscreen"
+  ></iframe>
 
-    if (e.data && e.data.type === "resize" && e.data.height) {
-      document.getElementById("raccordsFrame").style.height = e.data.height + "px";
-    }
-  });
-</script>
+  <script>
+    window.addEventListener("message", function (e) {
+      if (e.origin !== "https://ets-braconnier.github.io") return;
+      if (e.data && e.data.type === "resize" && e.data.height) {
+        document.getElementById("raccordsFrame").style.height = e.data.height + "px";
+      }
+    });
+  </script>
+
+</body>
+</html>
