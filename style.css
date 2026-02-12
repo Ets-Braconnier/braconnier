@@ -1327,3 +1327,12 @@ body {
     height: auto;
   }
 }
+
+@media (max-width: 700px){
+  .hero-layout .main-nav ul.menu{
+    display: none !important;
+  }
+  .hero-layout .main-nav ul.menu.open{
+    display: flex !important;
+  }
+}
