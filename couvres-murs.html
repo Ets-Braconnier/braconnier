@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Couvre-murs | Schémas | Ets Braconnier</title>
+  <meta name="description"
+    content="Schémas techniques des couvre-murs : pente simple, pente double, surface plane, variantes avec évidement, emboîtement et épaisseur." />
+  <meta name="robots" content="index,follow" />
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .products {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .section {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .section .label {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-weight: 700;
+      font-family: Verdana, Geneva, sans-serif;
+    }
+
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      padding: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .cat-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .cat-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .cat-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 220px;
+      text-decoration: none;
+    }
+
+    .cat-card:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .08);
+      text-decoration: none;
+    }
+
+    .page-couvres-mur .cat-card img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      /* cover = plus “photo”, contain = plus “fiche” */
+      background: #f7f7f7;
+      display: block;
+      transition: transform .18s ease;
+    }
+
+    .cat-card:hover img {
+      transform: scale(1.03);
+    }
+
+    .cat-card .title {
+      padding: 10px 12px;
+      text-align: center;
+      color: var(--muted);
+      font-family: "Times New Roman", Times, serif;
+      font-style: italic;
+      font-weight: bold;
+      font-size: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .cat-card .sub {
+      margin: -6px 0 10px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      font-family: Verdana, Geneva, sans-serif;
+      opacity: .85;
+    }
+  </style>
+</head>
+
+<body class="page-couvres-mur">
+  <div class="page-scale">
+
+    <header>
+      <div class="wrap topbar">
+        <div class="brand">
+          <div class="logo">
+            <img id="logoMain" alt="Ets Braconnier" />
+            <small>Matériaux de construction – articles professionnels et de bricolage</small>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <div class="quicklinks" aria-label="Liens rapides">
+            <a href="/Avis/Avis1.php">Votre avis</a>
+            <a href="/rgpd.pdf">RGPD</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-layout">
+
+        <nav class="main-nav" aria-label="Menu principal">
+          <button class="menu-toggle" aria-expanded="false">☰ Menu</button>
+          <ul class="menu">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="calculs.html">Calculs</a></li>
+            <li><a href="presentation.html">Présentation</a></li>
+            <li><a href="produits.html">Produits</a></li>
+            <li><a href="promotions.html">Promotions</a></li>
+            <li><a href="contact.html">Contacts</a></li>
+          </ul>
+        </nav>
+
+        <img id="heroImg" class="hero-img" alt="Magasin – Ets Braconnier" />
+
+        <iframe class="map"
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5145.2121350771895!2d5.25321!3d49.84985900000001!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47ea808d6bb9e87f%3A0xf00dd4deebbf1048!2sEts%20Braconnier!5e0!3m2!1sfr!2sbe!4v1770570919392!5m2!1sfr!2sbe"
+          loading="lazy" allowfullscreen>
+        </iframe>
+
+      </div>
+    </header>
+
+    <main>
+      <div class="wrap">
+        <section class="products">
+
+          <section class="headline">
+            <h1>Couvre-murs</h1>
+          </section>
+
+          <section class="section">
+            <div class="label">Cliquez sur un élément pour afficher les données techniques</div>
+
+            <div class="cat-grid">
+
+              <!-- Surface plane -->
+              <a class="cat-card" href="https://drive.google.com/file/d/1J32i8cDGypBTmVwynKJ25XncNJ7Pifw3/preview"
+                target="_blank" rel="noopener">
+                <img src="images-site/page-couvres-murs/surface-plane.png" alt="Schéma couvre-mur surface plane">
+                <div class="title">Surface plane</div>
+              </a>
+
+              <a class="cat-card" href="https://drive.google.com/file/d/1FqSKYVrPSsZuO5-CA4lJhbHwMpkNq0yI/preview"
+                target="_blank" rel="noopener">
+                <img src="images-site/page-couvres-murs/surface-plane-epaisseur.png"
+                  alt="Schéma couvre-mur surface plane avec épaisseur">
+                <div class="title">Surface plane grande épaisseur</div>
+              </a>
+
+              <a class="cat-card" href="https://drive.google.com/file/d/1P0oV4wbFEZZ61sDQ5WoWEIgdjK13GfLO/preview"
+                target="_blank" rel="noopener">
+                <img src="images-site/page-couvres-murs/surface-plane-avec-evidement.png"
+                  alt="Schéma couvre-mur surface plane avec évidement">
+                <div class="title">Surface plane avec évidement</div>
+              </a>
+
+              <!-- Pente simple -->
+              <a class="cat-card" href="https://drive.google.com/file/d/1cN2hC5LTOx7ZQZ2MC_A7XpAYsBQ6lXgB/preview"
+                target="_blank" rel="noopener">
+                <img src="images-site/page-couvres-murs/pente-simple.png" alt="Schéma couvre-mur pente simple">
+                <div class="title">Pente simple</div>
+              </a>
+
+              <a class="cat-card" href="https://drive.google.com/file/d/1jPf-y7cECKH6y6zCSVqrbzk8ZQtYOxC3/preview"
+                target="_blank" rel="noopener">
+                <img src="images-site/page-couvres-murs/pente-simple-a-emboitement.png"
+                  alt="Schéma couvre-mur pente simple avec emboîtement">
+                <div class="title">Pente simple avec emboîtement</div>
+              </a>
+
+              <a class="cat-card" href="https://drive.google.com/file/d/10elJbLlp7EHnQRseeY5W1DU4iVOper6Q/preview"
+                target="_blank" rel="noopener">
+                <img src="images-site/page-couvres-murs/pente-simple-avec-evidement.png"
+                  alt="Schéma couvre-mur pente simple avec évidement">
+                <div class="title">Pente simple avec évidement</div>
+              </a>
+
+              <a class="cat-card" href="https://drive.google.com/file/d/11sS8AWtA1DU4odGwQdCuaUnVWoTW6y_d/preview"
+                target="_blank" rel="noopener">
+                <img src="images-site/page-couvres-murs/pente-simple-bord-releve.png"
+                  alt="Schéma couvre-mur pente simple avec bord relevé">
+                <div class="title">Pente simple avec bord relevé</div>
+              </a>
+
+              <a class="cat-card" href="https://drive.google.com/file/d/1lU4gCwHg9B-cUB39Bcg67Z3ZI1qHhxm-/preview"
+                target="_blank" rel="noopener">
+                <img src="images-site/page-couvres-murs/pente-simple-epaisseur.png"
+                  alt="Schéma couvre-mur pente simple avec épaisseur">
+                <div class="title">Pente simple grande épaisseur</div>
+              </a>
+
+              <!-- Pente double -->
+              <a class="cat-card" href="https://drive.google.com/file/d/1i596aJtMh8iVclS9PWdyJjMMfalnf6Iz/preview"
+                target="_blank" rel="noopener">
+                <img src="images-site/page-couvres-murs/pente-double.png" alt="Schéma couvre-mur pente double">
+                <div class="title">Pente double</div>
+              </a>
+
+              <a
+                class="cat-card" href="https://drive.google.com/file/d/1fL9Zo7hNmOxhB_q0sMRYCjyQRm-O6rQF/preview"
+                target="_blank" rel="noopener">
+                <img src="images-site/page-couvres-murs/pente-double-avec-evidement.png"
+                  alt="Schéma couvre-mur pente double avec évidement">
+                <div class="title">Pente double avec évidement</div>
+              </a>
+
+              <a class="cat-card" href="https://drive.google.com/file/d/1tg0t1lHnCe8636_qyh7vFPdl58mxqXoE/preview" 
+                target="_blank" rel="noopener">
+                <img src="images-site/page-couvres-murs/pente-double-emboitement.png"
+                  alt="Schéma couvre-mur pente double avec emboîtement">
+                <div class="title">Pente double avec emboîtement</div>
+              </a>
+
+              <a class="cat-card" href="https://drive.google.com/file/d/1i596aJtMh8iVclS9PWdyJjMMfalnf6Iz/preview"
+                target="_blank" rel="noopener">
+                <img src="images-site/page-couvres-murs/pente-double-epaisseur.png"
+                  alt="Schéma couvre-mur pente double avec épaisseur">
+                <div class="title">Pente double grande épaisseur</div>
+              </a>
+
+
+            </div>
+          </section>
+
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <div class="footerbar" aria-hidden="true"></div>
+      </div>
+    </footer>
+
+    <script>
+      const ASSETS = {
+        logoMain: "images-site/logo.jpg",
+        hero: "images-site/magasin.jpg"
+      };
+      const logo = document.getElementById("logoMain");
+      const hero = document.getElementById("heroImg");
+      if (logo) logo.src = ASSETS.logoMain;
+      if (hero) hero.src = ASSETS.hero;
+    </script>
+
+  </div>
+
+  <script>
+    const toggle = document.querySelector(".menu-toggle");
+    const menu = document.querySelector(".menu");
+    if (toggle && menu) {
+      toggle.addEventListener("click", () => {
+        menu.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", menu.classList.contains("open") ? "true" : "false");
+      });
+    }
+  </script>
+
+</body>
+
+</html>

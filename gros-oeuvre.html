@@ -5,9 +5,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Sanitaire | Ets Braconnier</title>
+  <title>Gros œuvre | Ets Braconnier</title>
   <meta name="description"
-    content="Sanitaire : parois de douche, cabines, receveurs, meubles, lavabos, robinetterie, adoucisseurs, raccords plomberie." />
+    content="Gros œuvre : blocs, briques, béton, ciment, chaux, sable, graviers, ferraillage, coffrage, étanchéité, mortiers." />
   <meta name="robots" content="index,follow" />
 
   <link rel="stylesheet" href="style.css">
@@ -69,13 +69,13 @@
       text-decoration: none;
     }
 
-    .page-sanitaire .cat-card img {
+    /* scope spécifique */
+    .page-gros-oeuvre .cat-card img {
       width: 100%;
       height: 170px;
       object-fit: contain;
       background: #f7f7f7;
     }
-
 
     .cat-card:hover img {
       transform: scale(1.03);
@@ -94,7 +94,7 @@
   </style>
 </head>
 
-<body class="page-sanitaire">
+<body class="page-gros-oeuvre">
   <div class="page-scale">
 
     <header>
@@ -133,7 +133,6 @@
 
         </nav>
 
-
         <img id="heroImg" class="hero-img" alt="Magasin – Ets Braconnier" />
 
         <iframe class="map"
@@ -149,47 +148,27 @@
         <section class="products">
 
           <section class="headline">
-            <h1>Sanitaire</h1>
+            <h1>Gros œuvre</h1>
           </section>
 
           <section class="section">
-            <div class="label">Sanitaire</div>
+            <div class="label">Gros œuvre</div>
 
             <div class="cat-grid">
 
-                            <a class="cat-card" href="pieces.html">
-                <img src="images-site/page-sanitaire/raccords-plomberie.jpg" alt="Raccords plomberie">
-                <div class="title">Raccords plomberie</div>
+              <a class="cat-card" href="blocs.html">
+                <img src="images-site/page-blocs/blocs.jpg" alt="Blocs &amp; briques">
+                <div class="title">Blocs</div>
               </a>
 
-              <a class="cat-card" href="sanitaire-robinetterie.html">
-                <img src="images-site/page-sanitaire/robinetterie.jpg" alt="Robinetterie">
-                <div class="title">Robinetterie</div>
+              <a class="cat-card" href="couvres-murs.html">
+                <img src="images-site/page-couvres-murs/couvres-murs.png" alt="couvres-murs">
+                <div class="title">Couvres murs</div>
               </a>
 
-              <a class="cat-card" href="sanitaire-adoucisseur.html">
-                <img src="images-site/page-sanitaire/adoucisseur.jpg" alt="Adoucisseur">
-                <div class="title">adoucisseurs</div>
-              </a>
-
-              <a class="cat-card" href="https://www.desco.be/fr-be/brochures">
-                <img src="images-site/page-sanitaire/desco.png" alt="desco">
-                <div class="title">Desco</div>
-              </a>
-
-              <a class="cat-card" href="https://drive.google.com/file/d/1qqfQ0iDyUf0lYtAzMAwpiMGYZ9oxxZ_O/preview">
-                <img src="images-site/page-sanitaire/thys.png" alt="thys">
-                <div class="title">Thys</div>
-              </a>
-
-              <a class="cat-card" href="">
-                <img src="images-site/page-sanitaire/waterfront.png" alt="waterfront">
-                <div class="title">Waterfront</div>
-              </a>
-
-              <a class="cat-card" href="https://www.novellini.be/fr/download.html">
-                <img src="images-site/page-sanitaire/novellini.png" alt="waterfront">
-                <div class="title">Novellini</div>
+              <a class="cat-card" href="graviers.html">
+                <img src="images-site/page-graviers/grenailles.png" alt="grenaille">
+                <div class="title">Graviers</div>
               </a>
 
             </div>
@@ -206,7 +185,7 @@
     </footer>
 
     <script>
-      // mêmes conventions que ta home (logo + hero)
+      // mêmes conventions que sanitaire
       const ASSETS = {
         logoMain: "images-site/logo.jpg",
         hero: "images-site/magasin.jpg"
@@ -235,7 +214,6 @@
       });
     }
   </script>
-
 
 </body>
 

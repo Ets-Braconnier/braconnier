@@ -5,9 +5,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Sanitaire | Ets Braconnier</title>
+  <title>Graviers | Ets Braconnier</title>
   <meta name="description"
-    content="Sanitaire : parois de douche, cabines, receveurs, meubles, lavabos, robinetterie, adoucisseurs, raccords plomberie." />
+    content="Graviers décoratifs et techniques : concassé, roulé, empierrement, sable et mélanges." />
   <meta name="robots" content="index,follow" />
 
   <link rel="stylesheet" href="style.css">
@@ -43,15 +43,11 @@
     }
 
     @media (max-width: 900px) {
-      .cat-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+      .cat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (max-width: 560px) {
-      .cat-grid {
-        grid-template-columns: 1fr;
-      }
+      .cat-grid { grid-template-columns: 1fr; }
     }
 
     .cat-card {
@@ -62,20 +58,24 @@
       display: flex;
       flex-direction: column;
       min-height: 220px;
-    }
-
-    .cat-card:hover {
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
       text-decoration: none;
     }
 
-    .page-sanitaire .cat-card img {
+    .cat-card:hover {
+      box-shadow: 0 6px 20px rgba(0,0,0,.08);
+      text-decoration: none;
+    }
+
+    .page-graviers .cat-card img {
       width: 100%;
       height: 170px;
       object-fit: contain;
+      object-position: center;
       background: #f7f7f7;
+      display: block;
+      padding: 8px;
+      transition: transform .18s ease;
     }
-
 
     .cat-card:hover img {
       transform: scale(1.03);
@@ -92,13 +92,16 @@
       border-top: 1px solid var(--line);
     }
   </style>
+
 </head>
 
-<body class="page-sanitaire">
+<body class="page-graviers">
+
   <div class="page-scale">
 
     <header>
       <div class="wrap topbar">
+
         <div class="brand">
           <div class="logo">
             <img id="logoMain" alt="Ets Braconnier" />
@@ -107,20 +110,18 @@
         </div>
 
         <div class="header-right">
-          <div class="quicklinks" aria-label="Liens rapides">
+          <div class="quicklinks">
             <a href="/Avis/Avis1.php">Votre avis</a>
             <a href="/rgpd.pdf">RGPD</a>
           </div>
         </div>
+
       </div>
 
       <div class="hero-layout">
 
-        <nav class="main-nav" aria-label="Menu principal">
-
-          <button class="menu-toggle" aria-expanded="false">
-            ☰ Menu
-          </button>
+        <nav class="main-nav">
+          <button class="menu-toggle">☰ Menu</button>
 
           <ul class="menu">
             <li><a href="index.html">Accueil</a></li>
@@ -133,109 +134,81 @@
 
         </nav>
 
-
         <img id="heroImg" class="hero-img" alt="Magasin – Ets Braconnier" />
 
         <iframe class="map"
           src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5145.2121350771895!2d5.25321!3d49.84985900000001!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47ea808d6bb9e87f%3A0xf00dd4deebbf1048!2sEts%20Braconnier!5e0!3m2!1sfr!2sbe!4v1770570919392!5m2!1sfr!2sbe"
-          loading="lazy" allowfullscreen>
+          loading="lazy">
         </iframe>
 
       </div>
     </header>
 
+
     <main>
       <div class="wrap">
+
         <section class="products">
 
           <section class="headline">
-            <h1>Sanitaire</h1>
+            <h1>Graviers</h1>
           </section>
 
+
           <section class="section">
-            <div class="label">Sanitaire</div>
+            <div class="label">De stock en magasin</div>
 
             <div class="cat-grid">
 
-                            <a class="cat-card" href="pieces.html">
-                <img src="images-site/page-sanitaire/raccords-plomberie.jpg" alt="Raccords plomberie">
-                <div class="title">Raccords plomberie</div>
+              <a class="cat-card" href="" target="_blank">
+                <img src="images-site/page-graviers/7-14.png" alt="Gravier concassé">
+                <div class="title">Gravier 6.5-14 en vrac</div>
               </a>
 
-              <a class="cat-card" href="sanitaire-robinetterie.html">
-                <img src="images-site/page-sanitaire/robinetterie.jpg" alt="Robinetterie">
-                <div class="title">Robinetterie</div>
+              <a class="cat-card" href="" target="_blank">
+                <img src="images-site/page-graviers/20-40.png" alt="Gravier roulé">
+                <div class="title">Gravier 20-40 en vrac</div>
               </a>
 
-              <a class="cat-card" href="sanitaire-adoucisseur.html">
-                <img src="images-site/page-sanitaire/adoucisseur.jpg" alt="Adoucisseur">
-                <div class="title">adoucisseurs</div>
+              <a class="cat-card" href="" target="_blank">
+                <img src="images-site/page-graviers/7-14-gris-sacs.png" alt="Gravier roulé">
+                <div class="title">Gravier gris 6.3-14 en sac</div>
               </a>
 
-              <a class="cat-card" href="https://www.desco.be/fr-be/brochures">
-                <img src="images-site/page-sanitaire/desco.png" alt="desco">
-                <div class="title">Desco</div>
-              </a>
-
-              <a class="cat-card" href="https://drive.google.com/file/d/1qqfQ0iDyUf0lYtAzMAwpiMGYZ9oxxZ_O/preview">
-                <img src="images-site/page-sanitaire/thys.png" alt="thys">
-                <div class="title">Thys</div>
-              </a>
-
-              <a class="cat-card" href="">
-                <img src="images-site/page-sanitaire/waterfront.png" alt="waterfront">
-                <div class="title">Waterfront</div>
-              </a>
-
-              <a class="cat-card" href="https://www.novellini.be/fr/download.html">
-                <img src="images-site/page-sanitaire/novellini.png" alt="waterfront">
-                <div class="title">Novellini</div>
+              <a class="cat-card" href="" target="_blank">
+                <img src="images-site/page-graviers/7-14-blanc-sacs.png" alt="Gravier roulé">
+                <div class="title">Gravier blancs 8-15 en sac</div>
               </a>
 
             </div>
+
           </section>
 
         </section>
+
       </div>
     </main>
 
+
     <footer>
       <div class="wrap">
-        <div class="footerbar" aria-hidden="true"></div>
+        <div class="footerbar"></div>
       </div>
     </footer>
 
+
     <script>
-      // mêmes conventions que ta home (logo + hero)
       const ASSETS = {
         logoMain: "images-site/logo.jpg",
         hero: "images-site/magasin.jpg"
       };
 
-      const logo = document.getElementById("logoMain");
-      const hero = document.getElementById("heroImg");
-
-      if (logo) logo.src = ASSETS.logoMain;
-      if (hero) hero.src = ASSETS.hero;
+      document.getElementById("logoMain").src = ASSETS.logoMain;
+      document.getElementById("heroImg").src = ASSETS.hero;
     </script>
 
+
   </div>
-
-  <script>
-    const toggle = document.querySelector(".menu-toggle");
-    const menu = document.querySelector(".menu");
-
-    if (toggle && menu) {
-      toggle.addEventListener("click", () => {
-        menu.classList.toggle("open");
-        toggle.setAttribute(
-          "aria-expanded",
-          menu.classList.contains("open") ? "true" : "false"
-        );
-      });
-    }
-  </script>
-
 
 </body>
 

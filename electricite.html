@@ -5,9 +5,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Sanitaire | Ets Braconnier</title>
+  <title>Électricité | Ets Braconnier</title>
   <meta name="description"
-    content="Sanitaire : parois de douche, cabines, receveurs, meubles, lavabos, robinetterie, adoucisseurs, raccords plomberie." />
+    content="Électricité : tableaux, disjoncteurs, câbles, gaines, appareillage, éclairage, domotique, VMC, accessoires et outillage." />
   <meta name="robots" content="index,follow" />
 
   <link rel="stylesheet" href="style.css">
@@ -69,13 +69,13 @@
       text-decoration: none;
     }
 
-    .page-sanitaire .cat-card img {
+    /* scope spécifique */
+    .page-electricite .cat-card img {
       width: 100%;
       height: 170px;
       object-fit: contain;
       background: #f7f7f7;
     }
-
 
     .cat-card:hover img {
       transform: scale(1.03);
@@ -94,7 +94,7 @@
   </style>
 </head>
 
-<body class="page-sanitaire">
+<body class="page-electricite">
   <div class="page-scale">
 
     <header>
@@ -117,10 +117,7 @@
       <div class="hero-layout">
 
         <nav class="main-nav" aria-label="Menu principal">
-
-          <button class="menu-toggle" aria-expanded="false">
-            ☰ Menu
-          </button>
+          <button class="menu-toggle" aria-expanded="false">☰ Menu</button>
 
           <ul class="menu">
             <li><a href="index.html">Accueil</a></li>
@@ -130,9 +127,7 @@
             <li><a href="promotions.html">Promotions</a></li>
             <li><a href="contact.html">Contacts</a></li>
           </ul>
-
         </nav>
-
 
         <img id="heroImg" class="hero-img" alt="Magasin – Ets Braconnier" />
 
@@ -149,47 +144,57 @@
         <section class="products">
 
           <section class="headline">
-            <h1>Sanitaire</h1>
+            <h1>Électricité</h1>
           </section>
 
           <section class="section">
-            <div class="label">Sanitaire</div>
+            <div class="label">Électricité</div>
 
             <div class="cat-grid">
 
-                            <a class="cat-card" href="pieces.html">
-                <img src="images-site/page-sanitaire/raccords-plomberie.jpg" alt="Raccords plomberie">
-                <div class="title">Raccords plomberie</div>
+              <a class="cat-card" href="electricite-tableaux-protection.html">
+                <img src="images-site/page-electricite/tableaux.jpg" alt="Tableaux &amp; protection">
+                <div class="title">Tableaux &amp; protection</div>
               </a>
 
-              <a class="cat-card" href="sanitaire-robinetterie.html">
-                <img src="images-site/page-sanitaire/robinetterie.jpg" alt="Robinetterie">
-                <div class="title">Robinetterie</div>
+              <a class="cat-card" href="electricite-cables-fils.html">
+                <img src="images-site/page-electricite/cables.jpg" alt="Câbles &amp; fils">
+                <div class="title">Câbles &amp; fils</div>
               </a>
 
-              <a class="cat-card" href="sanitaire-adoucisseur.html">
-                <img src="images-site/page-sanitaire/adoucisseur.jpg" alt="Adoucisseur">
-                <div class="title">adoucisseurs</div>
+              <a class="cat-card" href="electricite-gaines-accessoires.html">
+                <img src="images-site/page-electricite/gaines.jpg" alt="Gaines &amp; accessoires">
+                <div class="title">Gaines &amp; accessoires</div>
               </a>
 
-              <a class="cat-card" href="https://www.desco.be/fr-be/brochures">
-                <img src="images-site/page-sanitaire/desco.png" alt="desco">
-                <div class="title">Desco</div>
+              <a class="cat-card" href="electricite-appareillage.html">
+                <img src="images-site/page-electricite/appareillage.jpg" alt="Appareillage">
+                <div class="title">Appareillage</div>
               </a>
 
-              <a class="cat-card" href="https://drive.google.com/file/d/1qqfQ0iDyUf0lYtAzMAwpiMGYZ9oxxZ_O/preview">
-                <img src="images-site/page-sanitaire/thys.png" alt="thys">
-                <div class="title">Thys</div>
+              <a class="cat-card" href="electricite-eclairage.html">
+                <img src="images-site/page-electricite/eclairage.jpg" alt="Éclairage">
+                <div class="title">Éclairage</div>
               </a>
 
-              <a class="cat-card" href="">
-                <img src="images-site/page-sanitaire/waterfront.png" alt="waterfront">
-                <div class="title">Waterfront</div>
+              <a class="cat-card" href="electricite-domotique.html">
+                <img src="images-site/page-electricite/domotique.jpg" alt="Domotique">
+                <div class="title">Domotique</div>
               </a>
 
-              <a class="cat-card" href="https://www.novellini.be/fr/download.html">
-                <img src="images-site/page-sanitaire/novellini.png" alt="waterfront">
-                <div class="title">Novellini</div>
+              <a class="cat-card" href="electricite-vmc-ventilation.html">
+                <img src="images-site/page-electricite/vmc.jpg" alt="VMC &amp; ventilation">
+                <div class="title">VMC &amp; ventilation</div>
+              </a>
+
+              <a class="cat-card" href="electricite-outillage.html">
+                <img src="images-site/page-electricite/outillage.jpg" alt="Outillage électricien">
+                <div class="title">Outillage</div>
+              </a>
+
+              <a class="cat-card" href="electricite-consommables.html">
+                <img src="images-site/page-electricite/consommables.jpg" alt="Consommables &amp; petits matériels">
+                <div class="title">Consommables</div>
               </a>
 
             </div>
@@ -206,7 +211,7 @@
     </footer>
 
     <script>
-      // mêmes conventions que ta home (logo + hero)
+      // mêmes conventions que vos autres pages (logo + hero)
       const ASSETS = {
         logoMain: "images-site/logo.jpg",
         hero: "images-site/magasin.jpg"
@@ -235,7 +240,6 @@
       });
     }
   </script>
-
 
 </body>
 

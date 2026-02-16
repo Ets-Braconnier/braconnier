@@ -5,9 +5,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Sanitaire | Ets Braconnier</title>
+  <title>Toiture | Ets Braconnier</title>
   <meta name="description"
-    content="Sanitaire : parois de douche, cabines, receveurs, meubles, lavabos, robinetterie, adoucisseurs, raccords plomberie." />
+    content="Toiture : tuiles, ardoises, accessoires, sous-toiture, zinguerie, isolation, étanchéité, gouttières, fenêtres de toit." />
   <meta name="robots" content="index,follow" />
 
   <link rel="stylesheet" href="style.css">
@@ -69,13 +69,13 @@
       text-decoration: none;
     }
 
-    .page-sanitaire .cat-card img {
+    /* scope spécifique */
+    .page-toiture .cat-card img {
       width: 100%;
       height: 170px;
       object-fit: contain;
       background: #f7f7f7;
     }
-
 
     .cat-card:hover img {
       transform: scale(1.03);
@@ -94,7 +94,7 @@
   </style>
 </head>
 
-<body class="page-sanitaire">
+<body class="page-toiture">
   <div class="page-scale">
 
     <header>
@@ -133,7 +133,6 @@
 
         </nav>
 
-
         <img id="heroImg" class="hero-img" alt="Magasin – Ets Braconnier" />
 
         <iframe class="map"
@@ -149,47 +148,57 @@
         <section class="products">
 
           <section class="headline">
-            <h1>Sanitaire</h1>
+            <h1>Toiture</h1>
           </section>
 
           <section class="section">
-            <div class="label">Sanitaire</div>
+            <div class="label">Toiture</div>
 
             <div class="cat-grid">
 
-                            <a class="cat-card" href="pieces.html">
-                <img src="images-site/page-sanitaire/raccords-plomberie.jpg" alt="Raccords plomberie">
-                <div class="title">Raccords plomberie</div>
+              <a class="cat-card" href="toiture-tuiles.html">
+                <img src="images-site/page-toiture/tuiles.jpg" alt="Tuiles">
+                <div class="title">Tuiles</div>
               </a>
 
-              <a class="cat-card" href="sanitaire-robinetterie.html">
-                <img src="images-site/page-sanitaire/robinetterie.jpg" alt="Robinetterie">
-                <div class="title">Robinetterie</div>
+              <a class="cat-card" href="toiture-ardoises.html">
+                <img src="images-site/page-toiture/ardoises.jpg" alt="Ardoises">
+                <div class="title">Ardoises</div>
               </a>
 
-              <a class="cat-card" href="sanitaire-adoucisseur.html">
-                <img src="images-site/page-sanitaire/adoucisseur.jpg" alt="Adoucisseur">
-                <div class="title">adoucisseurs</div>
+              <a class="cat-card" href="toiture-accessoires.html">
+                <img src="images-site/page-toiture/accessoires.jpg" alt="Accessoires de toiture">
+                <div class="title">Accessoires</div>
               </a>
 
-              <a class="cat-card" href="https://www.desco.be/fr-be/brochures">
-                <img src="images-site/page-sanitaire/desco.png" alt="desco">
-                <div class="title">Desco</div>
+              <a class="cat-card" href="toiture-sous-toiture.html">
+                <img src="images-site/page-toiture/sous-toiture.jpg" alt="Sous-toiture">
+                <div class="title">Sous-toiture</div>
               </a>
 
-              <a class="cat-card" href="https://drive.google.com/file/d/1qqfQ0iDyUf0lYtAzMAwpiMGYZ9oxxZ_O/preview">
-                <img src="images-site/page-sanitaire/thys.png" alt="thys">
-                <div class="title">Thys</div>
+              <a class="cat-card" href="toiture-zinguerie.html">
+                <img src="images-site/page-toiture/zinguerie.jpg" alt="Zinguerie">
+                <div class="title">Zinguerie</div>
               </a>
 
-              <a class="cat-card" href="">
-                <img src="images-site/page-sanitaire/waterfront.png" alt="waterfront">
-                <div class="title">Waterfront</div>
+              <a class="cat-card" href="toiture-gouttieres.html">
+                <img src="images-site/page-toiture/gouttieres.jpg" alt="Gouttières">
+                <div class="title">Gouttières</div>
               </a>
 
-              <a class="cat-card" href="https://www.novellini.be/fr/download.html">
-                <img src="images-site/page-sanitaire/novellini.png" alt="waterfront">
-                <div class="title">Novellini</div>
+              <a class="cat-card" href="toiture-etancheite.html">
+                <img src="images-site/page-toiture/etancheite.jpg" alt="Étanchéité">
+                <div class="title">Étanchéité</div>
+              </a>
+
+              <a class="cat-card" href="toiture-isolation.html">
+                <img src="images-site/page-toiture/isolation.jpg" alt="Isolation de toiture">
+                <div class="title">Isolation</div>
+              </a>
+
+              <a class="cat-card" href="toiture-fenetres-de-toit.html">
+                <img src="images-site/page-toiture/fenetres-toit.jpg" alt="Fenêtres de toit">
+                <div class="title">Fenêtres de toit</div>
               </a>
 
             </div>
@@ -206,7 +215,7 @@
     </footer>
 
     <script>
-      // mêmes conventions que ta home (logo + hero)
+      // mêmes conventions que sanitaire
       const ASSETS = {
         logoMain: "images-site/logo.jpg",
         hero: "images-site/magasin.jpg"
@@ -235,7 +244,6 @@
       });
     }
   </script>
-
 
 </body>
 
