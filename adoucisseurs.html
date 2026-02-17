@@ -5,15 +5,20 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Toiture | Ets Braconnier</title>
+  <title>Adoucisseurs | Ets Braconnier</title>
   <meta name="description"
-    content="Toiture : Velux, tôles et EPDM. Accès rapide aux documents et fiches en PDF." />
+    content="Adoucisseurs d’eau : appareils, sel, accessoires et fiches techniques." />
   <meta name="robots" content="index,follow" />
 
   <link rel="stylesheet" href="style.css">
 
   <style>
-    .products { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+    .products {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-width: 0;
+    }
 
     .section {
       border: 1px solid var(--line);
@@ -37,8 +42,13 @@
       padding: 14px;
     }
 
-    @media (max-width: 900px) { .cat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-    @media (max-width: 560px) { .cat-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 900px) {
+      .cat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 560px) {
+      .cat-grid { grid-template-columns: 1fr; }
+    }
 
     .cat-card {
       border: 1px solid var(--line);
@@ -56,7 +66,7 @@
       text-decoration: none;
     }
 
-    .page-toiture .cat-card img {
+    .page-adoucisseurs .cat-card img {
       width: 100%;
       height: 170px;
       object-fit: contain;
@@ -67,7 +77,9 @@
       transition: transform .18s ease;
     }
 
-    .cat-card:hover img { transform: scale(1.03); }
+    .cat-card:hover img {
+      transform: scale(1.03);
+    }
 
     .cat-card .title {
       padding: 10px 12px;
@@ -80,13 +92,16 @@
       border-top: 1px solid var(--line);
     }
   </style>
+
 </head>
 
-<body class="page-toiture">
+<body class="page-adoucisseurs">
+
   <div class="page-scale">
 
     <header>
       <div class="wrap topbar">
+
         <div class="brand">
           <div class="logo">
             <img id="logoMain" alt="Ets Braconnier" />
@@ -95,17 +110,18 @@
         </div>
 
         <div class="header-right">
-          <div class="quicklinks" aria-label="Liens rapides">
+          <div class="quicklinks">
             <a href="/Avis/Avis1.php">Votre avis</a>
             <a href="/rgpd.pdf">RGPD</a>
           </div>
         </div>
+
       </div>
 
       <div class="hero-layout">
 
-        <nav class="main-nav" aria-label="Menu principal">
-          <button class="menu-toggle" aria-expanded="false">☰ Menu</button>
+        <nav class="main-nav">
+          <button class="menu-toggle">☰ Menu</button>
 
           <ul class="menu">
             <li><a href="index.html">Accueil</a></li>
@@ -115,91 +131,94 @@
             <li><a href="promotions.html">Promotions</a></li>
             <li><a href="contact.html">Contacts</a></li>
           </ul>
+
         </nav>
 
         <img id="heroImg" class="hero-img" alt="Magasin – Ets Braconnier" />
 
         <iframe class="map"
           src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5145.2121350771895!2d5.25321!3d49.84985900000001!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47ea808d6bb9e87f%3A0xf00dd4deebbf1048!2sEts%20Braconnier!5e0!3m2!1sfr!2sbe!4v1770570919392!5m2!1sfr!2sbe"
-          loading="lazy" allowfullscreen>
+          loading="lazy">
         </iframe>
 
       </div>
     </header>
 
+
     <main>
       <div class="wrap">
+
         <section class="products">
 
           <section class="headline">
-            <h1></h1>
+            <h1>Adoucisseurs</h1>
           </section>
 
+
           <section class="section">
-            <div class="label"></div>
+            <div class="label">Tous les adoucisseurs sont disponibles sur commande</div>
 
             <div class="cat-grid">
 
-              <a class="cat-card" href="https://drive.google.com/file/d/1D9f0Y5pY4yMm6e6L4ixOzEI_U4nCFhJH/preview" target="_blank" rel="noopener">
-                <img src="images-site/page-toiture/velux.png" alt="Velux">
-                <div class="title">Velux</div>
+              <a class="cat-card" href="https://drive.google.com/file/d/1WxFAZukZSqqmvHiXoJ2U7lTkWKE1yqWm/preview" target="_blank">
+                <img src="images-site/page-adoucisseurs/compacto-24l.png">
+                <div class="title">Compacto 24L</div>
               </a>
 
-              <a class="cat-card" href="pdf/toiture/toles.pdf" target="_blank" rel="noopener">
-                <img src="images-site/page-toiture/toles.png" alt="Tôles">
-                <div class="title">Tôles</div>
+              <a class="cat-card" href="https://drive.google.com/file/d/1qapbQYy9Z2tRCq4c_VzP1HlNUdbtsKS5/preview" target="_blank">
+                <img src="images-site/page-adoucisseurs/modulo-25l.png">
+                <div class="title">Modulo 25L</div>
               </a>
 
-              <a class="cat-card" href="pdf/toiture/epdm.pdf" target="_blank" rel="noopener">
-                <img src="images-site/page-toiture/epdm.png" alt="EPDM">
-                <div class="title">EPDM</div>
+              <a class="cat-card" href="https://drive.google.com/file/d/1ZM7Eq5BmeIfuQ0_LOV20V4ZOH-uoZ7Am/preview" target="_blank">
+                <img src="images-site/page-adoucisseurs/modulo-35l.png">
+                <div class="title">Modulo 35L</div>
               </a>
 
-              <a class="cat-card" href="pdf/toiture/epdm.pdf" target="_blank" rel="noopener">
-                <img src="images-site/page-toiture/gouttieres.png" alt="Gouttières">
-                <div class="title">Gouttières & Descentes d'eau</div>
+              <a class="cat-card" href="https://drive.google.com/file/d/1kHZqQmWoRKVs-G5vKZ8muQnvRV_4aEFk/preview" target="_blank">
+                <img src="images-site/page-adoucisseurs/mercurion-5g-20l.png">
+                <div class="title">Mercurion 5G 20L</div>
+              </a>
+
+              <a class="cat-card" href="https://drive.google.com/file/d/1i6lhsZI6LqrrCqd_CqYgXmdTZCvGvDSn/preview" target="_blank">
+                <img src="images-site/page-adoucisseurs/mercurion-5g-26l.png">
+                <div class="title">Mercurion 5G 26L</div>
+              </a>
+
+              <a class="cat-card" href="https://drive.google.com/file/d/1_1PEEZq0MeuFpuFzMxy4WEb04tUE8iai/preview" target="_blank">
+                <img src="images-site/page-adoucisseurs/sel-regenit.png">
+                <div class="title">Sel pour adoucisseur "En stock"</div>
               </a>
 
             </div>
+
           </section>
 
         </section>
+
       </div>
     </main>
 
+
     <footer>
       <div class="wrap">
-        <div class="footerbar" aria-hidden="true"></div>
+        <div class="footerbar"></div>
       </div>
     </footer>
+
 
     <script>
       const ASSETS = {
         logoMain: "images-site/logo.jpg",
         hero: "images-site/magasin.jpg"
       };
-      const logo = document.getElementById("logoMain");
-      const hero = document.getElementById("heroImg");
-      if (logo) logo.src = ASSETS.logoMain;
-      if (hero) hero.src = ASSETS.hero;
+
+      document.getElementById("logoMain").src = ASSETS.logoMain;
+      document.getElementById("heroImg").src = ASSETS.hero;
     </script>
 
+
   </div>
-
-  <script>
-    const toggle = document.querySelector(".menu-toggle");
-    const menu = document.querySelector(".menu");
-
-    if (toggle && menu) {
-      toggle.addEventListener("click", () => {
-        menu.classList.toggle("open");
-        toggle.setAttribute(
-          "aria-expanded",
-          menu.classList.contains("open") ? "true" : "false"
-        );
-      });
-    }
-  </script>
 
 </body>
 
