@@ -5,20 +5,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Gros œuvre | Ets Braconnier</title>
+  <title>Sables | Ets Braconnier</title>
   <meta name="description"
-    content="Gros œuvre : blocs, briques, béton, ciment, chaux, sable, graviers, ferraillage, coffrage, étanchéité, mortiers." />
+    content="Sables en sac et en vrac : sable blanc, sable jaune, sable de rivière, sable de Rhin 0/4, mélanges mortier et béton." />
   <meta name="robots" content="index,follow" />
 
   <link rel="stylesheet" href="style.css">
 
   <style>
-    .products {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      min-width: 0;
-    }
+    .products { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
 
     .section {
       border: 1px solid var(--line);
@@ -42,17 +37,8 @@
       padding: 14px;
     }
 
-    @media (max-width: 900px) {
-      .cat-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 560px) {
-      .cat-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+    @media (max-width: 900px) { .cat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 560px) { .cat-grid { grid-template-columns: 1fr; } }
 
     .cat-card {
       border: 1px solid var(--line);
@@ -62,24 +48,26 @@
       display: flex;
       flex-direction: column;
       min-height: 220px;
-    }
-
-    .cat-card:hover {
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
       text-decoration: none;
     }
 
-    /* scope spécifique */
-    .page-gros-oeuvre .cat-card img {
+    .cat-card:hover {
+      box-shadow: 0 6px 20px rgba(0,0,0,.08);
+      text-decoration: none;
+    }
+
+    .page-sables .cat-card img {
       width: 100%;
       height: 170px;
       object-fit: contain;
+      object-position: center;
       background: #f7f7f7;
+      display: block;
+      padding: 8px;
+      transition: transform .18s ease;
     }
 
-    .cat-card:hover img {
-      transform: scale(1.03);
-    }
+    .cat-card:hover img { transform: scale(1.03); }
 
     .cat-card .title {
       padding: 10px 12px;
@@ -91,10 +79,19 @@
       font-size: 18px;
       border-top: 1px solid var(--line);
     }
+
+    .cat-card .sub {
+      margin: -6px 0 10px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      font-family: Verdana, Geneva, sans-serif;
+      opacity: .85;
+    }
   </style>
 </head>
 
-<body class="page-gros-oeuvre">
+<body class="page-sables">
   <div class="page-scale">
 
     <header>
@@ -117,11 +114,7 @@
       <div class="hero-layout">
 
         <nav class="main-nav" aria-label="Menu principal">
-
-          <button class="menu-toggle" aria-expanded="false">
-            ☰ Menu
-          </button>
-
+          <button class="menu-toggle" aria-expanded="false">☰ Menu</button>
           <ul class="menu">
             <li><a href="index.html">Accueil</a></li>
             <li><a href="calculs.html">Calculs</a></li>
@@ -130,7 +123,6 @@
             <li><a href="promotions.html">Promotions</a></li>
             <li><a href="contact.html">Contacts</a></li>
           </ul>
-
         </nav>
 
         <img id="heroImg" class="hero-img" alt="Magasin – Ets Braconnier" />
@@ -148,35 +140,58 @@
         <section class="products">
 
           <section class="headline">
-            <h1>Gros œuvre</h1>
+            <h1>Sables</h1>
           </section>
 
           <section class="section">
-            <div class="label">Gros œuvre</div>
+            <div class="label">Disponible en magasin</div>
 
             <div class="cat-grid">
 
-              <a class="cat-card" href="blocs.html">
-                <img src="images-site/page-blocs/blocs.jpg" alt="Blocs &amp; briques">
-                <div class="title">Blocs</div>
-              </a>
+  <div class="cat-card" onclick="openImage(this)">
+    <img src="images-site/page-sables/sable-blanc-sac.png" alt="Sable blanc en sac">
+    <div class="title">Sable blanc (sac)</div>
+    <div class="sub">25kg</div>
+  </div>
 
-              <a class="cat-card" href="couvres-murs.html">
-                <img src="images-site/page-couvres-murs/couvres-murs.png" alt="couvres-murs">
-                <div class="title">Couvres murs</div>
-              </a>
+  <div class="cat-card" onclick="openImage(this)">
+    <img src="images-site/page-sables/sable-jaune-sac.png" alt="Sable jaune en sac">
+    <div class="title">Sable jaune (sac)</div>
+    <div class="sub">25kg</div>
+  </div>
 
-              <a class="cat-card" href="graviers.html">
-                <img src="images-site/page-graviers/grenailles.png" alt="grenaille">
-                <div class="title">Graviers</div>
-              </a>
+  <div class="cat-card" onclick="openImage(this)">
+    <img src="images-site/page-sables/sable-riviere-sac.png" alt="Sable de rivière en sac">
+    <div class="title">Sable de rivière (sac)</div>
+    <div class="sub">25kg</div>
+  </div>
 
-              <a class="cat-card" href="sables.html">
-                <img src="images-site/page-sables/sables.png" alt="sables">
-                <div class="title">Sables</div>
-              </a>
+  <div class="cat-card" onclick="openImage(this)">
+    <img src="images-site/page-sables/sable-jaune-vrac.png" alt="Sable jaune en vrac">
+    <div class="title">Sable jaune (vrac)</div>
+    <div class="sub">M³</div>
+  </div>
 
-            </div>
+  <div class="cat-card" onclick="openImage(this)">
+    <img src="images-site/page-sables/sable-de-rhin-0-4-vrac.png" alt="Sable de Rhin 0/4 en vrac">
+    <div class="title">Sable de Rhin 0/4 (vrac)</div>
+    <div class="sub">M³</div>
+  </div>
+
+  <div class="cat-card" onclick="openImage(this)">
+    <img src="images-site/page-sables/melange-mortier.png" alt="Mélange mortier">
+    <div class="title">Mélange mortier</div>
+    <div class="sub">M³</div>
+  </div>
+
+  <div class="cat-card" onclick="openImage(this)">
+    <img src="images-site/page-sables/melange-beton.png" alt="Mélange béton">
+    <div class="title">Mélange béton</div>
+    <div class="sub">M³</div>
+  </div>
+
+</div>
+
           </section>
 
         </section>
@@ -190,15 +205,12 @@
     </footer>
 
     <script>
-      // mêmes conventions que sanitaire
       const ASSETS = {
         logoMain: "images-site/logo.jpg",
         hero: "images-site/magasin.jpg"
       };
-
       const logo = document.getElementById("logoMain");
       const hero = document.getElementById("heroImg");
-
       if (logo) logo.src = ASSETS.logoMain;
       if (hero) hero.src = ASSETS.hero;
     </script>
@@ -208,17 +220,53 @@
   <script>
     const toggle = document.querySelector(".menu-toggle");
     const menu = document.querySelector(".menu");
-
     if (toggle && menu) {
       toggle.addEventListener("click", () => {
         menu.classList.toggle("open");
-        toggle.setAttribute(
-          "aria-expanded",
-          menu.classList.contains("open") ? "true" : "false"
-        );
+        toggle.setAttribute("aria-expanded", menu.classList.contains("open") ? "true" : "false");
       });
     }
   </script>
+
+  <!-- LIGHTBOX IMAGE (clic = image en grand) -->
+<div id="lightbox" onclick="closeImage()">
+  <img id="lightbox-img" alt="">
+</div>
+
+<style>
+  #lightbox{
+    display:none;
+    position:fixed;
+    z-index:9999;
+    left:0; top:0;
+    width:100%; height:100%;
+    background:rgba(0,0,0,0.9);
+    justify-content:center;
+    align-items:center;
+  }
+  #lightbox img{
+    max-width:90%;
+    max-height:90%;
+    background:#fff;
+    border-radius:6px;
+    box-shadow:0 0 30px rgba(0,0,0,0.5);
+  }
+</style>
+
+<script>
+  function openImage(card){
+    const img = card.querySelector("img");
+    const lb = document.getElementById("lightbox");
+    const lbImg = document.getElementById("lightbox-img");
+    lbImg.src = img.src;
+    lb.style.display = "flex";
+  }
+
+  function closeImage(){
+    document.getElementById("lightbox").style.display = "none";
+  }
+</script>
+
 
 </body>
 
