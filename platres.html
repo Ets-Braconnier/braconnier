@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Plâtres | Ets Braconnier</title>
+  <meta name="description" content="Plâtres et accessoires disponibles chez Ets Braconnier." />
+  <meta name="robots" content="index,follow" />
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="page-platres">
+
+  <div class="page-scale">
+
+    <!-- HEADER -->
+    <header>
+
+      <div class="wrap topbar">
+
+        <div class="brand">
+          <div class="logo">
+            <img id="logoMain" alt="Ets Braconnier">
+            <small>Matériaux de construction – articles professionnels et de bricolage</small>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <div class="quicklinks">
+            <a href="/Avis/Avis1.php">Votre avis</a>
+            <a href="/rgpd.pdf">RGPD</a>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="hero-layout">
+
+        <!-- MENU -->
+        <nav class="main-nav">
+          <button class="menu-toggle">☰ Menu</button>
+
+          <ul class="menu">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="calculs.html">Calculs</a></li>
+            <li><a href="presentation.html">Présentation</a></li>
+            <li><a href="produits.html">Produits</a></li>
+            <li><a href="promotions.html">Promotions</a></li>
+            <li><a href="contact.html">Contacts</a></li>
+          </ul>
+
+        </nav>
+
+
+        <!-- IMAGE HERO -->
+        <img id="heroImg" class="hero-img" alt="Magasin – Ets Braconnier">
+
+
+        <!-- GOOGLE MAP -->
+        <iframe class="map"
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5145.2121350771895!2d5.25321!3d49.84985900000001!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47ea808d6bb9e87f%3A0xf00dd4deebbf1048!2sEts%20Braconnier!5e0!3m2!1sfr!2sbe!4v1770570919392!5m2!1sfr!2sbe"
+          loading="lazy">
+        </iframe>
+
+      </div>
+
+    </header>
+
+
+    <!-- MAIN VIDE -->
+    <main>
+      <div class="wrap">
+
+        <section class="headline">
+          <h1>Plâtres</h1>
+        </section>
+
+        <!-- contenu à ajouter plus tard -->
+
+      </div>
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="wrap">
+        <div class="footerbar"></div>
+      </div>
+    </footer>
+
+
+    <!-- SCRIPT LOGO + HERO -->
+    <script>
+      const ASSETS = {
+        logoMain: "images-site/logo.jpg",
+        hero: "images-site/magasin.jpg"
+      };
+
+      document.getElementById("logoMain").src = ASSETS.logoMain;
+      document.getElementById("heroImg").src = ASSETS.hero;
+    </script>
+
+
+    <!-- SCRIPT MENU MOBILE -->
+    <script>
+      const toggle = document.querySelector(".menu-toggle");
+      const menu = document.querySelector(".menu");
+
+      if (toggle && menu) {
+        toggle.addEventListener("click", () => {
+          menu.classList.toggle("open");
+        });
+      }
+    </script>
+
+
+  </div>
+
+</body>
+
+</html>
