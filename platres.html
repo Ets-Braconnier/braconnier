@@ -72,7 +72,6 @@
     </header>
 
 
-    <!-- MAIN VIDE -->
     <main>
       <div class="wrap">
 
@@ -80,10 +79,24 @@
           <h1>Plâtres</h1>
         </section>
 
-        <!-- contenu à ajouter plus tard -->
+        <iframe id="platresFrame" src="https://ets-braconnier.github.io/platres-et-enduits/"
+          style="width:100%; border:none; display:block;" scrolling="no">
+        </iframe>
+
+        <script>
+          window.addEventListener("message", function (e) {
+            if (e.origin !== "https://ets-braconnier.github.io") return;
+
+            if (e.data && e.data.type === "resize" && e.data.height) {
+              document.getElementById("platresFrame").style.height = e.data.height + "px";
+            }
+          });
+        </script>
+
 
       </div>
     </main>
+
 
 
     <!-- FOOTER -->
@@ -117,7 +130,6 @@
         });
       }
     </script>
-
 
   </div>
 
