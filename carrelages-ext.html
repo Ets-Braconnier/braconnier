@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Carrelages extérieurs | Ets Braconnier</title>
+  <meta name="description"
+    content="Carrelages intérieurs : grès cérame, faïence, mosaïque, formats XXL, accessoires de pose et finitions." />
+  <meta name="robots" content="index,follow" />
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .products {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .section {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .section .label {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-weight: 700;
+      font-family: Verdana, Geneva, sans-serif;
+    }
+
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      padding: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .cat-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .cat-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .cat-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 220px;
+    }
+
+    .cat-card:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      text-decoration: none;
+    }
+
+    /* Scope page (comme .page-portes) */
+    .page-carrelages-int .cat-card img {
+      width: 100%;
+      height: 170px;
+      object-fit: contain;
+      background: #f7f7f7;
+    }
+
+    .cat-card:hover img {
+      transform: scale(1.03);
+    }
+
+    .cat-card .title {
+      padding: 10px 12px;
+      text-align: center;
+      color: var(--muted);
+      font-family: "Times New Roman", Times, serif;
+      font-style: italic;
+      font-weight: bold;
+      font-size: 18px;
+      border-top: 1px solid var(--line);
+    }
+  </style>
+</head>
+
+<body class="page-carrelages-ext">
+  <div class="page-scale">
+
+    <header>
+      <div class="wrap topbar">
+        <div class="brand">
+          <div class="logo">
+            <img id="logoMain" alt="Ets Braconnier" />
+            <small>Matériaux de construction – articles professionnels et de bricolage</small>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <div class="quicklinks">
+            <a href="/Avis/Avis1.php">Votre avis</a>
+            <a href="/rgpd.pdf">RGPD</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-layout">
+
+        <!-- MENU -->
+        <nav class="main-nav">
+
+          <button class="menu-toggle" aria-expanded="false">
+            ☰ Menu
+          </button>
+
+          <ul class="menu">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="calculs.html">Calculs</a></li>
+            <li><a href="presentation.html">Présentation</a></li>
+            <li><a href="produits.html">Produits</a></li>
+            <li><a href="promotions.html">Promotions</a></li>
+            <li><a href="contact.html">Contacts</a></li>
+          </ul>
+
+        </nav>
+
+        <!-- IMAGE CENTRALE -->
+        <img id="heroImg" class="hero-img" alt="Magasin – Ets Braconnier" />
+
+        <!-- MAP -->
+        <iframe class="map"
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5145.2121350771895!2d5.25321!3d49.84985900000001!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47ea808d6bb9e87f%3A0xf00dd4deebbf1048!2sEts%20Braconnier!5e0!3m2!1sfr!2sbe!4v1770570919392!5m2!1sfr!2sbe"
+          loading="lazy" allowfullscreen>
+        </iframe>
+
+      </div>
+    </header>
+
+    <main>
+      <div class="wrap">
+
+        <section class="products">
+
+          <section class="headline">
+            <h1>Carrelages extérieurs</h1>
+          </section>
+
+          <section class="section">
+
+            <div class="label">Carrelages extérieurs</div>
+
+            <div class="cat-grid">
+
+              <a class="cat-card" href="https://www.ariana.it/fr/" target="_blank" rel="noopener"
+                title="Découvrir Gardenia & Ariana (carrelages)">
+                <img src="images-site/page-carrelages-ext/ariana.jpg"
+                  alt="Ariana – carrelages et revêtements en grès cérame">
+                <div class="title">Ariana</div>
+              </a>
+
+              <a class="cat-card" href="https://www.bauma-stone.com/fr" target="_blank" rel="noopener"
+                title="Découvrir Bauma-Stone (pierre naturelle & dalles)">
+                <img src="images-site/page-carrelages-ext/bauma.jpg"
+                  alt="Bauma-Stone – pierre naturelle et dalles pour sols et terrasses">
+                <div class="title">Bauma</div>
+              </a>
+
+              <a class="cat-card" href="https://www.bebceramiche.eu/en/" target="_blank" rel="noopener"
+                title="Découvrir B&amp;B Ceramiche (carrelages)">
+                <img src="images-site/page-carrelages-ext/b-b.jpg"
+                  alt="B&amp;B Ceramiche – carrelages et grès cérame italiens">
+                <div class="title">B&amp;B Ceramiche</div>
+              </a>
+
+              <a class="cat-card" href="https://www.pierrebleuebelge.be" target="_blank" rel="noopener"
+                title="Découvrir la Pierre Bleue Belge (Carrière du Clypot)">
+                <img src="images-site/page-carrelages-ext/carriere-du-clypot.jpg"
+                  alt="Carrière du Clypot – Pierre Bleue Belge (petit granit) pour sols et aménagements">
+                <div class="title">Carrière du Clypot</div>
+              </a>
+
+              <a class="cat-card" href="https://www.casalgrandepadana.fr/fr/" target="_blank" rel="noopener"
+                title="Découvrir Casalgrande Padana (grès cérame)">
+                <img src="images-site/page-carrelages-ext/casalgrande-padana.jpg"
+                  alt="Casalgrande Padana – grès cérame technique et architectural">
+                <div class="title">Casalgrande Padana</div>
+              </a>
+
+              <a class="cat-card" href="https://www.ceramicagazzini.it/fr/" target="_blank" rel="noopener"
+                title="Découvrir Gazzini (carrelages design)">
+                <img src="images-site/page-carrelages-ext/gazzini.jpg"
+                  alt="Gazzini – carrelages design en grès cérame pour intérieur et extérieur">
+                <div class="title">Gazzini</div>
+              </a>
+
+              <a class="cat-card" href="https://www.marlux.com/fr-BE" target="_blank" rel="noopener"
+                title="Découvrir Marlux (dalles & pavés)">
+                <img src="images-site/page-carrelages-ext/marlux.jpg"
+                  alt="Marlux – dalles de terrasse, pavés et aménagements extérieurs">
+                <div class="title">Marlux</div>
+              </a>
+
+              <a class="cat-card" href="https://www.novabell.it/fr/" target="_blank" rel="noopener"
+                title="Découvrir NovaBell (grès cérame)">
+                <img src="images-site/page-carrelages-ext/novabell.jpg"
+                  alt="NovaBell – carrelages en grès cérame pour sols et murs">
+                <div class="title">NovaBell</div>
+              </a>
+
+              <a class="cat-card" href="https://www.oldsaxceramic.com/" target="_blank" rel="noopener"
+                title="Découvrir Old Sax (carrelages)">
+                <img src="images-site/page-carrelages-ext/old-sax.jpg"
+                  alt="Old Sax – carrelages et revêtements pour intérieur et extérieur">
+                <div class="title">Old Sax</div>
+              </a>
+
+              <a class="cat-card" href="https://fr.polis.it" target="_blank" rel="noopener"
+                title="Découvrir Polis Ceramiche (carrelages)">
+                <img src="images-site/page-carrelages-ext/polis.jpg"
+                  alt="Polis Ceramiche – carrelages et grès cérame pour sols et murs">
+                <div class="title">Polis</div>
+              </a>
+
+            </div>
+
+          </section>
+
+        </section>
+
+      </div>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <div class="footerbar"></div>
+      </div>
+    </footer>
+
+    <script>
+      const ASSETS = {
+        logoMain: "images-site/logo.jpg",
+        hero: "images-site/magasin.jpg"
+      };
+
+      document.getElementById("logoMain").src = ASSETS.logoMain;
+      document.getElementById("heroImg").src = ASSETS.hero;
+    </script>
+
+  </div>
+
+  <script>
+    const toggle = document.querySelector(".menu-toggle");
+    const menu = document.querySelector(".menu");
+
+    toggle.addEventListener("click", () => {
+      menu.classList.toggle("open");
+      toggle.setAttribute(
+        "aria-expanded",
+        menu.classList.contains("open") ? "true" : "false"
+      );
+    });
+  </script>
+
+</body>
+
+</html>
