@@ -5,9 +5,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Sanitaire | Ets Braconnier</title>
+  <title>Tôles | Ets Braconnier</title>
   <meta name="description"
-    content="Sanitaire : parois de douche, cabines, receveurs, meubles, lavabos, robinetterie, adoucisseurs, raccords plomberie." />
+    content="Tôles de toiture : tôles simples, tôles avec feutre, tôles isolées et tôles translucides." />
   <meta name="robots" content="index,follow" />
 
   <link rel="stylesheet" href="style.css">
@@ -62,20 +62,24 @@
       display: flex;
       flex-direction: column;
       min-height: 220px;
-    }
-
-    .cat-card:hover {
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
       text-decoration: none;
     }
 
-    .page-sanitaire .cat-card img {
+    .cat-card:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .08);
+      text-decoration: none;
+    }
+
+    .page-toles .cat-card img {
       width: 100%;
       height: 170px;
       object-fit: contain;
+      object-position: center;
       background: #f7f7f7;
+      display: block;
+      padding: 8px;
+      transition: transform .18s ease;
     }
-
 
     .cat-card:hover img {
       transform: scale(1.03);
@@ -91,10 +95,19 @@
       font-size: 18px;
       border-top: 1px solid var(--line);
     }
+
+    .cat-card .sub {
+      margin: -6px 0 10px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      font-family: Verdana, Geneva, sans-serif;
+      opacity: .85;
+    }
   </style>
 </head>
 
-<body class="page-sanitaire">
+<body class="page-toles">
   <div class="page-scale">
 
     <header>
@@ -117,11 +130,7 @@
       <div class="hero-layout">
 
         <nav class="main-nav" aria-label="Menu principal">
-
-          <button class="menu-toggle" aria-expanded="false">
-            ☰ Menu
-          </button>
-
+          <button class="menu-toggle" aria-expanded="false">☰ Menu</button>
           <ul class="menu">
             <li><a href="index.html">Accueil</a></li>
             <li><a href="calculs.html">Calculs</a></li>
@@ -130,9 +139,7 @@
             <li><a href="promotions.html">Promotions</a></li>
             <li><a href="contact.html">Contacts</a></li>
           </ul>
-
         </nav>
-
 
         <img id="heroImg" class="hero-img" alt="Magasin – Ets Braconnier" />
 
@@ -149,50 +156,43 @@
         <section class="products">
 
           <section class="headline">
-            <h1>Sanitaire</h1>
+            <h1>Tôles</h1>
           </section>
 
           <section class="section">
-            <div class="label">Sanitaire</div>
+            <div class="label">Disponible en magasin</div>
 
             <div class="cat-grid">
 
-                            <a class="cat-card" href="raccords-plomberie.html">
-                <img src="images-site/page-sanitaire/raccords-plomberie.jpg" alt="Raccords plomberie">
-                <div class="title">Raccords plomberie</div>
+              <a href="pdf/toles-simples.pdf" target="_blank" class="cat-card">
+                <img src="images-site/page-toles/toles-simples.png" alt="Tôles simples">
+                <div class="title">Tôles simples</div>
+                <div class="sub">Divers profils</div>
               </a>
 
-              <a class="cat-card" href="sanitaire-robinetterie.html">
-                <img src="images-site/page-sanitaire/robinetterie.jpg" alt="Robinetterie">
-                <div class="title">Robinetterie</div>
+              <a href="pdf/toles-avec-feutre.pdf" target="_blank" class="cat-card">
+                <img src="images-site/page-toles/toles-avec-feutre.png" alt="Tôles avec feutre">
+                <div class="title">Tôles avec feutre</div>
+                <div class="sub">Anti-condensation</div>
               </a>
 
-              <a class="cat-card" href="adoucisseurs.html">
-                <img src="images-site/page-sanitaire/adoucisseur.jpg" alt="Adoucisseur">
-                <div class="title">adoucisseurs</div>
+              <a href="pdf/toles-isolees.pdf" target="_blank" class="cat-card">
+                <img src="images-site/page-toles/toles-isolees.png" alt="Tôles isolées">
+                <div class="title">Tôles isolées</div>
+                <div class="sub">Panneaux sandwich</div>
               </a>
 
-              <a class="cat-card" href="https://www.desco.be/fr-be/brochures">
-                <img src="images-site/page-sanitaire/desco.png" alt="desco">
-                <div class="title">Desco</div>
+              <a href="pdf/toles-translucides.pdf" target="_blank" class="cat-card">
+                <img src="images-site/page-toles/toles-translucides.png" alt="Tôles translucides">
+                <div class="title">Tôles translucides</div>
+                <div class="sub">Éclairage naturel</div>
               </a>
 
-              <a class="cat-card" href="https://drive.google.com/file/d/1qqfQ0iDyUf0lYtAzMAwpiMGYZ9oxxZ_O/preview">
-                <img src="images-site/page-sanitaire/thys.png" alt="thys">
-                <div class="title">Thys</div>
-              </a>
 
-              <a class="cat-card" href="https://drive.google.com/file/d/198SuTHsV9QWSIocTLqOi1x99u31SmDgT/preview">
-                <img src="images-site/page-sanitaire/waterfront.png" alt="waterfront">
-                <div class="title">Waterfront</div>
-              </a>
 
-              <a class="cat-card" href="https://www.novellini.be/fr/download.html">
-                <img src="images-site/page-sanitaire/novellini.png" alt="waterfront">
-                <div class="title">Novellini</div>
-              </a>
 
             </div>
+
           </section>
 
         </section>
@@ -206,15 +206,12 @@
     </footer>
 
     <script>
-      // mêmes conventions que ta home (logo + hero)
       const ASSETS = {
         logoMain: "images-site/logo.jpg",
         hero: "images-site/magasin.jpg"
       };
-
       const logo = document.getElementById("logoMain");
       const hero = document.getElementById("heroImg");
-
       if (logo) logo.src = ASSETS.logoMain;
       if (hero) hero.src = ASSETS.hero;
     </script>
@@ -224,15 +221,53 @@
   <script>
     const toggle = document.querySelector(".menu-toggle");
     const menu = document.querySelector(".menu");
-
     if (toggle && menu) {
       toggle.addEventListener("click", () => {
         menu.classList.toggle("open");
-        toggle.setAttribute(
-          "aria-expanded",
-          menu.classList.contains("open") ? "true" : "false"
-        );
+        toggle.setAttribute("aria-expanded", menu.classList.contains("open") ? "true" : "false");
       });
+    }
+  </script>
+
+  <!-- LIGHTBOX IMAGE (clic = image en grand) -->
+  <div id="lightbox" onclick="closeImage()">
+    <img id="lightbox-img" alt="">
+  </div>
+
+  <style>
+    #lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+    }
+
+    #lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      background: #fff;
+      border-radius: 6px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    }
+  </style>
+
+  <script>
+    function openImage(card) {
+      const img = card.querySelector("img");
+      const lb = document.getElementById("lightbox");
+      const lbImg = document.getElementById("lightbox-img");
+      lbImg.src = img.src;
+      lb.style.display = "flex";
+    }
+
+    function closeImage() {
+      document.getElementById("lightbox").style.display = "none";
     }
   </script>
 
