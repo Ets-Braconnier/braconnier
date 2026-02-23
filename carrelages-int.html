@@ -5,9 +5,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Sols | Ets Braconnier</title>
+  <title>Carrelages intérieurs | Ets Braconnier</title>
   <meta name="description"
-    content="Sols : carrelage, parquet, stratifié, vinyle, sous-couches, plinthes, colles et joints." />
+    content="Carrelages intérieurs : grès cérame, faïence, mosaïque, formats XXL, accessoires de pose et finitions." />
   <meta name="robots" content="index,follow" />
 
   <link rel="stylesheet" href="style.css">
@@ -69,8 +69,8 @@
       text-decoration: none;
     }
 
-    /* Même logique que sanitaire, mais scope "page-sols" */
-    .page-sols .cat-card img {
+    /* Scope page (comme .page-portes) */
+    .page-carrelages-int .cat-card img {
       width: 100%;
       height: 170px;
       object-fit: contain;
@@ -94,7 +94,7 @@
   </style>
 </head>
 
-<body class="page-sols">
+<body class="page-carrelages-int">
   <div class="page-scale">
 
     <header>
@@ -107,7 +107,7 @@
         </div>
 
         <div class="header-right">
-          <div class="quicklinks" aria-label="Liens rapides">
+          <div class="quicklinks">
             <a href="/Avis/Avis1.php">Votre avis</a>
             <a href="/rgpd.pdf">RGPD</a>
           </div>
@@ -116,7 +116,8 @@
 
       <div class="hero-layout">
 
-        <nav class="main-nav" aria-label="Menu principal">
+        <!-- MENU -->
+        <nav class="main-nav">
 
           <button class="menu-toggle" aria-expanded="false">
             ☰ Menu
@@ -133,8 +134,10 @@
 
         </nav>
 
+        <!-- IMAGE CENTRALE -->
         <img id="heroImg" class="hero-img" alt="Magasin – Ets Braconnier" />
 
+        <!-- MAP -->
         <iframe class="map"
           src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5145.2121350771895!2d5.25321!3d49.84985900000001!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47ea808d6bb9e87f%3A0xf00dd4deebbf1048!2sEts%20Braconnier!5e0!3m2!1sfr!2sbe!4v1770570919392!5m2!1sfr!2sbe"
           loading="lazy" allowfullscreen>
@@ -145,52 +148,72 @@
 
     <main>
       <div class="wrap">
+
         <section class="products">
 
           <section class="headline">
-            <h1>Sols</h1>
+            <h1>Carrelages intérieurs</h1>
           </section>
 
           <section class="section">
-            <div class="label">Sols</div>
+
+            <div class="label">Carrelages intérieurs</div>
 
             <div class="cat-grid">
 
-              <a class="cat-card" href="carrelages-int.html">
-                <img src="images-site/page-sols/carrelages.png" alt="Carrelage">
-                <div class="title">Carrelages</div>
+              <a class="cat-card" href="https://duneceramics.com/fr">
+                <img src="images-site/page-carrelages-int/dune.png" alt="dune">
+                <div class="title">Dune</div>
               </a>
 
-              <a class="cat-card" href="parquets.html">
-                <img src="images-site/page-sols/parquets.png" alt="Parquet">
-                <div class="title">Parquets stratifié & vinyle</div>
+              <a class="cat-card" href="https://www.novabell.it/fr/">
+                <img src="images-site/page-carrelages-int/novabell.png" alt="novabell">
+                <div class="title">Novabell</div>
+              </a>
+
+              <a class="cat-card" href="https://fr.polis.it/">
+                <img src="images-site/page-carrelages-int/polis.png" alt="polis">
+                <div class="title">Polis</div>
+              </a>
+
+              <a class="cat-card" href="https://www.revoirparis.be/fr">
+                <img src="images-site/page-carrelages-int/revoir-paris.png" alt="revoir-paris">
+                <div class="title">Revoir Paris</div>
+              </a>
+
+              <a class="cat-card" href="https://eliosceramica.com/?lang=fr">
+                <img src="images-site/page-carrelages-int/elios.png" alt="elios">
+                <div class="title">Elios</div>
+              </a>
+
+              <a class="cat-card" href="https://www.argentaceramica.com/fr/">
+                <img src="images-site/page-carrelages-int/argenta.png" alt="argenta">
+                <div class="title">Argenta</div>
               </a>
 
             </div>
+
           </section>
 
         </section>
+
       </div>
     </main>
 
     <footer>
       <div class="wrap">
-        <div class="footerbar" aria-hidden="true"></div>
+        <div class="footerbar"></div>
       </div>
     </footer>
 
     <script>
-      // mêmes conventions que ta home (logo + hero)
       const ASSETS = {
         logoMain: "images-site/logo.jpg",
         hero: "images-site/magasin.jpg"
       };
 
-      const logo = document.getElementById("logoMain");
-      const hero = document.getElementById("heroImg");
-
-      if (logo) logo.src = ASSETS.logoMain;
-      if (hero) hero.src = ASSETS.hero;
+      document.getElementById("logoMain").src = ASSETS.logoMain;
+      document.getElementById("heroImg").src = ASSETS.hero;
     </script>
 
   </div>
@@ -199,15 +222,13 @@
     const toggle = document.querySelector(".menu-toggle");
     const menu = document.querySelector(".menu");
 
-    if (toggle && menu) {
-      toggle.addEventListener("click", () => {
-        menu.classList.toggle("open");
-        toggle.setAttribute(
-          "aria-expanded",
-          menu.classList.contains("open") ? "true" : "false"
-        );
-      });
-    }
+    toggle.addEventListener("click", () => {
+      menu.classList.toggle("open");
+      toggle.setAttribute(
+        "aria-expanded",
+        menu.classList.contains("open") ? "true" : "false"
+      );
+    });
   </script>
 
 </body>
