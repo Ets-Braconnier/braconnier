@@ -1458,3 +1458,19 @@ body {
   border: 0;
   display: block;
 }
+
+.page-bois .iframe-full {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.page-bois .iframe-full iframe {
+  width: 75%;
+  transform: scale(1.333333);
+  transform-origin: top left;
+  border: 0;
+  display: block;
+}
