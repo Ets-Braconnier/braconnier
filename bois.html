@@ -71,59 +71,35 @@
       </div>
 
       <div class="iframe-full">
-        <iframe id="boisFrame" src="https://ets-braconnier.github.io/bois/"
-          style="border:none; display:block; height:900px;" scrolling="no">
+        <iframe id="boisFrame"
+          src="https://ets-braconnier.github.io/bois/"
+          style="border:none; display:block; height:900px;"
+          scrolling="no">
         </iframe>
       </div>
 
+      <!-- SCRIPT AUTO-RESIZE STABLE -->
       <script>
         (function () {
           const ORIGIN_OK = "https://ets-braconnier.github.io";
           const frame = document.getElementById("boisFrame");
           if (!frame) return;
 
-          // Valeurs de TON CSS global :
-          const SCALE = 1.333333; // .page-bois .iframe-full iframe { transform: scale(...) }
-          const ZOOM = 0.75;      // .page-scale { zoom: 0.75 }
-          const FACTOR = SCALE * ZOOM; // ~ 1.0 chez toi
+          const SCALE = 1.333333;
+          const ZOOM = 0.75;
+          const FACTOR = SCALE * ZOOM;
 
-          let lastApplied = 0;
+          let ticking = false;
+          let lastHeight = 0;
 
-          // Anti-boucle : si trop d'updates en peu de temps, on temporise
-          let burstCount = 0;
-          let burstWindowStart = performance.now();
-          let pausedUntil = 0;
+          function updateHeight(rawHeight) {
+            if (!Number.isFinite(rawHeight)) return;
 
-          function applyHeight(rawHeight) {
-            const now = performance.now();
-            if (now < pausedUntil) return;
+            const target = Math.ceil((rawHeight / FACTOR) + 60);
 
-            // fenêtre de 2s
-            if (now - burstWindowStart > 2000) {
-              burstWindowStart = now;
-              burstCount = 0;
-            }
+            if (Math.abs(target - lastHeight) < 2) return;
 
-            // Hauteur minimale "layout" pour que le visuel (après scale+zoom) couvre le contenu.
-            // +40px de marge pour éviter les micro-coupes.
-            let target = Math.ceil((rawHeight / FACTOR) + 40);
-
-            // garde-fous
-            if (!Number.isFinite(target) || target < 300) return;
-            target = Math.min(target, 120000); // évite les explosions
-
-            // ignore les micro-variations
-            if (Math.abs(target - lastApplied) < 8) return;
-
-            // si ça pousse en boucle, on freine
-            burstCount++;
-            if (burstCount > 25) {
-              pausedUntil = now + 1500; // pause 1,5s
-              burstCount = 0;
-              return;
-            }
-
-            lastApplied = target;
+            lastHeight = target;
             frame.style.height = target + "px";
           }
 
@@ -132,13 +108,14 @@
             if (!e.data || e.data.type !== "resize") return;
 
             const raw = Number(e.data.height);
-            if (!Number.isFinite(raw) || raw < 200) return;
 
-            // application + recalage (images/fonts)
-            applyHeight(raw);
-            requestAnimationFrame(() => applyHeight(raw));
-            setTimeout(() => applyHeight(raw), 250);
-            setTimeout(() => applyHeight(raw), 900);
+            if (!ticking) {
+              ticking = true;
+              requestAnimationFrame(() => {
+                updateHeight(raw);
+                ticking = false;
+              });
+            }
           });
         })();
       </script>
@@ -182,5 +159,4 @@
   </script>
 
 </body>
-
 </html>
