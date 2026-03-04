@@ -209,11 +209,11 @@
           <legend>Pièce</legend>
           <div class="row">
             <label for="roomW">Largeur (m)</label>
-            <input id="roomW" type="number" min="0" step="0.01" value="4.00" inputmode="decimal" />
+            <input id="roomW" type="number" min="0" step="0.01" value="" inputmode="decimal" />
           </div>
           <div class="row">
             <label for="roomL">Longueur (m)</label>
-            <input id="roomL" type="number" min="0" step="0.01" value="5.00" inputmode="decimal" />
+            <input id="roomL" type="number" min="0" step="0.01" value="" inputmode="decimal" />
           </div>
           <div class="row">
             <label for="pose">Méthode de pose</label>
@@ -229,30 +229,30 @@
           <legend>Carreaux</legend>
           <div class="row">
             <label for="tileW">Largeur (cm)</label>
-            <input id="tileW" type="number" min="0" step="0.5" value="60" inputmode="decimal" />
+            <input id="tileW" type="number" min="0" step="0.5" value="" inputmode="decimal" />
           </div>
           <div class="row">
             <label for="tileL">Longueur (cm)</label>
-            <input id="tileL" type="number" min="0" step="0.5" value="60" inputmode="decimal" />
+            <input id="tileL" type="number" min="0" step="0.5" value="" inputmode="decimal" />
           </div>
           <div class="row">
             <label for="jointW">Largeur de joint (mm)</label>
-            <input id="jointW" type="number" min="0" step="0.1" value="3" inputmode="decimal" />
+            <input id="jointW" type="number" min="0" step="0.1" value="" inputmode="decimal" />
           </div>
           <div class="row">
             <label for="jointT">Profondeur de joint (mm)</label>
-            <input id="jointT" type="number" min="0" step="0.1" value="8" inputmode="decimal" />
+            <input id="jointT" type="number" min="0" step="0.1" value="" inputmode="decimal" />
           </div>
         </fieldset>
 
         <fieldset>
           <legend>Consommations</legend>
           <div class="row">
-            <label for="adhSingle">Colle simple (kg/m²)</label>
+            <label for="adhSingle">Simple encollage (kg/m²)</label>
             <input id="adhSingle" type="number" min="0" step="0.1" value="1.5" inputmode="decimal" />
           </div>
           <div class="row">
-            <label for="adhDouble">Colle double (kg/m²)</label>
+            <label for="adhDouble">Double encollage (kg/m²)</label>
             <input id="adhDouble" type="number" min="0" step="0.1" value="3.7" inputmode="decimal" />
           </div>
         </fieldset>
@@ -348,8 +348,8 @@ function compute(){
     ["Pertes auto", `${fmt(autoWastePct,1)} %`],
     ["Total à prévoir", nbTilesWithWaste],
     ["Surface pièce", `${fmt(area)} m²`],
-    ["Colle simple", `${fmt(glueSingle,1)} kg`],
-    ["Colle double", `${fmt(glueDouble,1)} kg`],
+    ["Consomation simple encollage", `${fmt(glueSingle,1)} kg`],
+    ["Consomation double encollage", `${fmt(glueDouble,1)} kg`],
     ["Joints", `${fmt(groutKg,1)} kg`]
   ];
 
