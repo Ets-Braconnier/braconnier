@@ -76,12 +76,14 @@
             <!-- ACTUALITÉS -->
             <article class="card actu-card">
               <div class="card-title">
-                Actualités ➜ <span style="font-weight:300;">Prix en ligne sur notre site</span>
+                Actualités ➜ <span style="font-weight:300;">Trimetal</span>
               </div>
 
 
-              <a href="actualite.jpg?v=1" target="_blank" class="thumb thumb-3x1">
-                <img src="actualite.jpg?v=1" alt="Actualités">
+              <a href="https://lh3.googleusercontent.com/d/1WuE4an9yUHjYh57yp17yYwtRF5qDIm6u" target="_blank"
+                rel="noopener" class="thumb thumb-3x1">
+                <img id="actuImg" src="https://lh3.googleusercontent.com/d/1WuE4an9yUHjYh57yp17yYwtRF5qDIm6u"
+                  alt="Actualités">
               </a>
 
             </article>
@@ -90,9 +92,15 @@
             <article class="card actu-card">
               <div class="card-title">Promotions</div>
 
-              <a href="promotion.jpg?v=1" target="_blank" class="thumb thumb-3x1">
-                <img src="promotion.jpg?v=1" alt="Promotions">
+              <a href="https://lh3.googleusercontent.com/d/1aEy88B180ebjq2_BYinaVGrp7axzGbrG" target="_blank"
+                rel="noopener" class="thumb thumb-3x1">
+
+                <img id="promoImg" src="https://lh3.googleusercontent.com/d/1aEy88B180ebjq2_BYinaVGrp7axzGbrG"
+                  alt="Promotions">
+
               </a>
+
+            </article>
 
             </article>
 
@@ -260,6 +268,32 @@
         );
       });
     }
+  </script>
+
+  <script>
+    (function () {
+      const img = document.getElementById("actuImg");
+      if (!img) return;
+
+      const base = img.src.split(/[?&]v=/)[0];
+      const cacheBuster = Math.floor(Date.now() / (5 * 60 * 1000)); // toutes les 5 min
+      const sep = base.includes("?") ? "&" : "?";
+
+      img.src = base + sep + "v=" + cacheBuster;
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const img = document.getElementById("promoImg");
+      if (!img) return;
+
+      const base = img.src.split(/[?&]v=/)[0];
+      const cacheBuster = Math.floor(Date.now() / (5 * 60 * 1000));
+      const sep = base.includes("?") ? "&" : "?";
+
+      img.src = base + sep + "v=" + cacheBuster;
+    })();
   </script>
 
 </body>
