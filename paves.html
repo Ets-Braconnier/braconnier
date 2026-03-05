@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Pavés | Ets Braconnier</title>
+  <meta name="description"
+    content="Pavés : chanfreiné, franc, tambouriné et éléments PMR. Accès rapide aux documents PDF." />
+  <meta name="robots" content="index,follow" />
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .products {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .section {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .section .label {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-weight: 700;
+      font-family: Verdana, Geneva, sans-serif;
+    }
+
+    .thumb-nav {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      padding: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .thumb-nav {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .thumb-nav {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .thumb-btn {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #ffffff;
+      min-height: 80px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-weight: 700;
+      font-size: 18px;
+      color: #333;
+
+      cursor: pointer;
+      transition: all .15s ease;
+    }
+
+    /* survol */
+    .thumb-btn:hover {
+      border-color: #c80000;
+      color: #c80000;
+      background: #fff;
+    }
+
+    /* actif */
+    .thumb-btn.active {
+      background: #fff;
+      border: 2px solid #c80000;
+      color: #c80000;
+    }
+
+    .pdf-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      padding: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .pdf-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .pdf-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .pdf-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      min-height: 110px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 14px;
+      text-align: center;
+      text-decoration: none;
+
+      color: var(--muted);
+      font-family: "Times New Roman", Times, serif;
+      font-style: italic;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 1.25;
+    }
+
+    .pdf-card:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+  </style>
+</head>
+
+<body class="page-paves">
+  <div class="page-scale">
+
+    <header>
+      <div class="wrap topbar">
+        <div class="brand">
+          <div class="logo">
+            <img id="logoMain" alt="Ets Braconnier" />
+            <small>Matériaux de construction – articles professionnels et de bricolage</small>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <div class="quicklinks">
+            <a href="/Avis/Avis1.php">Votre avis</a>
+            <a href="/rgpd.pdf">RGPD</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-layout">
+
+        <nav class="main-nav">
+          <button class="menu-toggle" aria-expanded="false">☰ Menu</button>
+
+          <ul class="menu">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="calculs.html">Calculs</a></li>
+            <li><a href="presentation.html">Présentation</a></li>
+            <li><a href="produits.html">Produits</a></li>
+            <li><a href="promotions.html">Promotions</a></li>
+            <li><a href="contact.html">Contacts</a></li>
+          </ul>
+        </nav>
+
+        <img id="heroImg" class="hero-img" alt="Magasin – Ets Braconnier" />
+
+        <iframe class="map"
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5145.2121350771895!2d5.25321!3d49.84985900000001!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47ea808d6bb9e87f%3A0xf00dd4deebbf1048!2sEts%20Braconnier!5e0!3m2!1sfr!2sbe!4v1770570919392!5m2!1sfr!2sbe"
+          loading="lazy" allowfullscreen>
+        </iframe>
+
+      </div>
+    </header>
+
+    <main>
+      <div class="wrap">
+        <section class="products">
+
+          <section class="headline">
+            <h1>Pavés</h1>
+          </section>
+
+          <!-- VIGNETTES -->
+          <section class="section">
+            <div class="label">Catégories</div>
+
+            <div class="thumb-nav">
+              <button class="thumb-btn active" type="button" data-tab="chanfreine">Chanfreiné</button>
+              <button class="thumb-btn" type="button" data-tab="franc">Franc</button>
+              <button class="thumb-btn" type="button" data-tab="tambourine">Tambouriné</button>
+              <button class="thumb-btn" type="button" data-tab="pmr">PMR</button>
+            </div>
+          </section>
+
+          <!-- PANELS -->
+          <section class="section">
+            <div class="label" id="tabTitle">Chanfreiné</div>
+
+            <!-- CHANFREINÉ -->
+            <div class="tab-panel active" id="tab-chanfreine">
+              <div class="pdf-grid">
+                <a class="pdf-card" href="https://drive.google.com/file/d/1vsLVGE457c5jthdRa_ILoZ7Q_JlnGIL3/preview" target="_blank" rel="noopener">Pavé chanfreiné 14,5 × 14,5 × 8 cm</a>
+                <a class="pdf-card" href="https://drive.google.com/file/d/1IgQMcVx24XH6gOWPGSohHHr-QNY4GL0r/preview" target="_blank" rel="noopener">Pavé chanfreiné 21,75 × 14,5 × 8 cm</a>
+                <a class="pdf-card" href="https://drive.google.com/file/d/1qKBo-ZX3XICiiGFxNBjAGGraMiCjs6l8/preview" target="_blank" rel="noopener">Pavé classique 22 × 11 × 6 (Ardenne)</a>
+                <a class="pdf-card" href="https://drive.google.com/file/d/1-js2aGqK2Je7XJ6KrfD1QgHr2bBc1E8U/preview" target="_blank" rel="noopener">Pavé classique 22 × 11 × 8 cm</a>
+                <a class="pdf-card" href="https://drive.google.com/file/d/1DAcwBJvlj7JN31_tCxGdYAhBbgZBsaPU/preview" target="_blank" rel="noopener">Pavé classique 22 × 11 × 10 cm</a>
+              </div>
+            </div>
+
+            <!-- FRANC -->
+            <div class="tab-panel" id="tab-franc">
+              <div class="pdf-grid">
+                <a class="pdf-card" href="https://drive.google.com/file/d/1yImJZFF3OsqQDXwEA6ghZGXaT_ZvrH5R/preview" target="_blank" rel="noopener">Pavé franc 7,25 × 14,5 × 10</a>
+                <a class="pdf-card" href="https://drive.google.com/file/d/1gGAxE0omoOkNM1P0H54e4eGSRde2THuL/preview" target="_blank" rel="noopener">Pavé franc 11 × 11 × 6 cm</a>
+                <a class="pdf-card" href="https://drive.google.com/file/d/1uznYwlez2R6PagkE-XK001ihp327Ww-2/preview" target="_blank" rel="noopener">Pavé franc 14,5 × 14,5 × 6 (Ardenne)</a>
+                <a class="pdf-card" href="https://drive.google.com/file/d/1rlGg6pg06oAclFLLkXVY_YAYdqcp9jY2/preview" target="_blank" rel="noopener">Pavé franc 14,5 × 14,5 × 8 (Luxembourg)</a>
+                <a class="pdf-card" href="https://drive.google.com/file/d/15SUvBod9NW2QnYBA82etoBfozNDwuG9j/preview" target="_blank" rel="noopener">Pavé franc 21,75 × 14,5 × 10 (Ardenne)</a>
+                <a class="pdf-card" href="https://drive.google.com/file/d/1EVZkGbMY-Nfzmcjv6FTaQ4gw0G8GHHr1/preview" target="_blank" rel="noopener">Pavé franc combi Semois</a>
+              </div>
+            </div>
+
+            <!-- TAMBOURINÉ -->
+            <div class="tab-panel" id="tab-tambourine">
+              <div class="pdf-grid">
+                <a class="pdf-card" href="https://drive.google.com/file/d/1B1Qk80orOXUOAmtnZ40Zp3bV4QEhIKg0/preview" target="_blank" rel="noopener">Pavé rustique 7,25 × 14,5 × 10</a>
+                <a class="pdf-card" href="https://drive.google.com/file/d/1HOqhst0SEK1062DGZ5OtOiiRYIzY-Qsn/preview" target="_blank" rel="noopener">Pavé rustique 11 × 11 × 6 (Luxembourg)</a>
+                <a class="pdf-card" href="https://drive.google.com/file/d/1lqG0BdXlvlin-6Q4d97Fvl-oEUxnyCdz/preview" target="_blank" rel="noopener">Pavé rustique 14,5 × 14,5 × 6 (Ardenne)</a>
+                <a class="pdf-card" href="https://drive.google.com/file/d/1DbNd3mQ8SvfNzxswHO-Oy39FMiLrmZ9f/preview" target="_blank" rel="noopener">Pavé rustique 14,5 × 14,5 × 10 (Tourbe)</a>
+                <a class="pdf-card" href="https://drive.google.com/file/d/1mXJVI7w-KFI0ipu_TGhMAMPXhGKOfIkp/preview" target="_blank" rel="noopener">Pavé rustique combi Condroz</a>
+                <a class="pdf-card" href="https://drive.google.com/file/d/1Jse8yvKO8CTDbxtoK_nyNC4FuE5xGkII/preview" target="_blank" rel="noopener">Pavé tambouriné 21,75 × 14,5 × 8 et 10
+                  cm</a>
+              </div>
+            </div>
+
+            <!-- PMR -->
+            <div class="tab-panel" id="tab-pmr">
+              <div class="pdf-grid">
+                <a class="pdf-card" href="https://drive.google.com/file/d/122sva4sZ9w_Vr3U2H9VrIB5kHuObwvQu/preview" target="_blank" rel="noopener">Bande de mobilité PMR — Type C</a>
+                <a class="pdf-card" href="https://drive.google.com/file/d/1QoxvxGxyiglYgk0F51z597SeQLWoEzwA/preview" target="_blank" rel="noopener">Bande de mobilité PMR — Type D</a>
+                <a class="pdf-card" href="https://drive.google.com/file/d/1d4R04gHPEZyfBjRgDKflYSec4yVH6zU4/preview" target="_blank" rel="noopener">Bande de mobilité PMR — Type E</a>
+                <a class="pdf-card" href="https://drive.google.com/file/d/16xkGTDqf6yqq2B41h8U100gf9XtO3S6M/preview" target="_blank" rel="noopener">Parking PMR — Type A</a>
+                <a class="pdf-card" href="https://drive.google.com/file/d/16x7r7_LCHl_qKJPHaptUiv_I-Z99LsaD/preview" target="_blank" rel="noopener">Parking PMR — Type B</a>
+                <a class="pdf-card" href="https://drive.google.com/file/d/1DfuA0iaJoxPJAhc275p7o_wldEO9L-Ht/preview" target="_blank" rel="noopener">Logo</a>
+              </div>
+            </div>
+
+          </section>
+
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <div class="footerbar"></div>
+      </div>
+    </footer>
+
+    <script>
+      const ASSETS = {
+        logoMain: "images-site/logo.jpg",
+        hero: "images-site/magasin.jpg"
+      };
+      document.getElementById("logoMain").src = ASSETS.logoMain;
+      document.getElementById("heroImg").src = ASSETS.hero;
+    </script>
+
+    <script>
+      // Menu mobile
+      const toggle = document.querySelector(".menu-toggle");
+      const menu = document.querySelector(".menu");
+      toggle.addEventListener("click", () => {
+        menu.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", menu.classList.contains("open") ? "true" : "false");
+      });
+
+      // Tabs
+      const btns = document.querySelectorAll(".thumb-btn[data-tab]");
+      const panels = document.querySelectorAll(".tab-panel");
+      const tabTitle = document.getElementById("tabTitle");
+
+      const TITLES = {
+        chanfreine: "Chanfreiné",
+        franc: "Franc",
+        tambourine: "Tambouriné",
+        pmr: "PMR"
+      };
+
+      btns.forEach(b => {
+        b.addEventListener("click", () => {
+          const key = b.dataset.tab;
+
+          btns.forEach(x => x.classList.toggle("active", x === b));
+          panels.forEach(p => p.classList.toggle("active", p.id === "tab-" + key));
+
+          tabTitle.textContent = TITLES[key] || "Pavés";
+        });
+      });
+    </script>
+
+  </div>
+</body>
+
+</html>

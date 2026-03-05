@@ -151,27 +151,34 @@
     <main>
       <div class="cat-grid">
 
-        <!-- PROMO 1 -->
-        <a class="promo-card" href="#">
-          <img src="images-site/page-promotions/promo-electricite.jpg" alt="Promo électricité">
+        <a class="promo-card" href="https://drive.google.com/file/d/1Mhj-5oAerw-lBeQU4Oxq4Hy-VYjcWRSx/view"
+          target="_blank">
+          <img id="promo1Img" src="https://lh3.googleusercontent.com/d/1Mhj-5oAerw-lBeQU4Oxq4Hy-VYjcWRSx"
+            alt="Promotion">
           <div class="promo-text">
-            -17% sur matériel électrique<br>
+            Promotion
           </div>
         </a>
 
-        <!-- PROMO 2 vide -->
-        <div class="promo-card promo-empty">
-          Promotion à venir
-        </div>
+        <a class="promo-card" href="https://drive.google.com/file/d/1pHbxdYyKQ24jh5HFfvW13ZXR0s5BBaYT/view"
+          target="_blank">
+          <img id="promo2Img" src="https://lh3.googleusercontent.com/d/1pHbxdYyKQ24jh5HFfvW13ZXR0s5BBaYT"
+            alt="Promotion">
+          <div class="promo-text">
+            Promotion
+          </div>
+        </a>
 
-        <!-- PROMO 3 vide -->
-        <div class="promo-card promo-empty">
-          Promotion à venir
-        </div>
+        <a class="promo-card" href="https://drive.google.com/file/d/1AgJ-bmFebr8W7Mb9tIuNkNxkSzpTiVZY/view"
+          target="_blank">
+          <img id="promo3Img" src="https://lh3.googleusercontent.com/d/1AgJ-bmFebr8W7Mb9tIuNkNxkSzpTiVZY"
+            alt="Promotion">
+          <div class="promo-text">
+            Promotion
+          </div>
+        </a>
 
       </div>
-
-      </section>
 
   </div>
   </main>
@@ -208,6 +215,41 @@
         );
       });
     }
+  </script>
+
+  <script>
+    (function refreshPromo(id) {
+      const img = document.getElementById(id);
+      if (!img) return;
+
+      const base = img.src.split(/[?&]v=/)[0];
+      const cacheBuster = Math.floor(Date.now() / (5 * 60 * 1000));
+      const sep = base.includes("?") ? "&" : "?";
+
+      img.src = base + sep + "v=" + cacheBuster;
+    })("promo1Img");
+
+    (function refreshPromo(id) {
+      const img = document.getElementById(id);
+      if (!img) return;
+
+      const base = img.src.split(/[?&]v=/)[0];
+      const cacheBuster = Math.floor(Date.now() / (5 * 60 * 1000));
+      const sep = base.includes("?") ? "&" : "?";
+
+      img.src = base + sep + "v=" + cacheBuster;
+    })("promo2Img");
+
+    (function refreshPromo(id) {
+      const img = document.getElementById(id);
+      if (!img) return;
+
+      const base = img.src.split(/[?&]v=/)[0];
+      const cacheBuster = Math.floor(Date.now() / (5 * 60 * 1000));
+      const sep = base.includes("?") ? "&" : "?";
+
+      img.src = base + sep + "v=" + cacheBuster;
+    })("promo3Img");
   </script>
 
 </body>

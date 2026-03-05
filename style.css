@@ -1400,7 +1400,8 @@ body {
 
 .page-platres .iframe-full,
 .page-peintures .iframe-full,
-.page-robinetterie .iframe-full {
+.page-robinetterie .iframe-full,
+.page-seuils .iframe-full {
   width: 100%;
   max-width: 100%;
   margin: 0;
@@ -1410,7 +1411,8 @@ body {
 
 .page-platres .iframe-full iframe,
 .page-peintures .iframe-full iframe,
-.page-robinetterie .iframe-full iframe {
+.page-robinetterie .iframe-full iframe,
+.page-seuils .iframe-full iframe {
   width: 75%;
   transform: scale(1.333333);
   transform-origin: top left;
