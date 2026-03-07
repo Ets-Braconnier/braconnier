@@ -410,6 +410,7 @@ footer {
   object-fit: cover;
   display: block;
 }
+
 .actu-card .thumb img {
   object-fit: contain;
   background: #fff;
@@ -1352,14 +1353,12 @@ body {
     /* au lieu de 5px 60px */
   }
 
-  /* aligne le ● et le texte comme 2 éléments */
   .main-nav a {
     display: flex;
     align-items: center;
     gap: 10px;
   }
 
-  /* le ● n’a plus besoin de margin-right */
   .main-nav a::before {
     margin-right: 0;
     transform: none;
@@ -1482,4 +1481,24 @@ body {
   transform-origin: top left;
   border: 0;
   display: block;
+}
+
+.granulat-choice {
+  text-align: center;
+  padding: 25px 10px 20px 10px;
+}
+
+.granulat-choice p {
+  font-family: Verdana, Geneva, sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 18px;
+}
+
+.granulat-choice img {
+  display: block;
+  margin: 25px auto 0 auto;
+  max-width: 350px;
+  width: 100%;
+  height: auto;
 }
