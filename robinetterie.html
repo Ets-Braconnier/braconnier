@@ -18,109 +18,107 @@
 
   <div class="page-scale">
 
-```
-<!-- HEADER -->
-<header>
+    ```
+    <!-- HEADER -->
+    <header>
 
-  <div class="wrap topbar">
+      <div class="wrap topbar">
 
-    <div class="brand">
-      <div class="logo">
-        <img id="logoMain" alt="Ets Braconnier">
-        <small>Matériaux de construction – articles professionnels et de bricolage</small>
+        <div class="brand">
+          <div class="logo">
+            <img id="logoMain" alt="Ets Braconnier">
+            <small>Matériaux de construction – articles professionnels et de bricolage</small>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <div class="quicklinks">
+            <a href="avis.html">Votre avis</a>
+            <a href="rgpd.pdf">RGPD</a>
+          </div>
+        </div>
+
       </div>
-    </div>
 
-    <div class="header-right">
-      <div class="quicklinks">
-        <a href="/Avis/Avis1.php">Votre avis</a>
-        <a href="/rgpd.pdf">RGPD</a>
+
+      <div class="hero-layout">
+
+        <!-- MENU -->
+        <nav class="main-nav">
+
+          <button class="menu-toggle">☰ Menu</button>
+
+          <ul class="menu">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="calculs.html">Calculs</a></li>
+            <li><a href="presentation.html">Présentation</a></li>
+            <li><a href="produits.html">Produits</a></li>
+            <li><a href="promotions.html">Promotions</a></li>
+            <li><a href="contact.html">Contacts</a></li>
+          </ul>
+
+        </nav>
+
+
+        <!-- HERO -->
+        <img id="heroImg" class="hero-img" alt="Magasin – Ets Braconnier">
+
+
+        <!-- MAP -->
+        <iframe class="map"
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5145.2121350771895!2d5.25321!3d49.84985900000001!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47ea808d6bb9e87f%3A0xf00dd4deebbf1048!2sEts%20Braconnier!5e0!3m2!1sfr!2sbe!4v1770570919392!5m2!1sfr!2sbe"
+          loading="lazy">
+        </iframe>
+
       </div>
-    </div>
 
-  </div>
-
-
-  <div class="hero-layout">
-
-    <!-- MENU -->
-    <nav class="main-nav">
-
-      <button class="menu-toggle">☰ Menu</button>
-
-      <ul class="menu">
-        <li><a href="index.html">Accueil</a></li>
-        <li><a href="calculs.html">Calculs</a></li>
-        <li><a href="presentation.html">Présentation</a></li>
-        <li><a href="produits.html">Produits</a></li>
-        <li><a href="promotions.html">Promotions</a></li>
-        <li><a href="contact.html">Contacts</a></li>
-      </ul>
-
-    </nav>
+    </header>
 
 
-    <!-- HERO -->
-    <img id="heroImg" class="hero-img" alt="Magasin – Ets Braconnier">
+    <!-- MAIN -->
+    <main>
+
+      <div class="wrap">
+        <section class="headline">
+          <h1></h1>
+        </section>
+      </div>
 
 
-    <!-- MAP -->
-    <iframe class="map"
-      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5145.2121350771895!2d5.25321!3d49.84985900000001!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47ea808d6bb9e87f%3A0xf00dd4deebbf1048!2sEts%20Braconnier!5e0!3m2!1sfr!2sbe!4v1770570919392!5m2!1sfr!2sbe"
-      loading="lazy">
-    </iframe>
+      <div class="iframe-full">
 
-  </div>
+        <iframe id="robinetterieFrame" src="https://ets-braconnier.github.io/robinetterie/"
+          style="border:none; display:block; min-height:3000px;" scrolling="no">
+        </iframe>
 
-</header>
+      </div>
 
 
-<!-- MAIN -->
-<main>
+      <script>
+        window.addEventListener("message", function (e) {
 
-  <div class="wrap">
-    <section class="headline">
-      <h1></h1>
-    </section>
-  </div>
+          if (e.origin !== "https://ets-braconnier.github.io") return;
 
+          if (e.data && e.data.type === "resize" && e.data.height) {
 
-  <div class="iframe-full">
+            document.getElementById("robinetterieFrame").style.height =
+              e.data.height + "px";
 
-    <iframe id="robinetterieFrame"
-      src="https://ets-braconnier.github.io/robinetterie/"
-      style="border:none; display:block; min-height:3000px;"
-      scrolling="no">
-    </iframe>
+          }
 
-  </div>
+        });
+      </script>
+
+    </main>
 
 
-  <script>
-    window.addEventListener("message", function (e) {
-
-      if (e.origin !== "https://ets-braconnier.github.io") return;
-
-      if (e.data && e.data.type === "resize" && e.data.height) {
-
-        document.getElementById("robinetterieFrame").style.height =
-          e.data.height + "px";
-
-      }
-
-    });
-  </script>
-
-</main>
-
-
-<!-- FOOTER -->
-<footer>
-  <div class="wrap">
-    <div class="footerbar"></div>
-  </div>
-</footer>
-```
+    <!-- FOOTER -->
+    <footer>
+      <div class="wrap">
+        <div class="footerbar"></div>
+      </div>
+    </footer>
+    ```
 
   </div>
 

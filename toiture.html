@@ -6,14 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Toiture | Ets Braconnier</title>
-  <meta name="description"
-    content="Toiture : Velux, tôles et EPDM. Accès rapide aux documents et fiches en PDF." />
+  <meta name="description" content="Toiture : Velux, tôles et EPDM. Accès rapide aux documents et fiches en PDF." />
   <meta name="robots" content="index,follow" />
 
   <link rel="stylesheet" href="style.css">
 
   <style>
-    .products { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+    .products {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-width: 0;
+    }
 
     .section {
       border: 1px solid var(--line);
@@ -37,8 +41,17 @@
       padding: 14px;
     }
 
-    @media (max-width: 900px) { .cat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-    @media (max-width: 560px) { .cat-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 900px) {
+      .cat-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .cat-grid {
+        grid-template-columns: 1fr;
+      }
+    }
 
     .cat-card {
       border: 1px solid var(--line);
@@ -52,7 +65,7 @@
     }
 
     .cat-card:hover {
-      box-shadow: 0 6px 20px rgba(0,0,0,.08);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .08);
       text-decoration: none;
     }
 
@@ -67,7 +80,9 @@
       transition: transform .18s ease;
     }
 
-    .cat-card:hover img { transform: scale(1.03); }
+    .cat-card:hover img {
+      transform: scale(1.03);
+    }
 
     .cat-card .title {
       padding: 10px 12px;
@@ -96,8 +111,8 @@
 
         <div class="header-right">
           <div class="quicklinks" aria-label="Liens rapides">
-            <a href="/Avis/Avis1.php">Votre avis</a>
-            <a href="/rgpd.pdf">RGPD</a>
+            <a href="avis.html">Votre avis</a>
+            <a href="rgpd.pdf">RGPD</a>
           </div>
         </div>
       </div>
@@ -140,7 +155,8 @@
 
             <div class="cat-grid">
 
-              <a class="cat-card" href="https://drive.google.com/file/d/1D9f0Y5pY4yMm6e6L4ixOzEI_U4nCFhJH/preview" target="_blank" rel="noopener">
+              <a class="cat-card" href="https://drive.google.com/file/d/1D9f0Y5pY4yMm6e6L4ixOzEI_U4nCFhJH/preview"
+                target="_blank" rel="noopener">
                 <img src="images-site/page-toiture/velux.png" alt="Velux">
                 <div class="title">Velux</div>
               </a>
@@ -150,7 +166,8 @@
                 <div class="title">Tôles</div>
               </a>
 
-              <a class="cat-card" href="https://drive.google.com/file/d/1x_DsL89GlYwf5tC-dyEzk4tfgTKahDzC/preview" target="_blank" rel="noopener">
+              <a class="cat-card" href="https://drive.google.com/file/d/1x_DsL89GlYwf5tC-dyEzk4tfgTKahDzC/preview"
+                target="_blank" rel="noopener">
                 <img src="images-site/page-toiture/epdm.png" alt="EPDM">
                 <div class="title">EPDM</div>
               </a>
