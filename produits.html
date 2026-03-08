@@ -350,71 +350,8 @@
               }
             </script>
 
-            <script>
-              const pages = [
-                { title: "Gros œuvre", url: "gros-oeuvre.html", keywords: "gros oeuvre maconnerie beton blocs ciment" },
-                { title: "Toitures", url: "toiture.html", keywords: "toiture toitures tuiles couverture" },
-                { title: "Aménagements", url: "amenagement-exterieur.html", keywords: "amenagement amenagements exterieur terrasse jardin paves bordures" },
-                { title: "Sols", url: "sols.html", keywords: "sol sols carrelage parquet revetement" },
-                { title: "Murs", url: "murs-interieurs.html", keywords: "mur murs interieurs plaques cloisons" },
-                { title: "Portes", url: "portes.html", keywords: "porte portes interieur" },
-                { title: "Électricité", url: "electricite.html", keywords: "electricite electricité cable cables prises" },
-                { title: "Sanitaire", url: "sanitaire.html", keywords: "sanitaire douche wc lavabo plomberie" },
-                { title: "Isolation", url: "isolation.html", keywords: "isolation laine roche laine verre panneaux" },
-                { title: "Peintures", url: "peintures.html", keywords: "peinture peintures murs plafonds" },
-                { title: "Bois", url: "bois.html", keywords: "bois planches panneaux charpente" },
-                { title: "Produits cimentaires", url: "produits-cimentaires.html", keywords: "produits cimentaires ciment mortier beton" },
-                { title: "Tapis de pierre", url: "tapis-de-pierre.html", keywords: "tapis pierre resine gravier deco" }
-              ];
-
-              function searchSite() {
-                const input = document.getElementById("searchInput");
-                const results = document.getElementById("searchResults");
-
-                if (!input || !results) return;
-
-                const query = input.value.trim().toLowerCase();
-                results.style.display = "block";
-
-                if (query.length < 2) {
-                  results.style.display = "none";
-                  results.innerHTML = "";
-                  return;
-                }
-
-                const matches = pages.filter(page =>
-                  page.title.toLowerCase().includes(query) ||
-                  page.keywords.toLowerCase().includes(query)
-                );
-
-                if (matches.length === 0) {
-                  results.innerHTML = '<div class="search-empty">Aucun résultat trouvé.</div>';
-                  return;
-                }
-
-                results.innerHTML = `
-      <div class="search-results-list">
-        ${matches.map(page => `
-          <a class="search-result-item" href="${page.url}">${page.title}</a>
-        `).join("")}
-      </div>
-    `;
-              }
-
-              document.addEventListener("DOMContentLoaded", () => {
-                const input = document.getElementById("searchInput");
-                if (!input) return;
-
-                input.addEventListener("keyup", searchSite);
-
-                input.addEventListener("keydown", (e) => {
-                  if (e.key === "Enter") {
-                    e.preventDefault();
-                    searchSite();
-                  }
-                });
-              });
-            </script>
+            <script src="search-index.js"></script>
+            <script src="search.js"></script>
 
 </body>
 

@@ -1542,3 +1542,11 @@ body {
   color: var(--muted);
   font-family: Verdana, Geneva, sans-serif;
 }
+
+.search-card .search-group {
+  margin-bottom: 6px;
+  font-size: 12px;
+  color: #777;
+  font-weight: 400;
+  display: block;
+}
