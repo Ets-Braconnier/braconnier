@@ -635,4 +635,70 @@ window.SEARCH_INDEX = [
 { title: "Seuil 150 cm", url: "seuils.html", category: "Seuils", keywords: "seuil 150 cm longueur seuil 150cm" },
 { title: "Seuil 180 cm", url: "seuils.html", category: "Seuils", keywords: "seuil 180 cm longueur seuil 180cm" },
 
+// SIGA
+{ title: "Produits SIGA", url: "siga.html", category: "Page", keywords: "siga etancheite étanchéité air frein vapeur membrane ruban collage raccord fenetre fenêtre toiture facade façade isolation" },
+
+{ title: "Fentrim 2 50-85 A", url: "siga.html", category: "SIGA", keywords: "siga fentrim 2 50-85 a fentrim fenetre fenêtre raccord etancheite étanchéité" },
+{ title: "Fentrim 2 100mm A", url: "siga.html", category: "SIGA", keywords: "siga fentrim 2 100mm a fentrim fenetre fenêtre raccord etancheite étanchéité" },
+{ title: "Fentrim 2 150mm A", url: "siga.html", category: "SIGA", keywords: "siga fentrim 2 150mm a fentrim fenetre fenêtre raccord etancheite étanchéité" },
+{ title: "Fentrim 2 200mm A", url: "siga.html", category: "SIGA", keywords: "siga fentrim 2 200mm a fentrim fenetre fenêtre raccord etancheite étanchéité" },
+
+{ title: "Fentrim 20 150mm A", url: "siga.html", category: "SIGA", keywords: "siga fentrim 20 150mm a fentrim fenetre fenêtre raccord etancheite étanchéité" },
+{ title: "Fentrim 20 200mm A", url: "siga.html", category: "SIGA", keywords: "siga fentrim 20 200mm a fentrim fenetre fenêtre raccord etancheite étanchéité" },
+
+{ title: "Fentrim 330 Grey 150mm", url: "siga.html", category: "SIGA", keywords: "siga fentrim 330 grey 150mm fentrim gris grey fenetre fenêtre raccord etancheite étanchéité" },
+{ title: "Fentrim 330 Grey 200mm", url: "siga.html", category: "SIGA", keywords: "siga fentrim 330 grey 200mm fentrim gris grey fenetre fenêtre raccord etancheite étanchéité" },
+{ title: "Fentrim 330 Grey 300mm", url: "siga.html", category: "SIGA", keywords: "siga fentrim 330 grey 300mm fentrim gris grey fenetre fenêtre raccord etancheite étanchéité" },
+
+{ title: "Fentrim IS 2 75mm A", url: "siga.html", category: "SIGA", keywords: "siga fentrim is 2 75mm a fentrim is fenetre fenêtre raccord interieur intérieur etancheite étanchéité" },
+{ title: "Fentrim IS 2 100mm A", url: "siga.html", category: "SIGA", keywords: "siga fentrim is 2 100mm a fentrim is fenetre fenêtre raccord interieur intérieur etancheite étanchéité" },
+{ title: "Fentrim IS 2 150mm A", url: "siga.html", category: "SIGA", keywords: "siga fentrim is 2 150mm a fentrim is fenetre fenêtre raccord interieur intérieur etancheite étanchéité" },
+{ title: "Fentrim IS 2 200mm A", url: "siga.html", category: "SIGA", keywords: "siga fentrim is 2 200mm a fentrim is fenetre fenêtre raccord interieur intérieur etancheite étanchéité" },
+{ title: "Fentrim IS 2 250mm A", url: "siga.html", category: "SIGA", keywords: "siga fentrim is 2 250mm a fentrim is fenetre fenêtre raccord interieur intérieur etancheite étanchéité" },
+
+{ title: "Fentrim IS 20 100mm A", url: "siga.html", category: "SIGA", keywords: "siga fentrim is 20 100mm a fentrim is fenetre fenêtre raccord interieur intérieur etancheite étanchéité" },
+{ title: "Fentrim IS 20 200mm A", url: "siga.html", category: "SIGA", keywords: "siga fentrim is 20 200mm a fentrim is fenetre fenêtre raccord interieur intérieur etancheite étanchéité" },
+{ title: "Fentrim IS 20 250mm A", url: "siga.html", category: "SIGA", keywords: "siga fentrim is 20 250mm a fentrim is fenetre fenêtre raccord interieur intérieur etancheite étanchéité" },
+{ title: "Fentrim IS 20 300mm A", url: "siga.html", category: "SIGA", keywords: "siga fentrim is 20 300mm a fentrim is fenetre fenêtre raccord interieur intérieur etancheite étanchéité" },
+
+{ title: "Rissan 60 B", url: "siga.html", category: "SIGA", keywords: "siga rissan 60 b rissan ruban raccord etancheite étanchéité frein vapeur membrane" },
+{ title: "Rissan 100 B", url: "siga.html", category: "SIGA", keywords: "siga rissan 100 b rissan ruban raccord etancheite étanchéité frein vapeur membrane" },
+{ title: "Rissan 150 B", url: "siga.html", category: "SIGA", keywords: "siga rissan 150 b rissan ruban raccord etancheite étanchéité frein vapeur membrane" },
+
+{ title: "Rissan 430 Grey 150mm", url: "siga.html", category: "SIGA", keywords: "siga rissan 430 grey 150mm rissan gris grey ruban raccord etancheite étanchéité" },
+{ title: "Rissan 430 Grey 230mm", url: "siga.html", category: "SIGA", keywords: "siga rissan 430 grey 230mm rissan gris grey ruban raccord etancheite étanchéité" },
+
+{ title: "Sicrall 60 B", url: "siga.html", category: "SIGA", keywords: "siga sicrall 60 b sicrall ruban collage raccord etancheite étanchéité membrane" },
+{ title: "Sicrall 170 A", url: "siga.html", category: "SIGA", keywords: "siga sicrall 170 a sicrall ruban collage raccord etancheite étanchéité membrane" },
+
+{ title: "Wigluv 60", url: "siga.html", category: "SIGA", keywords: "siga wigluv 60 wigluv ruban exterieur extérieur toiture facade façade etancheite étanchéité" },
+{ title: "Wigluv 100", url: "siga.html", category: "SIGA", keywords: "siga wigluv 100 wigluv ruban exterieur extérieur toiture facade façade etancheite étanchéité" },
+{ title: "Wigluv 150", url: "siga.html", category: "SIGA", keywords: "siga wigluv 150 wigluv ruban exterieur extérieur toiture facade façade etancheite étanchéité" },
+{ title: "Wigluv 300", url: "siga.html", category: "SIGA", keywords: "siga wigluv 300 wigluv ruban exterieur extérieur toiture facade façade etancheite étanchéité" },
+
+{ title: "Wigluv Black 60", url: "siga.html", category: "SIGA", keywords: "siga wigluv black 60 wigluv noir black ruban exterieur extérieur etancheite étanchéité" },
+{ title: "Wigluv Black 20-40", url: "siga.html", category: "SIGA", keywords: "siga wigluv black 20-40 wigluv noir black ruban exterieur extérieur etancheite étanchéité" },
+
+{ title: "Twinet 20 A", url: "siga.html", category: "SIGA", keywords: "siga twinet 20 a twinet adhésif ruban raccord etancheite étanchéité" },
+{ title: "Twinet 40 A", url: "siga.html", category: "SIGA", keywords: "siga twinet 40 a twinet adhésif ruban raccord etancheite étanchéité" },
+
+{ title: "Corvum 12-48 A", url: "siga.html", category: "SIGA", keywords: "siga corvum 12-48 a corvum angle raccord etancheite étanchéité fenetre fenêtre" },
+{ title: "Corvum 30-30 A", url: "siga.html", category: "SIGA", keywords: "siga corvum 30-30 a corvum angle raccord etancheite étanchéité fenetre fenêtre" },
+
+// Lambris
+{ title: "Lambris", url: "lambris.html", category: "Page", keywords: "lambris lambris bois lambris pvc lambris mural lambris plafond revetement mural decoration interieur plafond bois pvc" },
+
+{ title: "Lambris bois", url: "lambris.html", category: "Lambris", keywords: "lambris bois lambris pin sapin mural plafond revetement bois interieur" },
+
+{ title: "Lambris PVC", url: "lambris.html", category: "Lambris", keywords: "lambris pvc lambris plastique mural plafond salle de bain cuisine revetement pvc" },
+
+{ title: "Lambris blanc", url: "lambris.html", category: "Lambris", keywords: "lambris blanc lambris pvc blanc plafond mural decoration interieur" },
+
+{ title: "Lambris décoratif", url: "lambris.html", category: "Lambris", keywords: "lambris decoratif decoration mur plafond lambris interieur panneau decoratif" },
+
+{ title: "Lambris plafond", url: "lambris.html", category: "Lambris", keywords: "lambris plafond lambris bois plafond lambris pvc plafond revetement plafond" },
+
+{ title: "Lambris mural", url: "lambris.html", category: "Lambris", keywords: "lambris mural revetement mur bois pvc decoration mur interieur" },
+
 ];
+
