@@ -1104,12 +1104,6 @@ body {
   }
 }
 
-/* ======================================================
-   PATCH CONTACT : 
-   - "Envoyer un message" en dessous sur toute la largeur
-   - Contacts directs garde sa place (colonne droite) et prend la hauteur des 2 cartes à gauche
-   - enlever le rouge dans les textes (zone contact uniquement)
-====================================================== */
 
 /* 1) Placement : on positionne les 4 cartes dans la grille sans toucher au HTML */
 .page-contact .c26-grid {
@@ -1380,27 +1374,9 @@ body {
   display: block;
 }
 
-.page-platres .iframe-full {
-  width: 100%;
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+/* ===== IFRAME PRODUITS : version unique PC + mobile ===== */
 
-}
-
-.page-platres .iframe-full iframe {
-  width: 75%;
-  transform: scale(1.333333);
-  transform-origin: top left;
-  border: 0;
-  display: block;
-}
-
-.page-platres .iframe-full,
-.page-peintures .iframe-full,
-.page-robinetterie .iframe-full,
-.page-seuils .iframe-full {
+.iframe-full {
   width: 100%;
   max-width: 100%;
   margin: 0;
@@ -1408,10 +1384,7 @@ body {
   overflow: hidden;
 }
 
-.page-platres .iframe-full iframe,
-.page-peintures .iframe-full iframe,
-.page-robinetterie .iframe-full iframe,
-.page-seuils .iframe-full iframe {
+.iframe-full iframe {
   width: 75%;
   transform: scale(1.333333);
   transform-origin: top left;
@@ -1419,68 +1392,12 @@ body {
   display: block;
 }
 
-.page-raccords-plomberie .iframe-full {
-  width: 100%;
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-.page-raccords-plomberie .iframe-full iframe {
-  width: 75%;
-  transform: scale(1.333333);
-  transform-origin: top left;
-  border: 0;
-  display: block;
-}
-
-.page-parquets .iframe-full {
-  width: 100%;
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-.page-parquets .iframe-full iframe {
-  width: 75%;
-  transform: scale(1.333333);
-  transform-origin: top left;
-  border: 0;
-  display: block;
-}
-
-.page-produits-cimentaires .iframe-full {
-  width: 100%;
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-.page-produits-cimentaires .iframe-full iframe {
-  width: 75%;
-  transform: scale(1.333333);
-  transform-origin: top left;
-  border: 0;
-  display: block;
-}
-
-.page-bois .iframe-full {
-  width: 100%;
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-.page-bois .iframe-full iframe {
-  width: 75%;
-  transform: scale(1.333333);
-  transform-origin: top left;
-  border: 0;
-  display: block;
+/* mobile : pas de zoom, sinon hauteur coupée */
+@media (max-width: 900px) {
+  .iframe-full iframe {
+    width: 100%;
+    transform: none;
+  }
 }
 
 .granulat-choice {
