@@ -1467,3 +1467,8 @@ body {
   font-weight: 400;
   display: block;
 }
+
+.page-lambris .iframe-full iframe {
+  width: 100%;
+  transform: none;
+}
