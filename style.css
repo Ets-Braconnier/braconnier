@@ -1478,3 +1478,9 @@ body {
   width: 100%;
   transform: none;
 }
+
+/* ===== SIGA : pas de zoom iframe ===== */
+.page-siga .iframe-full iframe {
+  width: 100%;
+  transform: none;
+}
