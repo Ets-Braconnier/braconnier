@@ -1484,3 +1484,21 @@ body {
   width: 100%;
   transform: none;
 }
+
+.fb-link img{
+  width:18px;
+  height:18px;
+  margin-left:8px;
+  vertical-align:middle;
+  transition: transform 0.2s ease;
+}
+
+.fb-link img:hover{
+  transform: scale(1.15);
+}
+
+.actu-title{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
