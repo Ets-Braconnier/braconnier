@@ -140,124 +140,174 @@
 
                 <div class="c26-team">
 
-                  <a class="c26-person" href="mailto:info@braconnier.be">
-                    <div class="name">Boîte générale</div>
-                    <div class="meta">info@braconnier.be</div>
-                    <div class="role">Général</div>
-                  </a>
+                  <div class="c26-team">
 
-                  <a class="c26-person" href="mailto:isabelle@braconnier.be">
-                    <div class="name">Isabelle GERARD</div>
-                    <div class="meta">isabelle@braconnier.be · +32 (0)61 41 15 04</div>
-                    <div class="role">Décoration · Sanitaire · Portes · Parquets · Peintures</div>
-                  </a>
-                  
-                  <a class="c26-person" href="mailto:sebastien@braconnier.be">
-                    <div class="name">Sébastien NICOLAS</div>
-                    <div class="meta">sebastien@braconnier.be · 0499 92 20 91</div>
-                    <div class="role">Matériaux en général</div>
-                  </a>
+                    <div class="c26-person">
+                      <div class="name">Angélique Braconnier</div>
 
-                  <a class="c26-person" href="mailto:yannick@braconnier.be">
-                    <div class="name">Yannick MARY</div>
-                    <div class="meta">yannick@braconnier.be · 0499 92 20 94</div>
-                    <div class="role">Magasinier &amp; chauffeur</div>
-                  </a>
+                      <div class="meta-line">
+                        <span class="ico">✉</span>
+                        <a href="mailto:compta@braconnier.be">compta@braconnier.be</a>
+                      </div>
 
-                  <div class="c26-person no-link">
-                    <div class="name">Bruno LAMBERT</div>
-                    <div class="meta">0497 471 944</div>
-                    <div class="role">Magasinier</div>
+                      <div class="role">Service Comptabilité</div>
+                    </div>
+
+                    <div class="c26-person">
+                      <div class="name">Isabelle GERARD</div>
+
+                      <div class="meta-line">
+                        <span class="ico">✉</span>
+                        <a href="mailto:isabelle@braconnier.be">isabelle@braconnier.be</a>
+                      </div>
+
+                      <div class="meta-line">
+                        <span class="ico">☎</span>
+                        <a href="tel:+3261411504">+32 (0)61 41 15 04</a>
+                      </div>
+
+                      <div class="role">
+                        Décoration · Sanitaire · Portes · Parquets · Peintures · Devis
+                      </div>
+                    </div>
+
+                    <div class="c26-person">
+                      <div class="name">Sébastien NICOLAS</div>
+
+                      <div class="meta-line">
+                        <span class="ico">✉</span>
+                        <a href="mailto:sebastien@braconnier.be">sebastien@braconnier.be</a>
+                      </div>
+
+                      <div class="meta-line">
+                        <span class="ico">☎</span>
+                        <a href="tel:+32499922091">0499 92 20 91</a>
+                      </div>
+
+                      <div class="role">
+                        Matériaux de construction · Électricité · Plomberie · Marchés publics · Devis
+                      </div>
+                    </div>
+
+                    <div class="c26-person">
+                      <div class="name">Yannick MARY</div>
+
+                      <div class="meta-line">
+                        <span class="ico">✉</span>
+                        <a href="mailto:yannick@braconnier.be">yannick@braconnier.be</a>
+                      </div>
+
+                      <div class="meta-line">
+                        <span class="ico">☎</span>
+                        <a href="tel:+32499922094">0499 92 20 94</a>
+                      </div>
+
+                      <div class="role">Magasinier & chauffeur</div>
+                    </div>
+
+                    <div class="c26-person">
+                      <div class="name">Bruno LAMBERT</div>
+
+                      <div class="meta-line">
+                        <span class="ico">☎</span>
+                        <a href="tel:+32497471944">0497 471 944</a>
+                      </div>
+
+                      <div class="role">Magasinier</div>
+                    </div>
+
                   </div>
 
                 </div>
-              </article>
-
-              <article class="c26-card">
-                <div class="c26-card-h">
-                  <h2>Envoyer un message</h2>
-                  <span class="c26-sub"></span>
-                </div>
-
-                <form class="c26-form" onsubmit="return sendContactMail(event)">
-                  <div class="row2">
-                    <label>
-                      <span>Nom</span>
-                      <input type="text" name="nom" autocomplete="name" required>
-                    </label>
-                    <label>
-                      <span>Téléphone</span>
-                      <input type="tel" name="tel" autocomplete="tel" required>
-                    </label>
-                  </div>
-
-                  <label>
-                    <span>E-mail</span>
-                    <input type="email" name="email" autocomplete="email" required>
-                  </label>
-
-                  <label>
-                    <span>Sujet</span>
-                    <input type="text" name="sujet" required>
-                  </label>
-
-                  <label>
-                    <span>Message</span>
-                    <textarea name="message" rows="6" required></textarea>
-                  </label>
-
-                  <div class="c26-form-actions">
-                    <button type="submit" class="c26-btn primary">Envoyer l’e-mail</button>
-                  </div>
-                </form>
-              </article>
 
             </div>
+            </article>
+
+            <article class="c26-card">
+              <div class="c26-card-h">
+                <h2>Envoyer un message</h2>
+                <span class="c26-sub"></span>
+              </div>
+
+              <form class="c26-form" onsubmit="return sendContactMail(event)">
+                <div class="row2">
+                  <label>
+                    <span>Nom</span>
+                    <input type="text" name="nom" autocomplete="name" required>
+                  </label>
+                  <label>
+                    <span>Téléphone</span>
+                    <input type="tel" name="tel" autocomplete="tel" required>
+                  </label>
+                </div>
+
+                <label>
+                  <span>E-mail</span>
+                  <input type="email" name="email" autocomplete="email" required>
+                </label>
+
+                <label>
+                  <span>Sujet</span>
+                  <input type="text" name="sujet" required>
+                </label>
+
+                <label>
+                  <span>Message</span>
+                  <textarea name="message" rows="6" required></textarea>
+                </label>
+
+                <div class="c26-form-actions">
+                  <button type="submit" class="c26-btn primary">Envoyer l’e-mail</button>
+                </div>
+              </form>
+            </article>
+
           </div>
-
-        </section>
       </div>
-    </main>
+
+      </section>
+  </div>
+  </main>
 
 
 
-    <footer>
-      <div class="wrap">
-        <div class="footerbar" aria-hidden="true"></div>
-      </div>
-    </footer>
+  <footer>
+    <div class="wrap">
+      <div class="footerbar" aria-hidden="true"></div>
+    </div>
+  </footer>
 
-    <script>
-      const ASSETS = {
-        logoMain: "images-site/logo.jpg",
-        hero: "images-site/magasin.jpg"
-      };
+  <script>
+    const ASSETS = {
+      logoMain: "images-site/logo.jpg",
+      hero: "images-site/magasin.jpg"
+    };
 
-      document.getElementById("logoMain").src = ASSETS.logoMain;
-      document.getElementById("heroImg").src = ASSETS.hero;
-    </script>
+    document.getElementById("logoMain").src = ASSETS.logoMain;
+    document.getElementById("heroImg").src = ASSETS.hero;
+  </script>
 
-    <script>
-      function sendContactMail(e) {
-        e.preventDefault();
+  <script>
+    function sendContactMail(e) {
+      e.preventDefault();
 
-        const f = e.target;
+      const f = e.target;
 
-        const subject = encodeURIComponent((f.sujet.value || "Contact") + " – Braconnier");
+      const subject = encodeURIComponent((f.sujet.value || "Contact") + " – Braconnier");
 
-        const body = encodeURIComponent(
-          "Nom : " + f.nom.value + "\n" +
-          "Téléphone : " + f.tel.value + "\n" +
-          "Email : " + f.email.value + "\n\n" +
-          "Message :\n" + f.message.value
-        );
+      const body = encodeURIComponent(
+        "Nom : " + f.nom.value + "\n" +
+        "Téléphone : " + f.tel.value + "\n" +
+        "Email : " + f.email.value + "\n\n" +
+        "Message :\n" + f.message.value
+      );
 
-        window.location.href =
-          "mailto:info@braconnier.be?subject=" + subject + "&body=" + body;
+      window.location.href =
+        "mailto:info@braconnier.be?subject=" + subject + "&body=" + body;
 
-        return false;
-      }
-    </script>
+      return false;
+    }
+  </script>
   </div>
 
   <script>

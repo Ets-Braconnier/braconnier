@@ -1502,3 +1502,19 @@ body {
   align-items:center;
   gap:8px;
 }
+
+.meta-line{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:14px;
+  color:#666;
+  margin-top:2px;
+}
+
+.meta-line .ico{
+  width:16px;
+  text-align:center;
+  font-size:14px;
+  opacity:0.7;
+}
