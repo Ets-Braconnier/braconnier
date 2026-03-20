@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Demande de devis | Ets Braconnier</title>
+  <meta name="description" content="Demandez facilement votre devis à Ets Braconnier à Bertrix." />
+  <meta name="robots" content="index,follow" />
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="page-scale">
+    <header>
+      <div class="wrap topbar">
+        <div class="brand">
+          <div class="logo">
+            <img id="logoMain" alt="Ets Braconnier" />
+            <small>Matériaux de construction – articles professionnels et de bricolage</small>
+          </div>
+        </div>
+
+        <div class="devis-cta-box">
+          <strong>Besoin d’un prix ou d’un conseil ?</strong>
+          <a class="devis-btn" href="devis.html?source=devis">Demander un devis</a>
+        </div>
+
+        <div class="header-right">
+          <div class="quicklinks" aria-label="Liens rapides">
+            <a href="avis.html">Votre avis</a>
+            <a href="https://drive.google.com/file/d/1N9CdKtCcbHPmVZXm3oCqrAfOavRANNqF/preview">RGPD</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-layout">
+        <nav class="main-nav" aria-label="Menu principal">
+          <button class="menu-toggle" aria-expanded="false">☰ Menu</button>
+
+          <ul class="menu">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="calculs.html">Calculs</a></li>
+            <li><a href="presentation.html">Présentation</a></li>
+            <li><a href="produits.html">Produits</a></li>
+            <li><a href="promotions.html">Promotions</a></li>
+            <li><a href="contact.html">Contacts</a></li>
+          </ul>
+        </nav>
+
+        <img id="heroImg" class="hero-img" alt="" />
+
+        <iframe class="map"
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5145.2121350771895!2d5.25321!3d49.84985900000001!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47ea808d6bb9e87f%3A0xf00dd4deebbf1048!2sEts%20Braconnier!5e0!3m2!1sfr!2sbe!4v1770570919392!5m2!1sfr!2sbe"
+          loading="lazy" allowfullscreen>
+        </iframe>
+      </div>
+    </header>
+
+    <main>
+      <div class="wrap">
+        <section class="content">
+          <article class="card" style="padding: 24px;">
+            <h1>Demande de devis</h1>
+            <p>Décrivez votre besoin, les matériaux souhaités et, si possible, les quantités. Nous reviendrons vers vous
+              rapidement.</p>
+
+            <form class="devis-form devis-page-form" onsubmit="return sendDevisMail(event)">
+              <input type="hidden" name="source" id="sourceField">
+
+              <div class="devis-row">
+                <input type="text" name="nom" placeholder="Nom" required>
+                <input type="tel" name="tel" placeholder="Téléphone" required>
+              </div>
+
+              <input type="email" name="email" placeholder="E-mail" required>
+
+              <input type="text" name="objet" id="objetField" placeholder="Objet de votre demande">
+
+              <div class="source-box">
+                <input type="text" id="sourceDisplay" readonly>
+              </div>
+
+              <textarea name="message" id="messageField" rows="8" placeholder="Votre demande..." required></textarea>
+
+              <button type="submit">Envoyer</button>
+            </form>
+          </article>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <div class="footerbar" aria-hidden="true"></div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const ASSETS = {
+      logoMain: "images-site/logo.jpg",
+      hero: "images-site/magasin.jpg"
+    };
+
+    document.getElementById("logoMain").src = ASSETS.logoMain;
+    document.getElementById("heroImg").src = ASSETS.hero;
+  </script>
+
+  <script>
+    function getSourceLabel(source) {
+      const labels = {
+        accueil: "Page d'accueil",
+        menu: "Menu principal",
+        produits: "Page Produits",
+        promotions: "Page Promotions",
+        calculs: "Page Calculs",
+        presentation: "Page Présentation",
+        contact: "Page Contacts",
+        seuils: "Page Seuils",
+        lambris: "Page Lambris",
+        siga: "Page SIGA"
+      };
+
+      return labels[source] || source || "Page non précisée";
+    }
+
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const source = params.get("source") || "";
+      const produit = params.get("produit") || "";
+      const sourceLabel = getSourceLabel(source);
+
+      const sourceField = document.getElementById("sourceField");
+      const sourceDisplay = document.getElementById("sourceDisplay");
+      const objetField = document.getElementById("objetField");
+      const messageField = document.getElementById("messageField");
+
+      sourceField.value = sourceLabel;
+      sourceDisplay.value = sourceLabel;
+
+    })();
+  </script>
+
+  <script>
+    function sendDevisMail(e) {
+      e.preventDefault();
+
+      const f = e.target;
+
+      const subject = encodeURIComponent("Demande de devis – Braconnier");
+
+      const body = encodeURIComponent(
+        "Nom : " + f.nom.value + "\n" +
+        "Téléphone : " + f.tel.value + "\n" +
+        "Email : " + f.email.value + "\n" +
+        "Source : " + f.source.value + "\n" +
+        "Objet : " + f.objet.value + "\n\n" +
+        "Message :\n" + f.message.value
+      );
+
+      window.location.href =
+        "mailto:info@braconnier.be?subject=" + subject + "&body=" + body;
+
+      return false;
+    }
+  </script>
+
+  <script>
+    const toggle = document.querySelector(".menu-toggle");
+    const menu = document.querySelector(".menu");
+
+    if (toggle && menu) {
+      toggle.addEventListener("click", () => {
+        menu.classList.toggle("open");
+        toggle.setAttribute(
+          "aria-expanded",
+          menu.classList.contains("open") ? "true" : "false"
+        );
+      });
+    }
+  </script>
+
+  <script src="scripts.js"></script>
+</body>
+
+</html>
